@@ -445,110 +445,58 @@ function Hero() {
 }
 
 // ─── Growth Engine SVG Component ──────────────────────────────────────────────
-// ─── Growth Engine Interactive Canvas ─────────────────────────────────────────
+// ─── Growth System Flow (Apple & High-End SaaS Aesthetic) ───────────────────
 function GrowthEngineDiagram() {
-  const nodes = [
-    {
-      title: 'Technical SEO Cluster',
-      sub: 'WordPress · Cloudflare',
-      badge: '99/100',
-      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-      logo: 'WordPress',
-      pos: 'top-4 left-4 sm:top-6 sm:left-6',
-    },
-    {
-      title: 'AI Content Pipeline',
-      sub: 'OpenAI · Gemini AI',
-      badge: 'Auto Gen',
-      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-      logo: 'OpenAI',
-      pos: 'top-4 right-4 sm:top-6 sm:right-6',
-    },
-    {
-      title: 'Zalo & AppSheet CRM',
-      sub: 'CSKH & Sales SOP',
-      badge: 'SLA <5s',
-      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-      logo: 'Zalo',
-      pos: 'bottom-4 left-4 sm:bottom-6 sm:left-6',
-    },
-    {
-      title: 'n8n Automation Engine',
-      sub: '18 Active Workflows',
-      badge: '70% Auto',
-      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-      logo: 'n8n',
-      pos: 'bottom-4 right-4 sm:bottom-6 sm:right-6',
-    },
+  const steps = [
+    { num: '01', title: 'Traffic / Visitor', desc: 'Inbound SEO & Ads' },
+    { num: '02', title: 'Data & Intent', desc: 'Behavior & Signals' },
+    { num: '03', title: 'Smart CRM', desc: 'Instant SLA <5s' },
+    { num: '04', title: 'Automation', desc: 'AI Nurture & SOP' },
+    { num: '05', title: 'Growth & ROI', desc: 'Revenue Conversion' },
   ]
 
   return (
-    <div className="relative w-full h-full min-h-[440px] sm:min-h-[500px] rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 shadow-2xl overflow-hidden flex flex-col justify-between select-none">
+    <div className="relative w-full h-full rounded-3xl bg-white border border-slate-200/70 p-6 sm:p-10 shadow-sm flex flex-col justify-between select-none">
       
-      {/* ── Ambient Radial Glows ── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl pointer-events-none" />
-      <div className="absolute top-0 right-0 w-60 h-60 rounded-full bg-indigo-600/10 blur-2xl pointer-events-none" />
-
-      {/* ── Canvas Header Status Bar ── */}
-      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-slate-800/80 text-xs">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-bold text-slate-300 tracking-wide uppercase">GROWTH ENGINE ECOSYSTEM</span>
-        </div>
-        <span className="text-slate-400 font-mono text-[11px] bg-slate-800/80 px-2.5 py-1 rounded-full border border-slate-700">
-          DATA FLOW · 60 FPS
+      {/* Top Bar Header */}
+      <div className="flex items-center justify-between pb-6 border-b border-slate-100">
+        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          SYSTEM ARCHITECTURE FLOW
         </span>
+        <span className="w-2 h-2 rounded-full bg-blue-600" />
       </div>
 
-      {/* ── Center Growth Core + Animated SVG Wires ── */}
-      <div className="relative my-auto py-12 sm:py-16 flex items-center justify-center">
+      {/* Center Apple-Style Core Node (180px) + Clean Value Flow */}
+      <div className="py-10 sm:py-14 flex flex-col items-center justify-center relative">
         
-        {/* Animated Connecting Wires */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 600 300" fill="none">
-          <path d="M 120 50 C 220 50, 220 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
-          <path d="M 480 50 C 380 50, 380 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
-          <path d="M 120 250 C 220 250, 220 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
-          <path d="M 480 250 C 380 250, 380 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
-        </svg>
-
-        {/* Central Engine Glowing Core */}
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-500 p-0.5 shadow-[0_0_50px_rgba(37,99,235,0.4)] flex items-center justify-center apple-float">
-            <div className="w-full h-full rounded-full bg-[#0F172A] p-2 flex flex-col items-center justify-center text-center border border-blue-400/30">
-              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white mb-1 shadow-lg shadow-blue-600/50">
-                <Cpu size={18} />
-              </div>
-              <span className="text-[10px] font-extrabold text-white uppercase tracking-wider">Growth Core</span>
-            </div>
-          </div>
+        {/* Core Hero Circle */}
+        <div className="w-44 h-44 sm:w-52 sm:h-52 rounded-full bg-gradient-to-b from-slate-50 to-slate-100/90 border border-slate-200/80 shadow-lg shadow-blue-500/5 flex flex-col items-center justify-center text-center p-4 relative z-10 transition-transform duration-500 hover:scale-[1.02]">
+          <div className="w-3 h-3 rounded-full bg-blue-600 mb-3" />
+          <span className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            Growth<br />System
+          </span>
+          <span className="text-[11px] font-medium text-slate-400 mt-1">Ecosystem Core</span>
         </div>
 
-        {/* 4 Interactive Corner Tech Cards */}
-        {nodes.map((node) => (
-          <div
-            key={node.title}
-            className={`absolute ${node.pos} z-10 bg-[#1E293B]/90 border border-slate-700/80 rounded-2xl p-3 sm:p-4 shadow-xl hover:border-blue-500 hover:scale-105 transition-all duration-300 max-w-[170px] sm:max-w-[210px]`}
-          >
-            <div className="flex items-center justify-between gap-2 mb-1.5">
-              <TechLogo name={node.logo} size={18} />
-              <span className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full border ${node.badgeColor}`}>
-                {node.badge}
-              </span>
+        {/* 5 Clean Value Nodes Positioned Around Center */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-5 gap-3 mt-8 sm:mt-10 relative z-10">
+          {steps.map((step) => (
+            <div
+              key={step.num}
+              className="p-3 sm:p-3.5 rounded-2xl bg-[#FBFBF9] border border-slate-200/60 hover:border-blue-500 transition-colors text-center"
+            >
+              <span className="text-[10px] font-bold text-blue-600 block mb-0.5">{step.num}</span>
+              <h4 className="text-xs font-bold text-slate-800 truncate">{step.title}</h4>
+              <p className="text-[10px] text-slate-400 mt-0.5 truncate">{step.desc}</p>
             </div>
-            <h4 className="text-xs sm:text-sm font-bold text-white leading-snug">{node.title}</h4>
-            <p className="text-[10px] text-slate-400 font-medium mt-0.5 truncate">{node.sub}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* ── Footer Tech Badges Strip ── */}
-      <div className="relative z-10 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 font-semibold">
-        <span className="flex items-center gap-1.5">
-          <Sparkle size={13} className="text-blue-400" /> Continuous Data Synchronization
-        </span>
-        <span className="text-blue-400 hover:text-blue-300 transition-colors">
-          GA4 · Looker · BigQuery Connected ➔
-        </span>
+      {/* Footer Restrained Caption */}
+      <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+        <span>End-to-End Automated Pipeline</span>
+        <span className="text-slate-600 font-semibold">Data-Driven Execution</span>
       </div>
 
     </div>
@@ -557,34 +505,15 @@ function GrowthEngineDiagram() {
 
 // ─── Section: Why Choose Me (Growth Engine Philosophy) ───────────────────────
 function WhyChooseMe() {
-  const pillars = [
-    {
-      num: '01',
-      title: 'Kiến trúc Liền mạch',
-      desc: 'Kết nối mọi điểm chạm từ SEO Traffic đến Zalo/CRM mà không đứt gãy dữ liệu.',
-    },
-    {
-      num: '02',
-      title: 'Vận hành bằng Dữ liệu',
-      desc: 'Mọi chiến dịch & ngân sách đều dựa trên báo cáo real-time GA4 & Looker Studio.',
-    },
-    {
-      num: '03',
-      title: 'Tự động hóa 70%',
-      desc: 'Giải phóng nguồn lực nhân sự khỏi tác vụ thủ công bằng n8n & Generative AI.',
-    },
-  ]
-
   return (
-    <section id="why-choose-me" className="py-24 sm:py-36 relative scroll-mt-28 border-t border-slate-200">
-      <div className="ambient-glow-blue top-1/4 -right-32" />
+    <section id="why-choose-me" className="py-24 sm:py-36 relative scroll-mt-28 border-t border-slate-200/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Section Label & Title */}
+        {/* Section Label */}
         <FadeUp>
           <div className="mb-12 sm:mb-16">
             <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3 block">
-              • TRIẾT LÝ VẬN HÀNH & NĂNG LỰC CỐT LÕI
+              • TRIẾT LÝ VẬN HÀNH
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">
               Vì sao chọn tôi?
@@ -592,38 +521,50 @@ function WhyChooseMe() {
           </div>
         </FadeUp>
 
-        {/* Bento Grid: Left Editorial Manifesto + Right Growth Canvas */}
+        {/* Apple Bento Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
           
-          {/* Left Column: Manifesto & 3 Pillars */}
+          {/* Left Column: Manifesto Quote & Description */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
             <FadeUp delay={100}>
-              <div className="space-y-4">
-                <blockquote className="text-xl sm:text-3xl font-extrabold text-slate-900 leading-snug tracking-tight">
+              <div className="space-y-6">
+                <blockquote className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight">
                   “Marketing không hiệu quả khi chỉ thêm công cụ. Nó chỉ bứt phá khi mọi thành tố vận hành như một Hệ thống.”
                 </blockquote>
-                <p className="text-sm sm:text-base leading-relaxed text-slate-500 font-normal">
-                  Tôi giúp doanh nghiệp kết nối SEO, Content, CRM, Automation và Analytics thành một quy trình liền mạch — nơi dữ liệu dẫn dắt quyết định và mọi nỗ lực Marketing đều tạo ra giá trị thực.
+                <p className="text-base leading-relaxed text-slate-500 font-normal">
+                  Tôi giúp doanh nghiệp hợp nhất dữ liệu và chuyển hóa từng điểm chạm thành quy trình tăng trưởng tự động — nơi dữ liệu dẫn dắt mọi quyết định và tạo ra giá trị thực.
                 </p>
               </div>
             </FadeUp>
 
             <FadeUp delay={150}>
-              <div className="space-y-4 pt-4 border-t border-slate-200">
-                {pillars.map((p) => (
-                  <div key={p.num} className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-blue-500 transition-colors">
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="text-xs font-extrabold text-blue-600">{p.num}</span>
-                      <h4 className="text-sm font-bold text-slate-900">{p.title}</h4>
-                    </div>
-                    <p className="text-xs text-slate-500 leading-relaxed font-normal pl-7">{p.desc}</p>
+              <div className="space-y-3 pt-6 border-t border-slate-200/80">
+                <div className="flex items-start gap-3">
+                  <span className="text-xs font-bold text-blue-600 mt-0.5">01</span>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900">Hợp nhất Dữ liệu</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">Loại bỏ nghẽn thông tin giữa Marketing &amp; Sales.</p>
                   </div>
-                ))}
+                </div>
+                <div className="flex items-start gap-3 pt-2">
+                  <span className="text-xs font-bold text-blue-600 mt-0.5">02</span>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900">Tự động hóa 70%</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">Phản hồi khách hàng &lt; 5 giây, tối ưu SLA tức thì.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 pt-2">
+                  <span className="text-xs font-bold text-blue-600 mt-0.5">03</span>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900">Đo lường Doanh thu</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">Theo dõi ROI chính xác trên từng kênh chuyển đổi.</p>
+                  </div>
+                </div>
               </div>
             </FadeUp>
           </div>
 
-          {/* Right Column: High-Contrast Growth Engine Canvas */}
+          {/* Right Column: Apple-Style Growth System Visual */}
           <div className="lg:col-span-7">
             <FadeUp delay={200} className="h-full">
               <GrowthEngineDiagram />
