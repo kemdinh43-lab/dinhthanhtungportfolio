@@ -1,14 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import {
-  Menu, X, Moon, Sun, ArrowRight, Download, ChevronUp,
-  Workflow, Search, Palette, LineChart, BrainCircuit,
-  Zap, Rocket, Layers, BarChart3, Settings2,
-  TrendingUp, Trophy, Timer, CheckCircle2,
-  Mail, ChevronRight, ChevronLeft, LayoutTemplate,
-  Globe, Sparkles, ArrowUpRight, Maximize2,
-  Bot, Database, FileCode2, Play, Check, Camera, RefreshCw, Cpu, Award,
-  Smartphone, GitBranch, Flame, Code2, Sparkle, Network, Calendar, Building2,
-  Server, BarChart, Activity, Phone
+  Menu, X, Moon, Sun, ArrowRight, ChevronUp,
+  Mail, Globe, ArrowUpRight, Play, Check, Cpu, Award, Sparkle, Phone
 } from 'lucide-react'
 
 // ─── Precision Brand & Tech SVG Icons ─────────────────────────────────────────
@@ -78,9 +71,9 @@ function TechLogo({ name, size = 16 }: { name: string; size?: number }) {
   if (lowercase.includes('gemini')) {
     return (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className="inline-block flex-shrink-0">
-        <path d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z" fill="url(#gemini-grad-font-31)" />
+        <path d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z" fill="url(#gemini-grad-clean-32)" />
         <defs>
-          <linearGradient id="gemini-grad-font-31" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <linearGradient id="gemini-grad-clean-32" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
             <stop stopColor="#1A73E8" />
             <stop offset="0.5" stopColor="#8AB4F8" />
             <stop offset="1" stopColor="#D93025" />
