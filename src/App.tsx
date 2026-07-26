@@ -444,27 +444,27 @@ function Hero() {
   )
 }
 
-// ─── Section: Why Choose Me (Apple Liquid Glass Spatial Design) ───────────────
+// ─── Section: Why Choose Me (Apple Liquid Glass Spatial Spheres) ───────────────
 function WhyChooseMe() {
   const liquidBubbles = [
-    { text: 'SEO tạo Traffic', pos: 'top-[10%] left-[3%] sm:left-[7%]', anim: 'liquid-morph-1 14s ease-in-out infinite', opacity: 'opacity-80 scale-95' },
-    { text: 'Content tạo niềm tin', pos: 'top-[14%] right-[4%] sm:right-[9%]', anim: 'liquid-morph-2 16s ease-in-out infinite 1s', opacity: 'opacity-85 scale-100' },
-    { text: 'CRM giữ khách hàng', pos: 'top-[32%] left-[1%] sm:left-[3%]', anim: 'liquid-morph-2 18s ease-in-out infinite 2s', opacity: 'opacity-70 scale-90 blur-[0.5px]' },
-    { text: 'Data dẫn dắt quyết định', pos: 'top-[30%] right-[2%] sm:right-[5%]', anim: 'liquid-morph-1 15s ease-in-out infinite 1.5s', opacity: 'opacity-90 scale-105' },
-    { text: 'Automation giảm công việc lặp lại', pos: 'top-[52%] left-[0%] sm:left-[2%]', anim: 'liquid-morph-1 20s ease-in-out infinite 3s', opacity: 'opacity-65 scale-85 blur-[1px]' },
-    { text: 'Traffic tạo Lead', pos: 'top-[54%] right-[1%] sm:right-[4%]', anim: 'liquid-morph-2 13s ease-in-out infinite 2.5s', opacity: 'opacity-80 scale-95' },
-    { text: 'Lead tạo Doanh thu', pos: 'bottom-[28%] left-[2%] sm:left-[6%]', anim: 'liquid-morph-2 17s ease-in-out infinite 0.5s', opacity: 'opacity-85 scale-100' },
-    { text: 'Think in Systems', pos: 'bottom-[30%] right-[3%] sm:right-[7%]', anim: 'liquid-morph-1 15s ease-in-out infinite 3.5s', opacity: 'opacity-75 scale-90' },
-    { text: 'Business First', pos: 'bottom-[12%] left-[5%] sm:left-[10%]', anim: 'liquid-morph-1 19s ease-in-out infinite 4s', opacity: 'opacity-70 scale-85 blur-[0.5px]' },
-    { text: 'Continuous Improvement', pos: 'bottom-[10%] right-[5%] sm:right-[8%]', anim: 'liquid-morph-2 16s ease-in-out infinite 1.2s', opacity: 'opacity-80 scale-95' },
-    { text: 'Connect Everything', pos: 'top-[5%] left-[35%] sm:left-[40%]', anim: 'liquid-morph-1 12s ease-in-out infinite 0.8s', opacity: 'opacity-90 scale-100' },
-    { text: 'Simplicity Scales', pos: 'bottom-[4%] left-[38%]', anim: 'liquid-morph-2 14s ease-in-out infinite 3.2s', opacity: 'opacity-85 scale-95' },
+    { text: 'SEO\nTraffic', pos: 'top-[8%] left-[4%] sm:left-[8%]', size: 'w-20 h-20 sm:w-28 sm:h-28', anim: 'liquid-morph-1 14s ease-in-out infinite', opacity: 'opacity-85 scale-95' },
+    { text: 'Content\nNiềm tin', pos: 'top-[10%] right-[5%] sm:right-[10%]', size: 'w-24 h-24 sm:w-32 sm:h-32', anim: 'liquid-morph-2 16s ease-in-out infinite 1s', opacity: 'opacity-90 scale-100' },
+    { text: 'CRM\nGiữ KH', pos: 'top-[36%] left-[2%] sm:left-[4%]', size: 'w-20 h-20 sm:w-24 sm:h-24', anim: 'liquid-morph-2 18s ease-in-out infinite 2s', opacity: 'opacity-75 scale-90 blur-[0.5px]' },
+    { text: 'Data\nDriven', pos: 'top-[34%] right-[3%] sm:right-[6%]', size: 'w-24 h-24 sm:w-30 sm:h-30', anim: 'liquid-morph-1 15s ease-in-out infinite 1.5s', opacity: 'opacity-90 scale-105' },
+    { text: 'Auto\nSOP', pos: 'top-[58%] left-[1%] sm:left-[3%]', size: 'w-18 h-18 sm:w-22 sm:h-22', anim: 'liquid-morph-1 20s ease-in-out infinite 3s', opacity: 'opacity-70 scale-85 blur-[1px]' },
+    { text: 'Traffic\n➔ Lead', pos: 'top-[60%] right-[2%] sm:right-[5%]', size: 'w-20 h-20 sm:w-26 sm:h-26', anim: 'liquid-morph-2 13s ease-in-out infinite 2.5s', opacity: 'opacity-85 scale-95' },
+    { text: 'Lead\n➔ Sales', pos: 'bottom-[24%] left-[3%] sm:left-[7%]', size: 'w-22 h-22 sm:w-28 sm:h-28', anim: 'liquid-morph-2 17s ease-in-out infinite 0.5s', opacity: 'opacity-90 scale-100' },
+    { text: 'System\nThink', pos: 'bottom-[26%] right-[4%] sm:right-[8%]', size: 'w-20 h-20 sm:w-26 sm:h-26', anim: 'liquid-morph-1 15s ease-in-out infinite 3.5s', opacity: 'opacity-80 scale-90' },
+    { text: 'Business\nFirst', pos: 'bottom-[8%] left-[6%] sm:left-[12%]', size: 'w-20 h-20 sm:w-24 sm:h-24', anim: 'liquid-morph-1 19s ease-in-out infinite 4s', opacity: 'opacity-75 scale-85 blur-[0.5px]' },
+    { text: 'Growth\nROI', pos: 'bottom-[6%] right-[6%] sm:right-[10%]', size: 'w-22 h-22 sm:w-28 sm:h-28', anim: 'liquid-morph-2 16s ease-in-out infinite 1.2s', opacity: 'opacity-85 scale-95' },
+    { text: 'Connect\nAll', pos: 'top-[4%] left-[36%] sm:left-[42%]', size: 'w-22 h-22 sm:w-28 sm:h-28', anim: 'liquid-morph-1 12s ease-in-out infinite 0.8s', opacity: 'opacity-90 scale-100' },
+    { text: 'Simple\nScales', pos: 'bottom-[2%] left-[40%]', size: 'w-20 h-20 sm:w-26 sm:h-26', anim: 'liquid-morph-2 14s ease-in-out infinite 3.2s', opacity: 'opacity-85 scale-95' },
   ]
 
   return (
-    <section id="why-choose-me" className="py-36 sm:py-56 min-h-[950px] lg:min-h-[1150px] relative scroll-mt-28 border-t border-slate-200/50 overflow-hidden bg-[#FAFAF8] flex flex-col justify-center select-none">
+    <section id="why-choose-me" className="py-32 sm:py-48 min-h-[900px] lg:min-h-[1050px] relative scroll-mt-28 border-t border-slate-200/50 overflow-hidden bg-[#FAFAF8] flex flex-col justify-center select-none">
       
-      {/* ── Spatial Liquid Glass Drops Cloud (Background Z-0) ── */}
+      {/* ── Spatial Liquid Glass Spheres Cloud (Background Z-0) ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {liquidBubbles.map((bubble, i) => (
           <div
@@ -472,36 +472,38 @@ function WhyChooseMe() {
             className={`absolute ${bubble.pos} hidden sm:block ${bubble.opacity}`}
             style={{ animation: bubble.anim }}
           >
-            <div className="liquid-glass-bubble px-5 py-2.5 rounded-[50%] text-xs font-semibold tracking-tight text-slate-700/90 pointer-events-auto cursor-default transition-all duration-700">
-              {bubble.text}
+            <div className={`liquid-glass-bubble ${bubble.size} aspect-square flex flex-col items-center justify-center text-center p-2 leading-tight pointer-events-auto cursor-default transition-all duration-700`}>
+              <span className="text-[11px] sm:text-xs font-bold tracking-tight text-slate-800/90 whitespace-pre-line">
+                {bubble.text}
+              </span>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-20 text-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-20 text-center">
         
-        {/* Apple Accent Title */}
+        {/* Apple Accent Title in Vibrant Blue */}
         <FadeUp>
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-blue-600 mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-blue-600 mb-8 sm:mb-12">
             Vì sao chọn tôi?
           </h2>
         </FadeUp>
 
-        {/* Master Editorial Typography Quote */}
+        {/* Centered Refined Quote Typography (Perfect Scale & Proportion) */}
         <FadeUp delay={100}>
-          <blockquote className="text-3xl sm:text-6xl lg:text-[76px] font-extrabold text-[#111827] leading-[1.12] sm:leading-[1.12] tracking-tight max-w-5xl mx-auto drop-shadow-sm">
+          <blockquote className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] leading-tight sm:leading-[1.25] tracking-tight max-w-3xl mx-auto drop-shadow-sm">
             “Marketing không thất bại vì thiếu công cụ.<br className="hidden sm:inline" />
             Marketing thất bại khi mọi thứ không kết nối với nhau.”
           </blockquote>
         </FadeUp>
 
         {/* Mobile Philosophy Tags */}
-        <FadeUp delay={200} className="sm:hidden mt-12">
+        <FadeUp delay={200} className="sm:hidden mt-10">
           <div className="flex flex-wrap justify-center gap-2">
             {liquidBubbles.slice(0, 8).map((b, i) => (
               <span key={i} className="liquid-glass-bubble px-3.5 py-1.5 rounded-full text-[11px] font-semibold text-slate-700">
-                {b.text}
+                {b.text.replace('\n', ' ')}
               </span>
             ))}
           </div>
