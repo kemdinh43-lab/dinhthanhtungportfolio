@@ -691,11 +691,11 @@ function CaseStudy() {
           <div className="card-clean overflow-hidden flex flex-col lg:flex-row items-stretch">
 
             {/* ── Ảnh: trên cùng (mobile), bên phải (desktop) ── */}
-            <div className="order-first lg:order-last lg:w-[45%] flex-shrink-0 relative bg-[#0D1433]" style={{minHeight: '260px'}}>
+            <div className="order-first lg:order-last lg:w-[45%] flex-shrink-0 bg-[#0D1433] flex items-center justify-center p-4 sm:p-6">
               <img
                 src="/build-systems-casestudy.png"
                 alt="Build Systems Not More Work - AI Growth System for Modern Marketers"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                className="w-full aspect-square object-contain rounded-xl transition-transform duration-700 hover:scale-105"
               />
             </div>
 
