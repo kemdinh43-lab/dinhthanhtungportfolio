@@ -205,6 +205,7 @@ function Navbar() {
 
   const navItems = [
     ['Trang chủ', '#hero'],
+    ['Vì sao chọn tôi', '#why-choose-me'],
     ['Năng lực', '#offerings'],
     ['Kiến trúc SEO', '#seo-architecture'],
     ['n8n Workflows', '#n8n-canvas'],
@@ -438,6 +439,215 @@ function Hero() {
             </FadeUp>
           </div>
         </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Growth Engine SVG Component ──────────────────────────────────────────────
+function GrowthEngineDiagram() {
+  return (
+    <div className="relative w-full max-w-[840px] mx-auto select-none py-4 sm:py-8">
+      
+      {/* ── Background Soft Glow ── */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-indigo-500/5 to-blue-600/10 rounded-3xl blur-2xl pointer-events-none" />
+
+      {/* ── Vector SVG Diagram Container ── */}
+      <div className="relative z-10 w-full aspect-[8/5] min-h-[320px] sm:min-h-[440px] bg-white/70 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-3 sm:p-8 shadow-[0_20px_50px_rgba(37,99,235,0.06)] overflow-hidden flex items-center justify-center">
+        
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 800 500"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            {/* Core Radial Glow */}
+            <radialGradient id="core-glow" cx="400" cy="250" r="120" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.3" />
+              <stop offset="60%" stopColor="#3B82F6" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
+            </radialGradient>
+
+            {/* Core Solid Gradient */}
+            <linearGradient id="core-grad" x1="350" y1="200" x2="450" y2="300" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#1E4ED8" />
+              <stop offset="100%" stopColor="#2563EB" />
+            </linearGradient>
+
+            {/* Dashed Flow Gradient */}
+            <linearGradient id="flow-grad" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#60A5FA" />
+              <stop offset="50%" stopColor="#2563EB" />
+              <stop offset="100%" stopColor="#3B82F6" />
+            </linearGradient>
+
+            {/* Node Soft Glow Filter */}
+            <filter id="node-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#2563EB" floodOpacity="0.12" />
+            </filter>
+          </defs>
+
+          {/* ── Background Grid Dots ── */}
+          <g fill="#CBD5E1" opacity="0.35">
+            {Array.from({ length: 9 }).map((_, c) =>
+              Array.from({ length: 6 }).map((_, r) => (
+                <circle key={`bg-dot-${c}-${r}`} cx={80 + c * 80} cy={60 + r * 76} r="1.5" />
+              ))
+            )}
+          </g>
+
+          {/* ── Curved Data Flow Connections (Center 400,250 to Orbital Nodes) ── */}
+          {/* Base Static Paths */}
+          <g stroke="#E2E8F0" strokeWidth="2" opacity="0.8">
+            <path d="M 400 250 C 310 250, 240 180, 210 120" />
+            <path d="M 400 250 C 400 180, 400 140, 400 80" />
+            <path d="M 400 250 C 490 250, 560 180, 590 120" />
+            <path d="M 400 250 C 520 250, 610 250, 680 250" />
+            <path d="M 400 250 C 490 250, 560 320, 590 380" />
+            <path d="M 400 250 C 310 250, 240 320, 210 380" />
+            <path d="M 400 250 C 280 250, 190 250, 120 250" />
+          </g>
+
+          {/* Animated Flow Paths */}
+          <g stroke="url(#flow-grad)" strokeWidth="2.5" className="wire-animated" opacity="0.9">
+            <path d="M 400 250 C 310 250, 240 180, 210 120" />
+            <path d="M 400 250 C 400 180, 400 140, 400 80" />
+            <path d="M 400 250 C 490 250, 560 180, 590 120" />
+            <path d="M 400 250 C 520 250, 610 250, 680 250" />
+            <path d="M 400 250 C 490 250, 560 320, 590 380" />
+            <path d="M 400 250 C 310 250, 240 320, 210 380" />
+            <path d="M 400 250 C 280 250, 190 250, 120 250" />
+          </g>
+
+          {/* ── Center Growth Engine Core ── */}
+          {/* Outer Pulsing Aura */}
+          <circle cx="400" cy="250" r="85" fill="url(#core-glow)" />
+
+          {/* Rotating Dashed Accent Ring */}
+          <circle
+            cx="400"
+            cy="250"
+            r="60"
+            fill="none"
+            stroke="#60A5FA"
+            strokeWidth="2"
+            strokeDasharray="12 8"
+            className="animate-spin-slow"
+            opacity="0.85"
+          />
+
+          {/* Core Solid Glass Circle */}
+          <circle cx="400" cy="250" r="44" fill="url(#core-grad)" filter="url(#node-shadow)" />
+
+          {/* Center Engine Abstract Vector Symbol */}
+          <g transform="translate(400, 250)" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
+            <polygon points="0,-16 14,-8 14,8 0,16 -14,8 -14,-8" fill="rgba(255,255,255,0.1)" />
+            <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+          </g>
+
+          {/* ── 7 Orbital Geometric Nodes (Pure Minimal Vector Graphics, No Labels) ── */}
+
+          {/* Node 1 (Top Left: SEO) at (210, 120) */}
+          <g className="group cursor-pointer" transform="translate(210, 120)">
+            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
+            <circle cx="-3" cy="-3" r="8" stroke="#2563EB" strokeWidth="2" fill="none" />
+            <line x1="3" y1="3" x2="10" y2="10" stroke="#2563EB" strokeWidth="2.5" strokeLinecap="round" />
+          </g>
+
+          {/* Node 2 (Top: Dashboard) at (400, 80) */}
+          <g className="group cursor-pointer" transform="translate(400, 80)">
+            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
+            <rect x="-10" y="-8" width="20" height="16" rx="4" stroke="#2563EB" strokeWidth="2" fill="none" />
+            <path d="M-6 2 L-2 -3 L3 0 L6 -5" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          </g>
+
+          {/* Node 3 (Top Right: Content) at (590, 120) */}
+          <g className="group cursor-pointer" transform="translate(590, 120)">
+            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
+            <rect x="-8" y="-10" width="14" height="18" rx="2" stroke="#2563EB" strokeWidth="2" fill="none" />
+            <line x1="-4" y1="-4" x2="2" y2="-4" stroke="#3B82F6" strokeWidth="1.5" />
+            <line x1="-4" y1="0" x2="4" y2="0" stroke="#3B82F6" strokeWidth="1.5" />
+            <line x1="-4" y1="4" x2="0" y2="4" stroke="#3B82F6" strokeWidth="1.5" />
+          </g>
+
+          {/* Node 4 (Middle Right: CRM) at (680, 250) */}
+          <g className="group cursor-pointer" transform="translate(680, 250)">
+            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
+            <circle cx="0" cy="-6" r="4" fill="#2563EB" />
+            <circle cx="-7" cy="6" r="3.5" fill="#3B82F6" />
+            <circle cx="7" cy="6" r="3.5" fill="#3B82F6" />
+            <line x1="0" y1="-6" x2="-7" y2="6" stroke="#93C5FD" strokeWidth="1.5" />
+            <line x1="0" y1="-6" x2="7" y2="6" stroke="#93C5FD" strokeWidth="1.5" />
+            <line x1="-7" y1="6" x2="7" y2="6" stroke="#93C5FD" strokeWidth="1.5" />
+          </g>
+
+          {/* Node 5 (Bottom Right: Automation) at (590, 380) */}
+          <g className="group cursor-pointer" transform="translate(590, 380)">
+            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
+            <path d="M-6 -6 L6 6 M-6 6 L6 -6" stroke="#2563EB" strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx="0" cy="0" r="7" stroke="#2563EB" strokeWidth="2" fill="#FFFFFF" />
+          </g>
+
+          {/* Node 6 (Bottom Left: Analytics) at (210, 380) */}
+          <g className="group cursor-pointer" transform="translate(210, 380)">
+            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
+            <rect x="-10" y="2" width="4" height="8" rx="1" fill="#93C5FD" />
+            <rect x="-3" y="-3" width="4" height="13" rx="1" fill="#3B82F6" />
+            <rect x="4" y="-9" width="4" height="19" rx="1" fill="#2563EB" />
+          </g>
+
+          {/* Node 7 (Middle Left: AI) at (120, 250) */}
+          <g className="group cursor-pointer" transform="translate(120, 250)">
+            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
+            <path d="M0 -12 C0 -4, -4 0, -12 0 C-4 0, 0 4, 0 12 C0 4, 4 0, 12 0 C4 0, 0 -4, 0 -12 Z" fill="#2563EB" />
+          </g>
+
+        </svg>
+      </div>
+
+    </div>
+  )
+}
+
+// ─── Section: Why Choose Me (Growth Engine Philosophy) ───────────────────────
+function WhyChooseMe() {
+  return (
+    <section id="why-choose-me" className="py-24 sm:py-36 relative scroll-mt-28 border-t border-slate-200/80">
+      <div className="ambient-glow-blue top-1/4 -right-32" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        
+        {/* Heading */}
+        <FadeUp>
+          <div className="max-w-3xl mb-10 sm:mb-16">
+            <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3 block">
+              • TRIẾT LÝ VẬN HÀNH & NĂNG LỰC CỐT LÕI
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">
+              Vì sao chọn tôi?
+            </h2>
+          </div>
+        </FadeUp>
+
+        {/* Quote Block */}
+        <FadeUp delay={100}>
+          <div className="mb-14 sm:mb-20 max-w-5xl">
+            <div className="relative bg-gradient-to-r from-blue-50/80 via-blue-50/30 to-transparent border-l-4 border-blue-600 p-6 sm:p-10 rounded-r-3xl shadow-sm">
+              <span className="absolute top-4 right-6 text-6xl sm:text-8xl font-serif text-blue-500/15 pointer-events-none select-none">
+                “
+              </span>
+              <p className="text-base sm:text-2xl font-semibold text-slate-800 leading-relaxed italic relative z-10">
+                "Marketing không hiệu quả hơn khi có thêm công cụ, mà khi mọi công cụ cùng hoạt động như một hệ thống. Tôi giúp doanh nghiệp kết nối SEO, Content, CRM, Automation và Analytics thành một quy trình liền mạch, nơi dữ liệu dẫn dắt quyết định và mọi nỗ lực Marketing đều tạo ra giá trị thực cho doanh nghiệp."
+              </p>
+            </div>
+          </div>
+        </FadeUp>
+
+        {/* Interactive Growth Engine Component */}
+        <FadeUp delay={200}>
+          <GrowthEngineDiagram />
+        </FadeUp>
+
       </div>
     </section>
   )
@@ -1048,6 +1258,7 @@ export default function App() {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
+      <WhyChooseMe />
       <Offerings />
       <SeoArchitecture />
       <N8nCanvasUI />
