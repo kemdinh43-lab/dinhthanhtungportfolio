@@ -681,7 +681,7 @@ function N8nCanvasUI() {
 function CaseStudy() {
   return (
     <section id="casestudy" className="py-24 sm:py-32 scroll-mt-28">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeading
           title="Dự án Case Study nổi bật"
           sub="Minh chứng từ hệ thống Marketing Automation B2B đã được vận hành thực tế tại Đồng phục Thành Tín."
@@ -691,11 +691,11 @@ function CaseStudy() {
           <div className="card-clean overflow-hidden flex flex-col lg:flex-row items-stretch">
 
             {/* ── Ảnh: trên cùng (mobile), bên phải (desktop) ── */}
-            <div className="order-first lg:order-last lg:w-[45%] flex-shrink-0 bg-[#0D1433] flex items-center justify-center" style={{minHeight: '220px'}}>
+            <div className="order-first lg:order-last lg:w-[45%] flex-shrink-0 relative bg-[#0D1433]" style={{minHeight: '260px'}}>
               <img
                 src="/build-systems-casestudy.png"
                 alt="Build Systems Not More Work - AI Growth System for Modern Marketers"
-                className="w-full object-contain max-h-[340px] lg:max-h-[420px] transition-transform duration-700 hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
 
