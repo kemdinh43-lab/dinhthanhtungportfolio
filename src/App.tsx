@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import {
   Menu, X, ArrowRight, ChevronUp,
-  Mail, Globe, ArrowUpRight, Play, Check, Cpu, Award, Sparkle, Phone
+  Mail, Globe, ArrowUpRight, Play, Check, Cpu, Award, Sparkle, Phone,
+  Search, TrendingUp, PieChart, Bot
 } from 'lucide-react'
 
 // ─── Precision Brand & Tech SVG Icons ─────────────────────────────────────────
@@ -276,6 +277,90 @@ function Navbar() {
   )
 }
 
+// ─── Hero Graphic Visual ──────────────────────────────────────────────────────
+function HeroVisual() {
+  return (
+    <div className="relative w-full max-w-[480px] aspect-square mx-auto flex items-center justify-center select-none">
+      
+      {/* ── Background SVG Accents & Decorative Curves ── */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 500 500" fill="none">
+        {/* Top-Left Arc */}
+        <path d="M 115 90 A 210 210 0 0 1 310 25" stroke="#2563EB" strokeWidth="1.5" opacity="0.85" />
+        
+        {/* Bottom-Right Arc */}
+        <path d="M 470 280 A 210 210 0 0 1 420 395" stroke="#2563EB" strokeWidth="1.5" opacity="0.85" />
+
+        {/* Top-Right Circle Outline */}
+        <circle cx="410" cy="45" r="16" stroke="#2563EB" strokeWidth="1.5" fill="none" opacity="0.85" />
+
+        {/* Right Dot Grid */}
+        <g fill="#93C5FD" opacity="0.75">
+          {Array.from({ length: 4 }).map((_, col) =>
+            Array.from({ length: 6 }).map((_, row) => (
+              <circle key={`${col}-${row}`} cx={400 + col * 12} cy={180 + row * 12} r="2" />
+            ))
+          )}
+        </g>
+      </svg>
+
+      {/* ── Soft Light Blue Blob (Bottom Left) ── */}
+      <div className="absolute left-[2%] bottom-[8%] w-[55%] h-[45%] rounded-full bg-blue-100/70 blur-md pointer-events-none z-0" />
+
+      {/* ── Central Vibrant Blue Circle ── */}
+      <div className="absolute w-[68%] h-[68%] rounded-full bg-[#1D61E7] shadow-xl shadow-blue-500/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0" />
+
+      {/* ── Cutout Person Image ── */}
+      <img
+        src="/hero-person-cutout.png"
+        alt="Đinh Thanh Tùng - Marketing Systems Architect"
+        className="relative z-10 w-[84%] h-auto object-contain mx-auto transition-transform duration-500 hover:scale-[1.02] drop-shadow-md"
+      />
+
+      {/* ── 4 Floating Badges ── */}
+      {/* 1. Top Right: AI Automation */}
+      <div className="absolute top-[12%] right-[0%] sm:right-[2%] z-20 apple-float" style={{ animationDelay: '0s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
+            <Bot size={18} />
+          </div>
+          <span>AI Automation</span>
+        </div>
+      </div>
+
+      {/* 2. Middle Right: Growth Architect */}
+      <div className="absolute top-[50%] right-[-4%] sm:right-[-2%] z-20 apple-float" style={{ animationDelay: '1.5s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
+            <TrendingUp size={18} />
+          </div>
+          <span>Growth Architect</span>
+        </div>
+      </div>
+
+      {/* 3. Middle Left: Technical SEO */}
+      <div className="absolute top-[62%] left-[-4%] sm:left-[-2%] z-20 apple-float" style={{ animationDelay: '1s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
+            <Search size={16} />
+          </div>
+          <span>Technical SEO</span>
+        </div>
+      </div>
+
+      {/* 4. Bottom Left: Data Analytics */}
+      <div className="absolute bottom-[5%] left-[2%] sm:left-[5%] z-20 apple-float" style={{ animationDelay: '2s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
+            <PieChart size={16} />
+          </div>
+          <span>Data Analytics</span>
+        </div>
+      </div>
+
+    </div>
+  )
+}
+
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 function Hero() {
   return (
@@ -348,16 +433,8 @@ function Hero() {
           </div>
 
           <div className="lg:col-span-5 flex justify-center">
-            <FadeUp delay={150} className="w-full max-w-xs sm:max-w-md">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 p-2.5 shadow-2xl apple-float">
-                <div className="relative aspect-4/5 rounded-2xl overflow-hidden bg-slate-200 flex items-center justify-center">
-                  <img
-                    src="/avatar.jpg"
-                    alt="Đinh Thanh Tùng"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+            <FadeUp delay={150} className="w-full">
+              <HeroVisual />
             </FadeUp>
           </div>
         </div>
