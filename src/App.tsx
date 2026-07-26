@@ -680,37 +680,48 @@ function N8nCanvasUI() {
 // ─── Section 5: Case Study ────────────────────────────────────────────────────
 function CaseStudy() {
   return (
-    <section id="casestudy" className="py-24 sm:py-36 scroll-mt-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="casestudy" className="py-24 sm:py-32 scroll-mt-28">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading
           title="Dự án Case Study nổi bật"
           sub="Minh chứng từ hệ thống Marketing Automation B2B đã được vận hành thực tế tại Đồng phục Thành Tín."
         />
 
         <FadeUp>
-          <div className="card-clean overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
-            <div className="lg:col-span-5 p-6 sm:p-12 flex flex-col justify-between">
+          <div className="card-clean overflow-hidden flex flex-col lg:flex-row items-stretch">
+
+            {/* ── Ảnh: trên cùng (mobile), bên phải (desktop) ── */}
+            <div className="order-first lg:order-last lg:w-[45%] flex-shrink-0 bg-[#0D1433] flex items-center justify-center" style={{minHeight: '220px'}}>
+              <img
+                src="/build-systems-casestudy.png"
+                alt="Build Systems Not More Work - AI Growth System for Modern Marketers"
+                className="w-full object-contain max-h-[340px] lg:max-h-[420px] transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+
+            {/* ── Text: dưới (mobile), bên trái (desktop) ── */}
+            <div className="order-last lg:order-first lg:w-[55%] p-6 sm:p-10 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-semibold text-blue-600 border-b border-blue-500 pb-0.5 mb-6 block w-fit">
+                <span className="text-xs font-semibold text-blue-600 border-b border-blue-500 pb-0.5 mb-5 block w-fit">
                   Chuyển đổi số B2B · Đồng phục Thành Tín
                 </span>
-                <h3 className="text-2xl sm:text-4xl font-extrabold mb-4 leading-tight text-slate-900">
-                  Hệ thống Marketing Automation & CRM Tự động 70% Lead B2B
+                <h3 className="text-xl sm:text-3xl font-extrabold mb-3 leading-tight text-slate-900">
+                  Hệ thống Marketing Automation &amp; CRM Tự động 70% Lead B2B
                 </h3>
-                <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 font-normal text-slate-500">
+                <p className="text-sm leading-relaxed mb-6 font-normal text-slate-500">
                   Tái kiến trúc lại toàn bộ trải nghiệm số cho thương hiệu may mặc B2B 15 năm tuổi: Tối ưu SEO Topic Cluster, tích hợp Zalo OA tự động phản hồi SLA &lt;5s, CRM AppSheet và 18 luồng n8n tự động viết bài, sinh ảnh AI.
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
+                <div className="grid grid-cols-3 gap-3 sm:gap-5 mb-6">
                   <div>
-                    <p className="text-2xl sm:text-4xl font-extrabold text-blue-600">+238%</p>
+                    <p className="text-xl sm:text-3xl font-extrabold text-blue-600">+238%</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">Organic Traffic</p>
                   </div>
                   <div>
-                    <p className="text-2xl sm:text-4xl font-extrabold text-emerald-500">70%</p>
+                    <p className="text-xl sm:text-3xl font-extrabold text-emerald-500">70%</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">Lead Tự động</p>
                   </div>
                   <div>
-                    <p className="text-2xl sm:text-4xl font-extrabold text-amber-500">&lt; 5s</p>
+                    <p className="text-xl sm:text-3xl font-extrabold text-amber-500">&lt; 5s</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">SLA Zalo OA</p>
                   </div>
                 </div>
@@ -720,13 +731,6 @@ function CaseStudy() {
               </a>
             </div>
 
-            <div className="lg:col-span-7 relative min-h-[320px] sm:min-h-[420px] lg:min-h-full overflow-hidden bg-[#0D1433] flex items-center justify-center">
-              <img
-                src="/build-systems-casestudy.png"
-                alt="Build Systems Not More Work - AI Growth System for Modern Marketers"
-                className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
-              />
-            </div>
           </div>
         </FadeUp>
       </div>
