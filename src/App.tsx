@@ -444,69 +444,65 @@ function Hero() {
   )
 }
 
-// ─── Section: Why Choose Me (Apple x Stripe x Linear Floating Philosophy) ────
+// ─── Section: Why Choose Me (Apple Liquid Glass Spatial Design) ───────────────
 function WhyChooseMe() {
-  const philosophyThoughts = [
-    { text: 'SEO tạo Traffic', pos: 'top-[8%] left-[2%] sm:left-[6%]', opacity: 'opacity-15', delay: '0s', duration: '9s' },
-    { text: 'Content tạo niềm tin', pos: 'top-[12%] right-[2%] sm:right-[8%]', opacity: 'opacity-20', delay: '1s', duration: '11s' },
-    { text: 'CRM giữ khách hàng', pos: 'top-[28%] left-[1%] sm:left-[3%]', opacity: 'opacity-15', delay: '2s', duration: '10s' },
-    { text: 'Data dẫn dắt quyết định', pos: 'top-[26%] right-[1%] sm:right-[5%]', opacity: 'opacity-20', delay: '1.5s', duration: '12s' },
-    { text: 'Automation giảm công việc lặp lại', pos: 'top-[48%] left-[0%] sm:left-[2%]', opacity: 'opacity-10', delay: '3s', duration: '13s' },
-    { text: 'Mọi điểm chạm đều cần kết nối', pos: 'top-[50%] right-[0%] sm:right-[3%]', opacity: 'opacity-15', delay: '2.5s', duration: '9s' },
-    { text: 'Đo lường trước khi tối ưu', pos: 'bottom-[28%] left-[2%] sm:left-[5%]', opacity: 'opacity-15', delay: '0.5s', duration: '11s' },
-    { text: 'Traffic phải tạo Lead', pos: 'bottom-[30%] right-[2%] sm:right-[6%]', opacity: 'opacity-20', delay: '3.5s', duration: '10s' },
-    { text: 'Lead phải tạo Doanh thu', pos: 'bottom-[16%] left-[4%] sm:left-[8%]', opacity: 'opacity-15', delay: '4s', duration: '12s' },
-    { text: 'Đừng tối ưu từng kênh', pos: 'bottom-[14%] right-[4%] sm:right-[7%]', opacity: 'opacity-20', delay: '1.2s', duration: '8s' },
-    { text: 'Hãy tối ưu cả hệ thống', pos: 'bottom-[4%] left-[6%] sm:left-[12%]', opacity: 'opacity-15', delay: '2.8s', duration: '14s' },
-    { text: 'Tăng trưởng phải lặp lại được', pos: 'bottom-[3%] right-[6%] sm:right-[11%]', opacity: 'opacity-15', delay: '4.5s', duration: '11s' },
-    { text: 'Đơn giản hóa sự phức tạp', pos: 'top-[4%] left-[32%] sm:left-[38%]', opacity: 'opacity-15', delay: '0.8s', duration: '10s' },
-    { text: 'Business First', pos: 'bottom-[2%] left-[42%]', opacity: 'opacity-20', delay: '3.2s', duration: '9s' },
-    { text: 'Think in Systems', pos: 'top-[10%] left-[18%] sm:left-[22%]', opacity: 'opacity-15', delay: '2.2s', duration: '13s' },
-    { text: 'Continuous Improvement', pos: 'bottom-[8%] right-[22%]', opacity: 'opacity-15', delay: '1.8s', duration: '12s' },
+  const liquidBubbles = [
+    { text: 'SEO tạo Traffic', pos: 'top-[10%] left-[3%] sm:left-[7%]', anim: 'liquid-morph-1 14s ease-in-out infinite', opacity: 'opacity-80 scale-95' },
+    { text: 'Content tạo niềm tin', pos: 'top-[14%] right-[4%] sm:right-[9%]', anim: 'liquid-morph-2 16s ease-in-out infinite 1s', opacity: 'opacity-85 scale-100' },
+    { text: 'CRM giữ khách hàng', pos: 'top-[32%] left-[1%] sm:left-[3%]', anim: 'liquid-morph-2 18s ease-in-out infinite 2s', opacity: 'opacity-70 scale-90 blur-[0.5px]' },
+    { text: 'Data dẫn dắt quyết định', pos: 'top-[30%] right-[2%] sm:right-[5%]', anim: 'liquid-morph-1 15s ease-in-out infinite 1.5s', opacity: 'opacity-90 scale-105' },
+    { text: 'Automation giảm công việc lặp lại', pos: 'top-[52%] left-[0%] sm:left-[2%]', anim: 'liquid-morph-1 20s ease-in-out infinite 3s', opacity: 'opacity-65 scale-85 blur-[1px]' },
+    { text: 'Traffic tạo Lead', pos: 'top-[54%] right-[1%] sm:right-[4%]', anim: 'liquid-morph-2 13s ease-in-out infinite 2.5s', opacity: 'opacity-80 scale-95' },
+    { text: 'Lead tạo Doanh thu', pos: 'bottom-[28%] left-[2%] sm:left-[6%]', anim: 'liquid-morph-2 17s ease-in-out infinite 0.5s', opacity: 'opacity-85 scale-100' },
+    { text: 'Think in Systems', pos: 'bottom-[30%] right-[3%] sm:right-[7%]', anim: 'liquid-morph-1 15s ease-in-out infinite 3.5s', opacity: 'opacity-75 scale-90' },
+    { text: 'Business First', pos: 'bottom-[12%] left-[5%] sm:left-[10%]', anim: 'liquid-morph-1 19s ease-in-out infinite 4s', opacity: 'opacity-70 scale-85 blur-[0.5px]' },
+    { text: 'Continuous Improvement', pos: 'bottom-[10%] right-[5%] sm:right-[8%]', anim: 'liquid-morph-2 16s ease-in-out infinite 1.2s', opacity: 'opacity-80 scale-95' },
+    { text: 'Connect Everything', pos: 'top-[5%] left-[35%] sm:left-[40%]', anim: 'liquid-morph-1 12s ease-in-out infinite 0.8s', opacity: 'opacity-90 scale-100' },
+    { text: 'Simplicity Scales', pos: 'bottom-[4%] left-[38%]', anim: 'liquid-morph-2 14s ease-in-out infinite 3.2s', opacity: 'opacity-85 scale-95' },
   ]
 
   return (
-    <section id="why-choose-me" className="py-32 sm:py-48 relative scroll-mt-28 border-t border-slate-200/60 overflow-hidden bg-[#FBFBF9]">
+    <section id="why-choose-me" className="py-36 sm:py-56 min-h-[950px] lg:min-h-[1150px] relative scroll-mt-28 border-t border-slate-200/50 overflow-hidden bg-[#FAFAF8] flex flex-col justify-center select-none">
       
-      {/* ── Background Floating Translucent Philosophy Thoughts ── */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0">
-        {philosophyThoughts.map((t, i) => (
+      {/* ── Spatial Liquid Glass Drops Cloud (Background Z-0) ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {liquidBubbles.map((bubble, i) => (
           <div
             key={i}
-            className={`absolute ${t.pos} hidden sm:block ${t.opacity}`}
-            style={{
-              animation: `apple-float ${t.duration} ease-in-out infinite`,
-              animationDelay: t.delay,
-            }}
+            className={`absolute ${bubble.pos} hidden sm:block ${bubble.opacity}`}
+            style={{ animation: bubble.anim }}
           >
-            <span className="text-xs sm:text-sm font-semibold tracking-tight text-slate-900">
-              {t.text}
-            </span>
+            <div className="liquid-glass-bubble px-5 py-2.5 rounded-[50%] text-xs font-semibold tracking-tight text-slate-700/90 pointer-events-auto cursor-default transition-all duration-700">
+              {bubble.text}
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-20 text-center">
         
-        {/* Title in Vibrant Apple Blue */}
+        {/* Apple Accent Title */}
         <FadeUp>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-blue-600 mb-12 sm:mb-20">
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-blue-600 mb-10 sm:mb-16">
             Vì sao chọn tôi?
           </h2>
         </FadeUp>
 
-        {/* Pure High-End Editorial Manifesto Quote (No Box, No Card) */}
+        {/* Master Editorial Typography Quote */}
         <FadeUp delay={100}>
-          <blockquote className="text-3xl sm:text-6xl font-extrabold text-slate-900 leading-tight sm:leading-[1.18] tracking-tight max-w-5xl mx-auto">
-            “Marketing không thất bại vì thiếu công cụ. Marketing thất bại khi mọi thứ không kết nối với nhau.”
+          <blockquote className="text-3xl sm:text-6xl lg:text-[76px] font-extrabold text-[#111827] leading-[1.12] sm:leading-[1.12] tracking-tight max-w-5xl mx-auto drop-shadow-sm">
+            “Marketing không thất bại vì thiếu công cụ.<br className="hidden sm:inline" />
+            Marketing thất bại khi mọi thứ không kết nối với nhau.”
           </blockquote>
         </FadeUp>
 
-        {/* Mobile Sub-thoughts */}
+        {/* Mobile Philosophy Tags */}
         <FadeUp delay={200} className="sm:hidden mt-12">
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-400">
-            {philosophyThoughts.slice(0, 8).map((b, i) => (
-              <span key={i}>• {b.text}</span>
+          <div className="flex flex-wrap justify-center gap-2">
+            {liquidBubbles.slice(0, 8).map((b, i) => (
+              <span key={i} className="liquid-glass-bubble px-3.5 py-1.5 rounded-full text-[11px] font-semibold text-slate-700">
+                {b.text}
+              </span>
             ))}
           </div>
         </FadeUp>
