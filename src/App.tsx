@@ -280,46 +280,46 @@ function Navbar() {
 // ─── Hero Graphic Visual ──────────────────────────────────────────────────────
 function HeroVisual() {
   return (
-    <div className="relative w-full max-w-[480px] aspect-square mx-auto flex items-center justify-center select-none">
+    <div className="relative w-full max-w-[520px] aspect-square mx-auto flex items-center justify-center select-none">
       
       {/* ── Background SVG Accents & Decorative Curves ── */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 500 500" fill="none">
         {/* Top-Left Arc */}
-        <path d="M 115 90 A 210 210 0 0 1 310 25" stroke="#2563EB" strokeWidth="1.5" opacity="0.85" />
+        <path d="M 80 120 A 210 210 0 0 1 340 30" stroke="#2563EB" strokeWidth="2" opacity="0.8" />
         
-        {/* Bottom-Right Arc */}
-        <path d="M 470 280 A 210 210 0 0 1 420 395" stroke="#2563EB" strokeWidth="1.5" opacity="0.85" />
+        {/* Bottom-Right Outer Arc */}
+        <path d="M 470 240 A 210 210 0 0 1 410 420" stroke="#2563EB" strokeWidth="2" opacity="0.8" />
 
-        {/* Top-Right Circle Outline */}
-        <circle cx="410" cy="45" r="16" stroke="#2563EB" strokeWidth="1.5" fill="none" opacity="0.85" />
+        {/* Top-Right Decorative Circle */}
+        <circle cx="430" cy="50" r="18" stroke="#2563EB" strokeWidth="2" fill="none" opacity="0.8" />
 
         {/* Right Dot Grid */}
-        <g fill="#93C5FD" opacity="0.75">
+        <g fill="#3B82F6" opacity="0.4">
           {Array.from({ length: 4 }).map((_, col) =>
-            Array.from({ length: 6 }).map((_, row) => (
-              <circle key={`${col}-${row}`} cx={400 + col * 12} cy={180 + row * 12} r="2" />
+            Array.from({ length: 5 }).map((_, row) => (
+              <circle key={`${col}-${row}`} cx={410 + col * 12} cy={170 + row * 12} r="2" />
             ))
           )}
         </g>
       </svg>
 
       {/* ── Soft Light Blue Blob (Bottom Left) ── */}
-      <div className="absolute left-[2%] bottom-[8%] w-[55%] h-[45%] rounded-full bg-blue-100/70 blur-md pointer-events-none z-0" />
+      <div className="absolute left-[0%] bottom-[10%] w-[50%] h-[40%] rounded-full bg-blue-100/80 blur-xl pointer-events-none z-0" />
 
       {/* ── Central Vibrant Blue Circle ── */}
-      <div className="absolute w-[68%] h-[68%] rounded-full bg-[#1D61E7] shadow-xl shadow-blue-500/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0" />
+      <div className="absolute w-[72%] h-[72%] rounded-full bg-gradient-to-tr from-[#1D4ED8] to-[#2563EB] shadow-2xl shadow-blue-600/30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0" />
 
-      {/* ── Cutout Person Image ── */}
+      {/* ── Transparent Cutout Person Image ── */}
       <img
-        src="/hero-person-cutout.png"
+        src="/hero-person-cutout-clean.png"
         alt="Đinh Thanh Tùng - Marketing Systems Architect"
-        className="relative z-10 w-[84%] h-auto object-contain mx-auto transition-transform duration-500 hover:scale-[1.02] drop-shadow-md"
+        className="relative z-10 w-[88%] h-auto object-contain mx-auto transition-transform duration-500 hover:scale-[1.02] drop-shadow-xl"
       />
 
       {/* ── 4 Floating Badges ── */}
       {/* 1. Top Right: AI Automation */}
-      <div className="absolute top-[12%] right-[0%] sm:right-[2%] z-20 apple-float" style={{ animationDelay: '0s' }}>
-        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+      <div className="absolute top-[16%] right-[2%] z-20 apple-float" style={{ animationDelay: '0s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_12px_30px_rgba(0,0,0,0.1)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
             <Bot size={18} />
           </div>
@@ -328,8 +328,8 @@ function HeroVisual() {
       </div>
 
       {/* 2. Middle Right: Growth Architect */}
-      <div className="absolute top-[50%] right-[-4%] sm:right-[-2%] z-20 apple-float" style={{ animationDelay: '1.5s' }}>
-        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+      <div className="absolute top-[52%] right-[-2%] z-20 apple-float" style={{ animationDelay: '1.5s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_12px_30px_rgba(0,0,0,0.1)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
             <TrendingUp size={18} />
           </div>
@@ -338,8 +338,8 @@ function HeroVisual() {
       </div>
 
       {/* 3. Middle Left: Technical SEO */}
-      <div className="absolute top-[62%] left-[-4%] sm:left-[-2%] z-20 apple-float" style={{ animationDelay: '1s' }}>
-        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+      <div className="absolute top-[64%] left-[-2%] z-20 apple-float" style={{ animationDelay: '1s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_12px_30px_rgba(0,0,0,0.1)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
             <Search size={16} />
           </div>
@@ -348,8 +348,8 @@ function HeroVisual() {
       </div>
 
       {/* 4. Bottom Left: Data Analytics */}
-      <div className="absolute bottom-[5%] left-[2%] sm:left-[5%] z-20 apple-float" style={{ animationDelay: '2s' }}>
-        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_10px_25px_rgba(0,0,0,0.08)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
+      <div className="absolute bottom-[6%] left-[4%] z-20 apple-float" style={{ animationDelay: '2s' }}>
+        <div className="bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_12px_30px_rgba(0,0,0,0.1)] px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl flex items-center gap-3 font-bold text-xs sm:text-sm text-slate-800 tracking-tight hover:scale-105 transition-transform">
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-600/30">
             <PieChart size={16} />
           </div>
