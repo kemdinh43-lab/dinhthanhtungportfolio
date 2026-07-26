@@ -457,7 +457,7 @@ function WhyChooseMe() {
 
         <FadeUp delay={100}>
           <blockquote className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight sm:leading-snug tracking-tight">
-            “Marketing không hiệu quả khi chỉ thêm công cụ. Nó chỉ bứt phá khi mọi thành tố vận hành như một Hệ thống.”
+            “Thêm công cụ không làm Marketing tốt hơn. Điều tạo ra tăng trưởng là khi SEO, Content, CRM và Data được kết nối thành một quy trình tự động liền mạch.”
           </blockquote>
         </FadeUp>
       </div>
