@@ -720,11 +720,11 @@ function CaseStudy() {
               </a>
             </div>
 
-            <div className="lg:col-span-7 relative min-h-[320px] sm:min-h-[420px] lg:min-h-full overflow-hidden">
+            <div className="lg:col-span-7 relative min-h-[320px] sm:min-h-[420px] lg:min-h-full overflow-hidden bg-[#0D1433] flex items-center justify-center">
               <img
-                src="/apple-b2b-marketing-journey-system.jpg"
-                alt="B2B Marketing Intelligence Core Ecosystem"
-                className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                src="/build-systems-casestudy.png"
+                alt="Build Systems Not More Work - AI Growth System for Modern Marketers"
+                className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
               />
             </div>
           </div>
