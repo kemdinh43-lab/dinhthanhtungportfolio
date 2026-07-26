@@ -444,39 +444,37 @@ function Hero() {
   )
 }
 
-// ─── Section: Why Choose Me (Apple Liquid Glass Spatial Spheres) ───────────────
+// ─── Section: Why Choose Me (Apple Organic Typography Manifesto) ──────────────
 function WhyChooseMe() {
-  const liquidBubbles = [
-    { text: 'SEO\nTraffic', pos: 'top-[8%] left-[4%] sm:left-[8%]', size: 'w-20 h-20 sm:w-28 sm:h-28', anim: 'liquid-morph-1 14s ease-in-out infinite', opacity: 'opacity-85 scale-95' },
-    { text: 'Content\nNiềm tin', pos: 'top-[10%] right-[5%] sm:right-[10%]', size: 'w-24 h-24 sm:w-32 sm:h-32', anim: 'liquid-morph-2 16s ease-in-out infinite 1s', opacity: 'opacity-90 scale-100' },
-    { text: 'CRM\nGiữ KH', pos: 'top-[36%] left-[2%] sm:left-[4%]', size: 'w-20 h-20 sm:w-24 sm:h-24', anim: 'liquid-morph-2 18s ease-in-out infinite 2s', opacity: 'opacity-75 scale-90 blur-[0.5px]' },
-    { text: 'Data\nDriven', pos: 'top-[34%] right-[3%] sm:right-[6%]', size: 'w-24 h-24 sm:w-30 sm:h-30', anim: 'liquid-morph-1 15s ease-in-out infinite 1.5s', opacity: 'opacity-90 scale-105' },
-    { text: 'Auto\nSOP', pos: 'top-[58%] left-[1%] sm:left-[3%]', size: 'w-18 h-18 sm:w-22 sm:h-22', anim: 'liquid-morph-1 20s ease-in-out infinite 3s', opacity: 'opacity-70 scale-85 blur-[1px]' },
-    { text: 'Traffic\n➔ Lead', pos: 'top-[60%] right-[2%] sm:right-[5%]', size: 'w-20 h-20 sm:w-26 sm:h-26', anim: 'liquid-morph-2 13s ease-in-out infinite 2.5s', opacity: 'opacity-85 scale-95' },
-    { text: 'Lead\n➔ Sales', pos: 'bottom-[24%] left-[3%] sm:left-[7%]', size: 'w-22 h-22 sm:w-28 sm:h-28', anim: 'liquid-morph-2 17s ease-in-out infinite 0.5s', opacity: 'opacity-90 scale-100' },
-    { text: 'System\nThink', pos: 'bottom-[26%] right-[4%] sm:right-[8%]', size: 'w-20 h-20 sm:w-26 sm:h-26', anim: 'liquid-morph-1 15s ease-in-out infinite 3.5s', opacity: 'opacity-80 scale-90' },
-    { text: 'Business\nFirst', pos: 'bottom-[8%] left-[6%] sm:left-[12%]', size: 'w-20 h-20 sm:w-24 sm:h-24', anim: 'liquid-morph-1 19s ease-in-out infinite 4s', opacity: 'opacity-75 scale-85 blur-[0.5px]' },
-    { text: 'Growth\nROI', pos: 'bottom-[6%] right-[6%] sm:right-[10%]', size: 'w-22 h-22 sm:w-28 sm:h-28', anim: 'liquid-morph-2 16s ease-in-out infinite 1.2s', opacity: 'opacity-85 scale-95' },
-    { text: 'Connect\nAll', pos: 'top-[4%] left-[36%] sm:left-[42%]', size: 'w-22 h-22 sm:w-28 sm:h-28', anim: 'liquid-morph-1 12s ease-in-out infinite 0.8s', opacity: 'opacity-90 scale-100' },
-    { text: 'Simple\nScales', pos: 'bottom-[2%] left-[40%]', size: 'w-20 h-20 sm:w-26 sm:h-26', anim: 'liquid-morph-2 14s ease-in-out infinite 3.2s', opacity: 'opacity-85 scale-95' },
+  const philosophyThoughts = [
+    { text: 'SEO tạo Traffic', pos: 'top-[8%] left-[2%] sm:left-[6%]', style: 'text-sm sm:text-base font-bold text-slate-800/40 hover:text-slate-900 hover:text-opacity-100', anim: 'apple-float 12s ease-in-out infinite' },
+    { text: 'Content tạo niềm tin', pos: 'top-[12%] right-[2%] sm:right-[7%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/50 hover:text-slate-900', anim: 'apple-float 15s ease-in-out infinite 1s' },
+    { text: 'CRM giữ khách hàng', pos: 'top-[34%] left-[1%] sm:left-[3%]', style: 'text-base sm:text-xl font-extrabold text-blue-600/45 hover:text-blue-600', anim: 'apple-float 18s ease-in-out infinite 2s' },
+    { text: 'Data dẫn dắt quyết định', pos: 'top-[30%] right-[1%] sm:right-[4%]', style: 'text-sm sm:text-lg font-bold text-slate-800/40 hover:text-slate-900', anim: 'apple-float 14s ease-in-out infinite 1.5s' },
+    { text: 'Automation giảm công việc lặp lại', pos: 'top-[56%] left-[0%] sm:left-[2%]', style: 'text-xs sm:text-sm font-medium text-slate-800/35 hover:text-slate-900', anim: 'apple-float 19s ease-in-out infinite 3s' },
+    { text: 'Traffic tạo Lead', pos: 'top-[58%] right-[0%] sm:right-[3%]', style: 'text-sm sm:text-base font-bold text-slate-800/45 hover:text-slate-900', anim: 'apple-float 13s ease-in-out infinite 2.5s' },
+    { text: 'Lead tạo Doanh thu', pos: 'bottom-[24%] left-[2%] sm:left-[5%]', style: 'text-base sm:text-xl font-extrabold text-blue-600/50 hover:text-blue-600', anim: 'apple-float 16s ease-in-out infinite 0.5s' },
+    { text: 'Think in Systems', pos: 'bottom-[28%] right-[2%] sm:right-[6%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/35 hover:text-slate-900', anim: 'apple-float 15s ease-in-out infinite 3.5s' },
+    { text: 'Business First', pos: 'bottom-[8%] left-[4%] sm:left-[9%]', style: 'text-sm sm:text-lg font-bold text-slate-800/50 hover:text-slate-900', anim: 'apple-float 17s ease-in-out infinite 4s' },
+    { text: 'Continuous Improvement', pos: 'bottom-[6%] right-[4%] sm:right-[7%]', style: 'text-xs sm:text-sm font-medium text-slate-800/35 hover:text-slate-900', anim: 'apple-float 14s ease-in-out infinite 1.2s' },
+    { text: 'Connect Everything', pos: 'top-[4%] left-[30%] sm:left-[36%]', style: 'text-xs sm:text-sm font-semibold text-blue-600/45 hover:text-blue-600', anim: 'apple-float 11s ease-in-out infinite 0.8s' },
+    { text: 'Simplicity Scales', pos: 'bottom-[2%] left-[38%]', style: 'text-sm sm:text-base font-bold text-slate-800/40 hover:text-slate-900', anim: 'apple-float 13s ease-in-out infinite 3.2s' },
   ]
 
   return (
     <section id="why-choose-me" className="py-32 sm:py-48 min-h-[900px] lg:min-h-[1050px] relative scroll-mt-28 border-t border-slate-200/50 overflow-hidden bg-[#FAFAF8] flex flex-col justify-center select-none">
       
-      {/* ── Spatial Liquid Glass Spheres Cloud (Background Z-0) ── */}
+      {/* ── Background Floating Intentional Organic Typography (No Circles) ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {liquidBubbles.map((bubble, i) => (
+        {philosophyThoughts.map((thought, i) => (
           <div
             key={i}
-            className={`absolute ${bubble.pos} hidden sm:block ${bubble.opacity}`}
-            style={{ animation: bubble.anim }}
+            className={`absolute ${thought.pos} hidden sm:block`}
+            style={{ animation: thought.anim }}
           >
-            <div className={`liquid-glass-bubble ${bubble.size} aspect-square flex flex-col items-center justify-center text-center p-2 leading-tight pointer-events-auto cursor-default transition-all duration-700`}>
-              <span className="text-[11px] sm:text-xs font-bold tracking-tight text-slate-800/90 whitespace-pre-line">
-                {bubble.text}
-              </span>
-            </div>
+            <span className={`tracking-tight ${thought.style} cursor-default transition-all duration-500`}>
+              • {thought.text}
+            </span>
           </div>
         ))}
       </div>
@@ -500,11 +498,9 @@ function WhyChooseMe() {
 
         {/* Mobile Philosophy Tags */}
         <FadeUp delay={200} className="sm:hidden mt-10">
-          <div className="flex flex-wrap justify-center gap-2">
-            {liquidBubbles.slice(0, 8).map((b, i) => (
-              <span key={i} className="liquid-glass-bubble px-3.5 py-1.5 rounded-full text-[11px] font-semibold text-slate-700">
-                {b.text.replace('\n', ' ')}
-              </span>
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-xs font-semibold text-slate-500">
+            {philosophyThoughts.slice(0, 8).map((b, i) => (
+              <span key={i}>• {b.text}</span>
             ))}
           </div>
         </FadeUp>
