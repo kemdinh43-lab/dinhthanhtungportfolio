@@ -445,165 +445,110 @@ function Hero() {
 }
 
 // ─── Growth Engine SVG Component ──────────────────────────────────────────────
+// ─── Growth Engine Interactive Canvas ─────────────────────────────────────────
 function GrowthEngineDiagram() {
+  const nodes = [
+    {
+      title: 'Technical SEO Cluster',
+      sub: 'WordPress · Cloudflare',
+      badge: '99/100',
+      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+      logo: 'WordPress',
+      pos: 'top-4 left-4 sm:top-6 sm:left-6',
+    },
+    {
+      title: 'AI Content Pipeline',
+      sub: 'OpenAI · Gemini AI',
+      badge: 'Auto Gen',
+      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+      logo: 'OpenAI',
+      pos: 'top-4 right-4 sm:top-6 sm:right-6',
+    },
+    {
+      title: 'Zalo & AppSheet CRM',
+      sub: 'CSKH & Sales SOP',
+      badge: 'SLA <5s',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+      logo: 'Zalo',
+      pos: 'bottom-4 left-4 sm:bottom-6 sm:left-6',
+    },
+    {
+      title: 'n8n Automation Engine',
+      sub: '18 Active Workflows',
+      badge: '70% Auto',
+      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+      logo: 'n8n',
+      pos: 'bottom-4 right-4 sm:bottom-6 sm:right-6',
+    },
+  ]
+
   return (
-    <div className="relative w-full max-w-[840px] mx-auto select-none py-4 sm:py-8">
+    <div className="relative w-full h-full min-h-[440px] sm:min-h-[500px] rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 shadow-2xl overflow-hidden flex flex-col justify-between select-none">
       
-      {/* ── Background Soft Glow ── */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-indigo-500/5 to-blue-600/10 rounded-3xl blur-2xl pointer-events-none" />
+      {/* ── Ambient Radial Glows ── */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-60 h-60 rounded-full bg-indigo-600/10 blur-2xl pointer-events-none" />
 
-      {/* ── Vector SVG Diagram Container ── */}
-      <div className="relative z-10 w-full aspect-[8/5] min-h-[320px] sm:min-h-[440px] bg-white/70 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-3 sm:p-8 shadow-[0_20px_50px_rgba(37,99,235,0.06)] overflow-hidden flex items-center justify-center">
+      {/* ── Canvas Header Status Bar ── */}
+      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-slate-800/80 text-xs">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="font-bold text-slate-300 tracking-wide uppercase">GROWTH ENGINE ECOSYSTEM</span>
+        </div>
+        <span className="text-slate-400 font-mono text-[11px] bg-slate-800/80 px-2.5 py-1 rounded-full border border-slate-700">
+          DATA FLOW · 60 FPS
+        </span>
+      </div>
+
+      {/* ── Center Growth Core + Animated SVG Wires ── */}
+      <div className="relative my-auto py-12 sm:py-16 flex items-center justify-center">
         
-        <svg
-          className="w-full h-full"
-          viewBox="0 0 800 500"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            {/* Core Radial Glow */}
-            <radialGradient id="core-glow" cx="400" cy="250" r="120" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.3" />
-              <stop offset="60%" stopColor="#3B82F6" stopOpacity="0.08" />
-              <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
-            </radialGradient>
-
-            {/* Core Solid Gradient */}
-            <linearGradient id="core-grad" x1="350" y1="200" x2="450" y2="300" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#1E4ED8" />
-              <stop offset="100%" stopColor="#2563EB" />
-            </linearGradient>
-
-            {/* Dashed Flow Gradient */}
-            <linearGradient id="flow-grad" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#60A5FA" />
-              <stop offset="50%" stopColor="#2563EB" />
-              <stop offset="100%" stopColor="#3B82F6" />
-            </linearGradient>
-
-            {/* Node Soft Glow Filter */}
-            <filter id="node-shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#2563EB" floodOpacity="0.12" />
-            </filter>
-          </defs>
-
-          {/* ── Background Grid Dots ── */}
-          <g fill="#CBD5E1" opacity="0.35">
-            {Array.from({ length: 9 }).map((_, c) =>
-              Array.from({ length: 6 }).map((_, r) => (
-                <circle key={`bg-dot-${c}-${r}`} cx={80 + c * 80} cy={60 + r * 76} r="1.5" />
-              ))
-            )}
-          </g>
-
-          {/* ── Curved Data Flow Connections (Center 400,250 to Orbital Nodes) ── */}
-          {/* Base Static Paths */}
-          <g stroke="#E2E8F0" strokeWidth="2" opacity="0.8">
-            <path d="M 400 250 C 310 250, 240 180, 210 120" />
-            <path d="M 400 250 C 400 180, 400 140, 400 80" />
-            <path d="M 400 250 C 490 250, 560 180, 590 120" />
-            <path d="M 400 250 C 520 250, 610 250, 680 250" />
-            <path d="M 400 250 C 490 250, 560 320, 590 380" />
-            <path d="M 400 250 C 310 250, 240 320, 210 380" />
-            <path d="M 400 250 C 280 250, 190 250, 120 250" />
-          </g>
-
-          {/* Animated Flow Paths */}
-          <g stroke="url(#flow-grad)" strokeWidth="2.5" className="wire-animated" opacity="0.9">
-            <path d="M 400 250 C 310 250, 240 180, 210 120" />
-            <path d="M 400 250 C 400 180, 400 140, 400 80" />
-            <path d="M 400 250 C 490 250, 560 180, 590 120" />
-            <path d="M 400 250 C 520 250, 610 250, 680 250" />
-            <path d="M 400 250 C 490 250, 560 320, 590 380" />
-            <path d="M 400 250 C 310 250, 240 320, 210 380" />
-            <path d="M 400 250 C 280 250, 190 250, 120 250" />
-          </g>
-
-          {/* ── Center Growth Engine Core ── */}
-          {/* Outer Pulsing Aura */}
-          <circle cx="400" cy="250" r="85" fill="url(#core-glow)" />
-
-          {/* Rotating Dashed Accent Ring */}
-          <circle
-            cx="400"
-            cy="250"
-            r="60"
-            fill="none"
-            stroke="#60A5FA"
-            strokeWidth="2"
-            strokeDasharray="12 8"
-            className="animate-spin-slow"
-            opacity="0.85"
-          />
-
-          {/* Core Solid Glass Circle */}
-          <circle cx="400" cy="250" r="44" fill="url(#core-grad)" filter="url(#node-shadow)" />
-
-          {/* Center Engine Abstract Vector Symbol */}
-          <g transform="translate(400, 250)" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
-            <polygon points="0,-16 14,-8 14,8 0,16 -14,8 -14,-8" fill="rgba(255,255,255,0.1)" />
-            <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
-          </g>
-
-          {/* ── 7 Orbital Geometric Nodes (Pure Minimal Vector Graphics, No Labels) ── */}
-
-          {/* Node 1 (Top Left: SEO) at (210, 120) */}
-          <g className="group cursor-pointer" transform="translate(210, 120)">
-            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
-            <circle cx="-3" cy="-3" r="8" stroke="#2563EB" strokeWidth="2" fill="none" />
-            <line x1="3" y1="3" x2="10" y2="10" stroke="#2563EB" strokeWidth="2.5" strokeLinecap="round" />
-          </g>
-
-          {/* Node 2 (Top: Dashboard) at (400, 80) */}
-          <g className="group cursor-pointer" transform="translate(400, 80)">
-            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
-            <rect x="-10" y="-8" width="20" height="16" rx="4" stroke="#2563EB" strokeWidth="2" fill="none" />
-            <path d="M-6 2 L-2 -3 L3 0 L6 -5" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-          </g>
-
-          {/* Node 3 (Top Right: Content) at (590, 120) */}
-          <g className="group cursor-pointer" transform="translate(590, 120)">
-            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
-            <rect x="-8" y="-10" width="14" height="18" rx="2" stroke="#2563EB" strokeWidth="2" fill="none" />
-            <line x1="-4" y1="-4" x2="2" y2="-4" stroke="#3B82F6" strokeWidth="1.5" />
-            <line x1="-4" y1="0" x2="4" y2="0" stroke="#3B82F6" strokeWidth="1.5" />
-            <line x1="-4" y1="4" x2="0" y2="4" stroke="#3B82F6" strokeWidth="1.5" />
-          </g>
-
-          {/* Node 4 (Middle Right: CRM) at (680, 250) */}
-          <g className="group cursor-pointer" transform="translate(680, 250)">
-            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
-            <circle cx="0" cy="-6" r="4" fill="#2563EB" />
-            <circle cx="-7" cy="6" r="3.5" fill="#3B82F6" />
-            <circle cx="7" cy="6" r="3.5" fill="#3B82F6" />
-            <line x1="0" y1="-6" x2="-7" y2="6" stroke="#93C5FD" strokeWidth="1.5" />
-            <line x1="0" y1="-6" x2="7" y2="6" stroke="#93C5FD" strokeWidth="1.5" />
-            <line x1="-7" y1="6" x2="7" y2="6" stroke="#93C5FD" strokeWidth="1.5" />
-          </g>
-
-          {/* Node 5 (Bottom Right: Automation) at (590, 380) */}
-          <g className="group cursor-pointer" transform="translate(590, 380)">
-            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
-            <path d="M-6 -6 L6 6 M-6 6 L6 -6" stroke="#2563EB" strokeWidth="2.5" strokeLinecap="round" />
-            <circle cx="0" cy="0" r="7" stroke="#2563EB" strokeWidth="2" fill="#FFFFFF" />
-          </g>
-
-          {/* Node 6 (Bottom Left: Analytics) at (210, 380) */}
-          <g className="group cursor-pointer" transform="translate(210, 380)">
-            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
-            <rect x="-10" y="2" width="4" height="8" rx="1" fill="#93C5FD" />
-            <rect x="-3" y="-3" width="4" height="13" rx="1" fill="#3B82F6" />
-            <rect x="4" y="-9" width="4" height="19" rx="1" fill="#2563EB" />
-          </g>
-
-          {/* Node 7 (Middle Left: AI) at (120, 250) */}
-          <g className="group cursor-pointer" transform="translate(120, 250)">
-            <circle cx="0" cy="0" r="28" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="1.5" filter="url(#node-shadow)" className="group-hover:stroke-blue-600 transition-colors" />
-            <path d="M0 -12 C0 -4, -4 0, -12 0 C-4 0, 0 4, 0 12 C0 4, 4 0, 12 0 C4 0, 0 -4, 0 -12 Z" fill="#2563EB" />
-          </g>
-
+        {/* Animated Connecting Wires */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 600 300" fill="none">
+          <path d="M 120 50 C 220 50, 220 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
+          <path d="M 480 50 C 380 50, 380 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
+          <path d="M 120 250 C 220 250, 220 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
+          <path d="M 480 250 C 380 250, 380 150, 300 150" stroke="#3B82F6" strokeWidth="2" strokeDasharray="6 6" className="wire-animated" opacity="0.7" />
         </svg>
+
+        {/* Central Engine Glowing Core */}
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-500 p-0.5 shadow-[0_0_50px_rgba(37,99,235,0.4)] flex items-center justify-center apple-float">
+            <div className="w-full h-full rounded-full bg-[#0F172A] p-2 flex flex-col items-center justify-center text-center border border-blue-400/30">
+              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white mb-1 shadow-lg shadow-blue-600/50">
+                <Cpu size={18} />
+              </div>
+              <span className="text-[10px] font-extrabold text-white uppercase tracking-wider">Growth Core</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Interactive Corner Tech Cards */}
+        {nodes.map((node) => (
+          <div
+            key={node.title}
+            className={`absolute ${node.pos} z-10 bg-[#1E293B]/90 border border-slate-700/80 rounded-2xl p-3 sm:p-4 shadow-xl hover:border-blue-500 hover:scale-105 transition-all duration-300 max-w-[170px] sm:max-w-[210px]`}
+          >
+            <div className="flex items-center justify-between gap-2 mb-1.5">
+              <TechLogo name={node.logo} size={18} />
+              <span className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full border ${node.badgeColor}`}>
+                {node.badge}
+              </span>
+            </div>
+            <h4 className="text-xs sm:text-sm font-bold text-white leading-snug">{node.title}</h4>
+            <p className="text-[10px] text-slate-400 font-medium mt-0.5 truncate">{node.sub}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Footer Tech Badges Strip ── */}
+      <div className="relative z-10 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 font-semibold">
+        <span className="flex items-center gap-1.5">
+          <Sparkle size={13} className="text-blue-400" /> Continuous Data Synchronization
+        </span>
+        <span className="text-blue-400 hover:text-blue-300 transition-colors">
+          GA4 · Looker · BigQuery Connected ➔
+        </span>
       </div>
 
     </div>
@@ -612,14 +557,32 @@ function GrowthEngineDiagram() {
 
 // ─── Section: Why Choose Me (Growth Engine Philosophy) ───────────────────────
 function WhyChooseMe() {
+  const pillars = [
+    {
+      num: '01',
+      title: 'Kiến trúc Liền mạch',
+      desc: 'Kết nối mọi điểm chạm từ SEO Traffic đến Zalo/CRM mà không đứt gãy dữ liệu.',
+    },
+    {
+      num: '02',
+      title: 'Vận hành bằng Dữ liệu',
+      desc: 'Mọi chiến dịch & ngân sách đều dựa trên báo cáo real-time GA4 & Looker Studio.',
+    },
+    {
+      num: '03',
+      title: 'Tự động hóa 70%',
+      desc: 'Giải phóng nguồn lực nhân sự khỏi tác vụ thủ công bằng n8n & Generative AI.',
+    },
+  ]
+
   return (
-    <section id="why-choose-me" className="py-24 sm:py-36 relative scroll-mt-28 border-t border-slate-200/80">
+    <section id="why-choose-me" className="py-24 sm:py-36 relative scroll-mt-28 border-t border-slate-200">
       <div className="ambient-glow-blue top-1/4 -right-32" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Heading */}
+        {/* Section Label & Title */}
         <FadeUp>
-          <div className="max-w-3xl mb-10 sm:mb-16">
+          <div className="mb-12 sm:mb-16">
             <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3 block">
               • TRIẾT LÝ VẬN HÀNH & NĂNG LỰC CỐT LÕI
             </span>
@@ -629,24 +592,45 @@ function WhyChooseMe() {
           </div>
         </FadeUp>
 
-        {/* Quote Block */}
-        <FadeUp delay={100}>
-          <div className="mb-14 sm:mb-20 max-w-5xl">
-            <div className="relative bg-gradient-to-r from-blue-50/80 via-blue-50/30 to-transparent border-l-4 border-blue-600 p-6 sm:p-10 rounded-r-3xl shadow-sm">
-              <span className="absolute top-4 right-6 text-6xl sm:text-8xl font-serif text-blue-500/15 pointer-events-none select-none">
-                “
-              </span>
-              <p className="text-base sm:text-2xl font-semibold text-slate-800 leading-relaxed italic relative z-10">
-                "Marketing không hiệu quả hơn khi có thêm công cụ, mà khi mọi công cụ cùng hoạt động như một hệ thống. Tôi giúp doanh nghiệp kết nối SEO, Content, CRM, Automation và Analytics thành một quy trình liền mạch, nơi dữ liệu dẫn dắt quyết định và mọi nỗ lực Marketing đều tạo ra giá trị thực cho doanh nghiệp."
-              </p>
-            </div>
-          </div>
-        </FadeUp>
+        {/* Bento Grid: Left Editorial Manifesto + Right Growth Canvas */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
+          
+          {/* Left Column: Manifesto & 3 Pillars */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+            <FadeUp delay={100}>
+              <div className="space-y-4">
+                <blockquote className="text-xl sm:text-3xl font-extrabold text-slate-900 leading-snug tracking-tight">
+                  “Marketing không hiệu quả khi chỉ thêm công cụ. Nó chỉ bứt phá khi mọi thành tố vận hành như một Hệ thống.”
+                </blockquote>
+                <p className="text-sm sm:text-base leading-relaxed text-slate-500 font-normal">
+                  Tôi giúp doanh nghiệp kết nối SEO, Content, CRM, Automation và Analytics thành một quy trình liền mạch — nơi dữ liệu dẫn dắt quyết định và mọi nỗ lực Marketing đều tạo ra giá trị thực.
+                </p>
+              </div>
+            </FadeUp>
 
-        {/* Interactive Growth Engine Component */}
-        <FadeUp delay={200}>
-          <GrowthEngineDiagram />
-        </FadeUp>
+            <FadeUp delay={150}>
+              <div className="space-y-4 pt-4 border-t border-slate-200">
+                {pillars.map((p) => (
+                  <div key={p.num} className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-blue-500 transition-colors">
+                    <div className="flex items-center gap-3 mb-1">
+                      <span className="text-xs font-extrabold text-blue-600">{p.num}</span>
+                      <h4 className="text-sm font-bold text-slate-900">{p.title}</h4>
+                    </div>
+                    <p className="text-xs text-slate-500 leading-relaxed font-normal pl-7">{p.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeUp>
+          </div>
+
+          {/* Right Column: High-Contrast Growth Engine Canvas */}
+          <div className="lg:col-span-7">
+            <FadeUp delay={200} className="h-full">
+              <GrowthEngineDiagram />
+            </FadeUp>
+          </div>
+
+        </div>
 
       </div>
     </section>
