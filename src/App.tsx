@@ -447,23 +447,23 @@ function Hero() {
 // ─── Section: Why Choose Me (Apple 3D Spatial Depth Typography) ──────────────
 function WhyChooseMe() {
   const spatialThoughts = [
-    // ── GẦN QUOTE (Foreground Layer: Bold, Larger Font, Near Quote Center, Crisp Focus)
-    { text: 'CRM giữ khách hàng', pos: 'top-[36%] left-[4%] sm:left-[9%]', style: 'text-sm sm:text-lg font-extrabold text-blue-600/75', anim: 'apple-float 14s ease-in-out infinite' },
-    { text: 'Data dẫn dắt quyết định', pos: 'top-[32%] right-[5%] sm:right-[10%]', style: 'text-sm sm:text-base font-extrabold text-slate-900/70', anim: 'apple-float 12s ease-in-out infinite 1s' },
-    { text: 'Lead tạo Doanh thu', pos: 'bottom-[22%] left-[6%] sm:left-[11%]', style: 'text-sm sm:text-lg font-extrabold text-blue-600/80', anim: 'apple-float 16s ease-in-out infinite 0.5s' },
-    { text: 'Traffic tạo Lead', pos: 'bottom-[24%] right-[5%] sm:right-[11%]', style: 'text-xs sm:text-base font-bold text-slate-900/65', anim: 'apple-float 13s ease-in-out infinite 2s' },
+    // ── GẦN QUOTE (Foreground Layer: High Relevance Value Statements, Bold & Crisp)
+    { text: 'CRM ➔ Giữ chân & Nuôi dưỡng Lead', pos: 'top-[36%] left-[4%] sm:left-[8%]', style: 'text-sm sm:text-base font-extrabold text-blue-600/75', anim: 'apple-float 14s ease-in-out infinite' },
+    { text: 'Data ➔ Quyết định chính xác', pos: 'top-[32%] right-[4%] sm:right-[9%]', style: 'text-sm sm:text-base font-extrabold text-slate-900/75', anim: 'apple-float 12s ease-in-out infinite 1s' },
+    { text: 'Lead ➔ Tạo Doanh thu thực tế', pos: 'bottom-[22%] left-[5%] sm:left-[10%]', style: 'text-sm sm:text-base font-extrabold text-blue-600/80', anim: 'apple-float 16s ease-in-out infinite 0.5s' },
+    { text: 'Traffic ➔ Chuyển hóa Qualified Lead', pos: 'bottom-[24%] right-[4%] sm:right-[10%]', style: 'text-xs sm:text-base font-bold text-slate-900/70', anim: 'apple-float 13s ease-in-out infinite 2s' },
 
-    // ── TRUNG TẦNG (Midground Layer: Standard Font, Normal Opacity, Medium Distance)
-    { text: 'SEO tạo Traffic', pos: 'top-[10%] left-[6%] sm:left-[12%]', style: 'text-xs sm:text-sm font-bold text-slate-800/45', anim: 'apple-float 15s ease-in-out infinite 1.5s' },
-    { text: 'Content tạo niềm tin', pos: 'top-[12%] right-[6%] sm:right-[13%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/50', anim: 'apple-float 17s ease-in-out infinite 2.5s' },
-    { text: 'Connect Everything', pos: 'top-[6%] left-[32%] sm:left-[38%]', style: 'text-xs sm:text-sm font-bold text-blue-600/50', anim: 'apple-float 11s ease-in-out infinite 0.8s' },
-    { text: 'Simplicity Scales', pos: 'bottom-[6%] left-[32%] sm:left-[36%]', style: 'text-xs sm:text-sm font-bold text-slate-800/45', anim: 'apple-float 13s ease-in-out infinite 3s' },
+    // ── TRUNG TẦNG (Midground Layer: Core System Flow Principles)
+    { text: 'SEO ➔ Traffic chất lượng', pos: 'top-[10%] left-[6%] sm:left-[12%]', style: 'text-xs sm:text-sm font-bold text-slate-800/50', anim: 'apple-float 15s ease-in-out infinite 1.5s' },
+    { text: 'Content ➔ Niềm tin khách hàng', pos: 'top-[12%] right-[5%] sm:right-[12%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/55', anim: 'apple-float 17s ease-in-out infinite 2.5s' },
+    { text: 'Hợp nhất Marketing & Sales', pos: 'top-[6%] left-[30%] sm:left-[36%]', style: 'text-xs sm:text-sm font-bold text-blue-600/55', anim: 'apple-float 11s ease-in-out infinite 0.8s' },
+    { text: 'Quy trình lặp lại được (Repeatable Growth)', pos: 'bottom-[6%] left-[28%] sm:left-[34%]', style: 'text-xs sm:text-sm font-bold text-slate-800/50', anim: 'apple-float 13s ease-in-out infinite 3s' },
 
-    // ── XA QUOTE (Background Layer: Smaller Font, Faint Opacity, Slight Blur, Far Outer Distance)
-    { text: 'Automation giảm công việc lặp lại', pos: 'bottom-[12%] left-[2%] sm:left-[6%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/30 blur-[0.6px]', anim: 'apple-float 20s ease-in-out infinite 3.5s' },
-    { text: 'Think in Systems', pos: 'bottom-[12%] right-[3%] sm:right-[7%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/30 blur-[0.6px]', anim: 'apple-float 18s ease-in-out infinite 4s' },
-    { text: 'Business First', pos: 'top-[5%] left-[10%] sm:left-[18%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/35 blur-[0.5px]', anim: 'apple-float 16s ease-in-out infinite 2s' },
-    { text: 'Continuous Improvement', pos: 'bottom-[4%] right-[22%] sm:right-[30%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/30 blur-[0.6px]', anim: 'apple-float 15s ease-in-out infinite 1.2s' },
+    // ── XA QUOTE (Background Layer: Automation & Operational Foundations)
+    { text: 'Automation ➔ Phản hồi tức thì < 5s', pos: 'bottom-[12%] left-[2%] sm:left-[5%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/35 blur-[0.5px]', anim: 'apple-float 20s ease-in-out infinite 3.5s' },
+    { text: 'Đo lường ROI ➔ Tối ưu chuẩn xác', pos: 'bottom-[12%] right-[2%] sm:right-[6%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/35 blur-[0.5px]', anim: 'apple-float 18s ease-in-out infinite 4s' },
+    { text: 'Tối ưu cả Hệ thống ➔ Không chỉ từng kênh', pos: 'top-[5%] left-[8%] sm:left-[16%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/40 blur-[0.4px]', anim: 'apple-float 16s ease-in-out infinite 2s' },
+    { text: 'Dữ liệu dẫn dắt ➔ Công cụ hỗ trợ', pos: 'bottom-[4%] right-[20%] sm:right-[28%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/35 blur-[0.5px]', anim: 'apple-float 15s ease-in-out infinite 1.2s' },
   ]
 
   return (
