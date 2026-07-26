@@ -447,24 +447,24 @@ function Hero() {
 // ─── Section: Why Choose Me (Apple Organic Typography Manifesto) ──────────────
 function WhyChooseMe() {
   const philosophyThoughts = [
-    { text: 'SEO tạo Traffic', pos: 'top-[8%] left-[2%] sm:left-[6%]', style: 'text-sm sm:text-base font-bold text-slate-800/40 hover:text-slate-900 hover:text-opacity-100', anim: 'apple-float 12s ease-in-out infinite' },
-    { text: 'Content tạo niềm tin', pos: 'top-[12%] right-[2%] sm:right-[7%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/50 hover:text-slate-900', anim: 'apple-float 15s ease-in-out infinite 1s' },
-    { text: 'CRM giữ khách hàng', pos: 'top-[34%] left-[1%] sm:left-[3%]', style: 'text-base sm:text-xl font-extrabold text-blue-600/45 hover:text-blue-600', anim: 'apple-float 18s ease-in-out infinite 2s' },
-    { text: 'Data dẫn dắt quyết định', pos: 'top-[30%] right-[1%] sm:right-[4%]', style: 'text-sm sm:text-lg font-bold text-slate-800/40 hover:text-slate-900', anim: 'apple-float 14s ease-in-out infinite 1.5s' },
-    { text: 'Automation giảm công việc lặp lại', pos: 'top-[56%] left-[0%] sm:left-[2%]', style: 'text-xs sm:text-sm font-medium text-slate-800/35 hover:text-slate-900', anim: 'apple-float 19s ease-in-out infinite 3s' },
-    { text: 'Traffic tạo Lead', pos: 'top-[58%] right-[0%] sm:right-[3%]', style: 'text-sm sm:text-base font-bold text-slate-800/45 hover:text-slate-900', anim: 'apple-float 13s ease-in-out infinite 2.5s' },
-    { text: 'Lead tạo Doanh thu', pos: 'bottom-[24%] left-[2%] sm:left-[5%]', style: 'text-base sm:text-xl font-extrabold text-blue-600/50 hover:text-blue-600', anim: 'apple-float 16s ease-in-out infinite 0.5s' },
-    { text: 'Think in Systems', pos: 'bottom-[28%] right-[2%] sm:right-[6%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/35 hover:text-slate-900', anim: 'apple-float 15s ease-in-out infinite 3.5s' },
-    { text: 'Business First', pos: 'bottom-[8%] left-[4%] sm:left-[9%]', style: 'text-sm sm:text-lg font-bold text-slate-800/50 hover:text-slate-900', anim: 'apple-float 17s ease-in-out infinite 4s' },
-    { text: 'Continuous Improvement', pos: 'bottom-[6%] right-[4%] sm:right-[7%]', style: 'text-xs sm:text-sm font-medium text-slate-800/35 hover:text-slate-900', anim: 'apple-float 14s ease-in-out infinite 1.2s' },
-    { text: 'Connect Everything', pos: 'top-[4%] left-[30%] sm:left-[36%]', style: 'text-xs sm:text-sm font-semibold text-blue-600/45 hover:text-blue-600', anim: 'apple-float 11s ease-in-out infinite 0.8s' },
-    { text: 'Simplicity Scales', pos: 'bottom-[2%] left-[38%]', style: 'text-sm sm:text-base font-bold text-slate-800/40 hover:text-slate-900', anim: 'apple-float 13s ease-in-out infinite 3.2s' },
+    { text: 'SEO tạo Traffic', pos: 'top-[10%] left-[8%] sm:left-[14%]', style: 'text-sm sm:text-base font-bold text-slate-800/40 -rotate-2 hover:text-slate-900', anim: 'apple-float 12s ease-in-out infinite' },
+    { text: 'Content tạo niềm tin', pos: 'top-[14%] right-[8%] sm:right-[15%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/50 rotate-1 hover:text-slate-900', anim: 'apple-float 15s ease-in-out infinite 1s' },
+    { text: 'CRM giữ khách hàng', pos: 'top-[32%] left-[4%] sm:left-[10%]', style: 'text-base sm:text-xl font-extrabold text-blue-600/50 rotate-2 hover:text-blue-600', anim: 'apple-float 18s ease-in-out infinite 2s' },
+    { text: 'Data dẫn dắt quyết định', pos: 'top-[28%] right-[5%] sm:right-[11%]', style: 'text-sm sm:text-lg font-bold text-slate-800/45 -rotate-1 hover:text-slate-900', anim: 'apple-float 14s ease-in-out infinite 1.5s' },
+    { text: 'Automation giảm công việc lặp lại', pos: 'top-[54%] left-[3%] sm:left-[8%]', style: 'text-xs sm:text-sm font-medium text-slate-800/35 rotate-1 hover:text-slate-900', anim: 'apple-float 19s ease-in-out infinite 3s' },
+    { text: 'Traffic tạo Lead', pos: 'top-[56%] right-[4%] sm:right-[9%]', style: 'text-sm sm:text-base font-bold text-slate-800/45 -rotate-2 hover:text-slate-900', anim: 'apple-float 13s ease-in-out infinite 2.5s' },
+    { text: 'Lead tạo Doanh thu', pos: 'bottom-[22%] left-[6%] sm:left-[12%]', style: 'text-base sm:text-xl font-extrabold text-blue-600/55 -rotate-1 hover:text-blue-600', anim: 'apple-float 16s ease-in-out infinite 0.5s' },
+    { text: 'Think in Systems', pos: 'bottom-[24%] right-[6%] sm:right-[13%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/40 rotate-2 hover:text-slate-900', anim: 'apple-float 15s ease-in-out infinite 3.5s' },
+    { text: 'Business First', pos: 'bottom-[8%] left-[10%] sm:left-[18%]', style: 'text-sm sm:text-lg font-bold text-slate-800/50 -rotate-2 hover:text-slate-900', anim: 'apple-float 17s ease-in-out infinite 4s' },
+    { text: 'Continuous Improvement', pos: 'bottom-[6%] right-[10%] sm:right-[16%]', style: 'text-xs sm:text-sm font-medium text-slate-800/35 rotate-1 hover:text-slate-900', anim: 'apple-float 14s ease-in-out infinite 1.2s' },
+    { text: 'Connect Everything', pos: 'top-[5%] left-[32%] sm:left-[38%]', style: 'text-xs sm:text-sm font-semibold text-blue-600/45 rotate-1 hover:text-blue-600', anim: 'apple-float 11s ease-in-out infinite 0.8s' },
+    { text: 'Simplicity Scales', pos: 'bottom-[3%] left-[36%]', style: 'text-sm sm:text-base font-bold text-slate-800/40 -rotate-1 hover:text-slate-900', anim: 'apple-float 13s ease-in-out infinite 3.2s' },
   ]
 
   return (
-    <section id="why-choose-me" className="py-32 sm:py-48 min-h-[900px] lg:min-h-[1050px] relative scroll-mt-28 border-t border-slate-200/50 overflow-hidden bg-[#FAFAF8] flex flex-col justify-center select-none">
+    <section id="why-choose-me" className="py-32 sm:py-48 min-h-[850px] lg:min-h-[1000px] relative scroll-mt-28 border-t border-slate-200/50 overflow-hidden bg-[#FAFAF8] flex flex-col justify-center select-none">
       
-      {/* ── Background Floating Intentional Organic Typography (No Circles) ── */}
+      {/* ── Background Floating Intentional Organic Typography (No Bullets, Natural Cluster) ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {philosophyThoughts.map((thought, i) => (
           <div
@@ -472,8 +472,8 @@ function WhyChooseMe() {
             className={`absolute ${thought.pos} hidden sm:block`}
             style={{ animation: thought.anim }}
           >
-            <span className={`tracking-tight ${thought.style} cursor-default transition-all duration-500`}>
-              • {thought.text}
+            <span className={`inline-block tracking-tight ${thought.style} cursor-default transition-all duration-500`}>
+              {thought.text}
             </span>
           </div>
         ))}
@@ -498,9 +498,9 @@ function WhyChooseMe() {
 
         {/* Mobile Philosophy Tags */}
         <FadeUp delay={200} className="sm:hidden mt-10">
-          <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-xs font-semibold text-slate-500">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500">
             {philosophyThoughts.slice(0, 8).map((b, i) => (
-              <span key={i}>• {b.text}</span>
+              <span key={i}>{b.text}</span>
             ))}
           </div>
         </FadeUp>
