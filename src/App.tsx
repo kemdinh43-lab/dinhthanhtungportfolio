@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import {
-  Menu, X, Moon, Sun, ArrowRight, ChevronUp,
+  Menu, X, ArrowRight, ChevronUp,
   Mail, Globe, ArrowUpRight, Play, Check, Cpu, Award, Sparkle, Phone
 } from 'lucide-react'
 
@@ -71,9 +71,9 @@ function TechLogo({ name, size = 16 }: { name: string; size?: number }) {
   if (lowercase.includes('gemini')) {
     return (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className="inline-block flex-shrink-0">
-        <path d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z" fill="url(#gemini-grad-clean-32)" />
+        <path d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z" fill="url(#gemini-grad-main)" />
         <defs>
-          <linearGradient id="gemini-grad-clean-32" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <linearGradient id="gemini-grad-main" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
             <stop stopColor="#1A73E8" />
             <stop offset="0.5" stopColor="#8AB4F8" />
             <stop offset="1" stopColor="#D93025" />
@@ -110,7 +110,6 @@ function TechLogo({ name, size = 16 }: { name: string; size?: number }) {
   return <Sparkle size={size} className="text-blue-500 inline-block flex-shrink-0" />
 }
 
-// Brand Icons
 function LinkedinIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -138,20 +137,16 @@ function FacebookIcon({ size = 18 }: { size?: number }) {
   )
 }
 
-// ─── Custom Hooks for Creative Bidirectional IN-OUT Motion ─────────────────────
+// ─── Custom Hooks ──────────────────────────────────────────────────────────────
 function useFadeUp() {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('visible')
-        } else {
-          el.classList.remove('visible')
-        }
+        if (entry.isIntersecting) el.classList.add('visible')
+        else el.classList.remove('visible')
       },
       { threshold: 0.1, rootMargin: '-20px 0px -20px 0px' }
     )
@@ -159,20 +154,6 @@ function useFadeUp() {
     return () => obs.disconnect()
   }, [])
   return ref
-}
-
-function useDarkMode(): [boolean, () => void] {
-  const [dark, setDark] = useState(() => {
-    if (typeof window === 'undefined') return true
-    const stored = localStorage.getItem('portfolio-theme')
-    if (stored) return stored === 'dark'
-    return true
-  })
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark)
-    localStorage.setItem('portfolio-theme', dark ? 'dark' : 'light')
-  }, [dark])
-  return [dark, () => setDark(d => !d)]
 }
 
 function useScrollTop(threshold = 400) {
@@ -198,11 +179,11 @@ function FadeUp({ children, delay = 0, className = '' }: { children: ReactNode; 
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="max-w-3xl mb-12 sm:mb-20">
-      <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4" style={{ color: 'var(--text-main)' }}>
+      <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-slate-900">
         {title}
       </h2>
       {sub && (
-        <p className="text-base sm:text-xl font-normal leading-relaxed text-slate-600 dark:text-slate-400">
+        <p className="text-base sm:text-xl font-normal leading-relaxed text-slate-500">
           {sub}
         </p>
       )}
@@ -211,7 +192,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
 }
 
 // ─── Header / Navigation ──────────────────────────────────────────────────────
-function Navbar({ dark, toggleDark }: { dark: boolean; toggleDark: () => void }) {
+function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenu, setMobileMenu] = useState(false)
 
@@ -233,27 +214,20 @@ function Navbar({ dark, toggleDark }: { dark: boolean; toggleDark: () => void })
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'py-3 sm:py-4 border-b border-slate-200/60 dark:border-slate-800/60 backdrop-blur-xl' : 'py-4 sm:py-6'
+        scrolled ? 'py-3 sm:py-4 border-b border-slate-200/60 backdrop-blur-xl bg-white/90' : 'py-4 sm:py-6'
       }`}
-      style={{
-        background: scrolled
-          ? dark ? 'rgba(11, 15, 23, 0.9)' : 'rgba(251, 251, 249, 0.9)'
-          : 'transparent',
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <a href="#hero" className="flex items-center font-extrabold text-base sm:text-xl tracking-tight group">
-          <span style={{ color: 'var(--text-main)' }}>
-            Đinh Thanh Tùng <span className="font-semibold text-slate-500 dark:text-slate-400">Portfolio</span><span className="text-blue-500">.</span>
-          </span>
+        <a href="#hero" className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900">
+          Đinh Thanh Tùng <span className="font-semibold text-slate-400">Portfolio</span><span className="text-blue-500">.</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8 bg-white/80 dark:bg-slate-900/90 backdrop-blur-md px-7 py-2.5 rounded-full border border-slate-200/80 dark:border-slate-800 shadow-xs">
+        <nav className="hidden md:flex items-center gap-8 bg-white/90 backdrop-blur-md px-7 py-2.5 rounded-full border border-slate-200 shadow-sm">
           {navItems.map(([label, href]) => (
             <a
               key={href}
               href={href}
-              className="text-sm font-semibold transition-colors hover:text-blue-500 text-slate-700 dark:text-slate-200"
+              className="text-sm font-semibold text-slate-600 hover:text-blue-500 transition-colors"
             >
               {label}
             </a>
@@ -261,24 +235,16 @@ function Navbar({ dark, toggleDark }: { dark: boolean; toggleDark: () => void })
         </nav>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={toggleDark}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-            aria-label="Toggle Theme"
-          >
-            {dark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-          
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102"
+            className="hidden sm:inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all shadow-md shadow-blue-600/20"
           >
             Kết nối ngay <ArrowRight size={15} />
           </a>
 
           <button
             onClick={() => setMobileMenu(!mobileMenu)}
-            className="md:hidden p-2 text-slate-700 dark:text-slate-200"
+            className="md:hidden p-2 text-slate-700"
           >
             {mobileMenu ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -286,13 +252,13 @@ function Navbar({ dark, toggleDark }: { dark: boolean; toggleDark: () => void })
       </div>
 
       {mobileMenu && (
-        <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex flex-col gap-3 shadow-xl">
+        <div className="md:hidden bg-white border-b border-slate-200 px-6 py-4 flex flex-col gap-3 shadow-xl">
           {navItems.map(([label, href]) => (
             <a
               key={href}
               href={href}
               onClick={() => setMobileMenu(false)}
-              className="text-sm font-semibold py-2 text-slate-700 dark:text-slate-200"
+              className="text-sm font-semibold py-2 text-slate-700"
             >
               {label}
             </a>
@@ -320,19 +286,17 @@ function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Text Content */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
-
             <FadeUp delay={0}>
-              <h1 className="text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.12]" style={{ color: 'var(--text-main)' }}>
+              <h1 className="text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.12] text-slate-900">
                 Tôi xây dựng <br className="hidden sm:block" />
-                <span className="text-blue-600 dark:text-blue-400">hệ thống Marketing</span> <br className="hidden sm:block" />
+                <span className="text-blue-600">hệ thống Marketing</span> <br className="hidden sm:block" />
                 vận hành bằng dữ liệu.
               </h1>
             </FadeUp>
 
             <FadeUp delay={100}>
-              <p className="text-base sm:text-xl font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 text-slate-600 dark:text-slate-300">
+              <p className="text-base sm:text-xl font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 text-slate-500">
                 Tôi kết hợp SEO, AI Workflow, CRO và Automation để xây dựng các kiến trúc Marketing giúp doanh nghiệp tăng trưởng bền vững — đo lường được và tự động hoá 70%.
               </p>
             </FadeUp>
@@ -341,42 +305,41 @@ function Hero() {
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
                 <a
                   href="#casestudy"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base px-8 py-3.5 sm:py-4 rounded-full shadow-lg shadow-blue-600/25 transition-all hover:scale-102"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base px-8 py-3.5 sm:py-4 rounded-full shadow-lg shadow-blue-600/25 transition-all"
                 >
                   Xem Case Study Thực Tế <ArrowRight size={18} />
                 </a>
                 <a
                   href="#n8n-canvas"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-bold text-sm sm:text-base px-8 py-3.5 sm:py-4 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-xs hover:scale-102"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 font-bold text-sm sm:text-base px-8 py-3.5 sm:py-4 rounded-full hover:bg-slate-50 transition-all shadow-sm"
                 >
                   Xem Sơ đồ n8n Canvas
                 </a>
               </div>
             </FadeUp>
 
-            {/* Quick Metrics & Certifications Bar */}
             <FadeUp delay={300}>
-              <div className="pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-800 space-y-6">
+              <div className="pt-6 sm:pt-8 border-t border-slate-200 space-y-6">
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-                  <span className="bg-blue-50 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-2 transition-transform hover:scale-105">
+                  <span className="bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-2">
                     <Award size={15} className="text-blue-500" /> IELTS 7.0 (English)
                   </span>
-                  <span className="bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-2 transition-transform hover:scale-105">
+                  <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-2">
                     <Globe size={15} className="text-emerald-500" /> HSK3 (Chinese / 中文)
                   </span>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-md mx-auto lg:mx-0">
-                  <div className="transition-transform hover:scale-105">
-                    <p className="text-2xl sm:text-4xl font-extrabold text-blue-600 dark:text-blue-400">+238%</p>
+                  <div>
+                    <p className="text-2xl sm:text-4xl font-extrabold text-blue-600">+238%</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">Organic Traffic</p>
                   </div>
-                  <div className="transition-transform hover:scale-105">
-                    <p className="text-2xl sm:text-4xl font-extrabold text-emerald-500 dark:text-emerald-400">70%</p>
+                  <div>
+                    <p className="text-2xl sm:text-4xl font-extrabold text-emerald-500">70%</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">Lead Auto</p>
                   </div>
-                  <div className="transition-transform hover:scale-105">
-                    <p className="text-2xl sm:text-4xl font-extrabold text-amber-500 dark:text-amber-400">&lt; 5s</p>
+                  <div>
+                    <p className="text-2xl sm:text-4xl font-extrabold text-amber-500">&lt; 5s</p>
                     <p className="text-xs font-semibold mt-1 text-slate-500">SLA Phản hồi</p>
                   </div>
                 </div>
@@ -384,11 +347,10 @@ function Hero() {
             </FadeUp>
           </div>
 
-          {/* Right Personal Photo Frame with Subtle Floating Animation */}
           <div className="lg:col-span-5 flex justify-center">
             <FadeUp delay={150} className="w-full max-w-xs sm:max-w-md">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 p-2.5 shadow-2xl apple-float">
-                <div className="relative aspect-4/5 rounded-2xl overflow-hidden bg-slate-950 flex items-center justify-center">
+              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 p-2.5 shadow-2xl apple-float">
+                <div className="relative aspect-4/5 rounded-2xl overflow-hidden bg-slate-200 flex items-center justify-center">
                   <img
                     src="/avatar.jpg"
                     alt="Đinh Thanh Tùng"
@@ -398,14 +360,13 @@ function Hero() {
               </div>
             </FadeUp>
           </div>
-
         </div>
       </div>
     </section>
   )
 }
 
-// ─── Section 2: Offerings / Năng lực ───────────────────────────────────────────
+// ─── Section 2: Offerings ─────────────────────────────────────────────────────
 function Offerings() {
   const offerings = [
     {
@@ -447,34 +408,29 @@ function Offerings() {
   ]
 
   return (
-    <section id="offerings" className="py-24 sm:py-36 bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-800 relative scroll-mt-28">
+    <section id="offerings" className="py-24 sm:py-36 bg-slate-50/70 border-y border-slate-200 relative scroll-mt-28">
       <div className="ambient-glow-emerald top-1/4 -left-32" />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeading
           title="Năng lực cốt lõi hệ thống"
           sub="Bộ giải pháp tổng thể kết hợp giữa công nghệ, dữ liệu và tư duy Marketing hệ thống."
         />
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
           {offerings.map((item, idx) => (
             <FadeUp key={item.title} delay={idx * 80}>
-              <div className="py-6 border-b border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between h-full group hover:border-blue-500 transition-colors">
+              <div className="py-6 border-b border-slate-200 flex flex-col justify-between h-full group hover:border-blue-500 transition-colors">
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/50 transition-transform">
+                  <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-50 transition-transform shadow-sm">
                     {item.icon}
                   </div>
-                  
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" style={{ color: 'var(--text-main)' }}>
+                  <h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-blue-600 transition-colors">
                     {item.title}
                   </h3>
-                  
-                  <p className="text-base leading-relaxed mb-6 font-normal text-slate-600 dark:text-slate-300">
+                  <p className="text-base leading-relaxed mb-6 font-normal text-slate-500">
                     {item.desc}
                   </p>
                 </div>
-
-                <div className="text-xs font-semibold text-slate-500 pt-4 border-t border-slate-100 dark:border-slate-800/60">
+                <div className="text-xs font-semibold text-slate-400 pt-4 border-t border-slate-100">
                   {item.tags.join('  ·  ')}
                 </div>
               </div>
@@ -486,7 +442,7 @@ function Offerings() {
   )
 }
 
-// ─── Section 3: Clean Humanist Editorial (SEO Architecture) ───────────
+// ─── Section 3: SEO Architecture ─────────────────────────────────────────────
 function SeoArchitecture() {
   const seoEditorialRows = [
     {
@@ -541,76 +497,65 @@ function SeoArchitecture() {
   return (
     <section id="seo-architecture" className="py-24 sm:py-36 relative scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 sm:mb-24 pb-8 border-b border-slate-200 dark:border-slate-800">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 sm:mb-24 pb-8 border-b border-slate-200">
           <div className="lg:col-span-8">
-            <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-3 block">
+            <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3 block">
               • TECHNICAL SEO BLUEPRINT
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight" style={{ color: 'var(--text-main)' }}>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">
               Kiến trúc SEO Website & Tăng trưởng Organic Bền vững
             </h2>
           </div>
-
           <div className="lg:col-span-4 flex items-center justify-start lg:justify-end gap-6 sm:gap-8 pb-2">
-            <div className="transition-transform hover:scale-105">
-              <p className="text-3xl sm:text-5xl font-extrabold text-emerald-500 dark:text-emerald-400">99/100</p>
+            <div>
+              <p className="text-3xl sm:text-5xl font-extrabold text-emerald-500">99/100</p>
               <p className="text-xs font-semibold mt-1 text-slate-500">PageSpeed Mobile</p>
             </div>
-            <div className="w-px h-10 sm:h-12 bg-slate-200 dark:bg-slate-800" />
-            <div className="transition-transform hover:scale-105">
-              <p className="text-3xl sm:text-5xl font-extrabold text-blue-600 dark:text-blue-400">PASS</p>
+            <div className="w-px h-10 sm:h-12 bg-slate-200" />
+            <div>
+              <p className="text-3xl sm:text-5xl font-extrabold text-blue-600">PASS</p>
               <p className="text-xs font-semibold mt-1 text-slate-500">Core Web Vitals</p>
             </div>
           </div>
         </div>
 
-        {/* Clean Humanist Editorial Rows */}
         <div className="space-y-12 sm:space-y-16">
           {seoEditorialRows.map((row, idx) => (
             <FadeUp key={row.num} delay={idx * 100}>
-              <div className="py-6 sm:py-8 border-b border-slate-200/80 dark:border-slate-800/80 space-y-4 group">
-                
+              <div className="py-6 sm:py-8 border-b border-slate-200 space-y-4 group">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                   <div className="flex items-baseline gap-4">
-                    <span className="text-2xl sm:text-4xl font-extrabold text-slate-400 dark:text-slate-600 group-hover:text-blue-600 transition-colors">
+                    <span className="text-2xl sm:text-4xl font-extrabold text-slate-300 group-hover:text-blue-600 transition-colors">
                       {row.num}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold group-hover:translate-x-1 transition-transform" style={{ color: 'var(--text-main)' }}>
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 group-hover:translate-x-1 transition-transform">
                       {row.title}
                     </h3>
                   </div>
-
-                  <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                    ★ {row.metric}
-                  </span>
+                  <span className="text-xs font-semibold text-emerald-600">★ {row.metric}</span>
                 </div>
-
-                <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-400 pl-0 sm:pl-10">
+                <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-500 pl-0 sm:pl-10">
                   {row.techStack.map((tech, tIdx) => (
                     <span key={tech.name} className="inline-flex items-center gap-1.5 hover:text-blue-500 transition-colors cursor-default">
                       {tech.logo && <TechLogo name={tech.logo} size={15} />}
                       <span>{tech.name}</span>
-                      {tIdx < row.techStack.length - 1 && <span className="text-slate-300 dark:text-slate-700 ml-1.5">·</span>}
+                      {tIdx < row.techStack.length - 1 && <span className="text-slate-300 ml-1.5">·</span>}
                     </span>
                   ))}
                 </div>
-
-                <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 font-normal pl-0 sm:pl-10">
+                <p className="text-sm sm:text-base leading-relaxed text-slate-500 font-normal pl-0 sm:pl-10">
                   {row.desc}
                 </p>
-
               </div>
             </FadeUp>
           ))}
         </div>
-
       </div>
     </section>
   )
 }
 
-// ─── Section 4: Mobile-Perfect Authentic n8n Canvas Component ─────────────
+// ─── Section 4: n8n Canvas UI ─────────────────────────────────────────────────
 function N8nCanvasUI() {
   const [activeTab, setActiveTab] = useState(0)
 
@@ -653,17 +598,14 @@ function N8nCanvasUI() {
   const activeFlow = workflows[activeTab]
 
   return (
-    <section id="n8n-canvas" className="py-24 sm:py-36 bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-800 relative scroll-mt-28">
+    <section id="n8n-canvas" className="py-24 sm:py-36 bg-slate-50/70 border-y border-slate-200 relative scroll-mt-28">
       <div className="ambient-glow-blue top-1/3 -left-32" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        
         <SectionHeading
           title="Trực quan hoá n8n Workflows Thực tế"
           sub="Giao diện mô phỏng 100% Canvas n8n thực tế đang tự động hoá cho Đồng phục Thành Tín."
         />
 
-        {/* Mobile-Perfect Touch Swipe Tab Container (No text overlap / overflow) */}
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 sm:mb-10 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
           {workflows.map((wf, i) => (
             <button
@@ -671,8 +613,8 @@ function N8nCanvasUI() {
               onClick={() => setActiveTab(i)}
               className={`flex-shrink-0 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold transition-all ${
                 activeTab === i
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25 scale-102'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
               }`}
             >
               <span className="sm:hidden">{wf.shortTitle}</span>
@@ -692,12 +634,9 @@ function N8nCanvasUI() {
               <span className="text-slate-400 hidden sm:inline">Personal /</span>
               <span className="font-bold text-white truncate max-w-[170px] sm:max-w-none">{activeFlow.title}</span>
             </div>
-            
-            <div className="flex items-center gap-3">
-              <span className="bg-emerald-950 border border-emerald-700 text-emerald-400 px-3 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Active
-              </span>
-            </div>
+            <span className="bg-emerald-950 border border-emerald-700 text-emerald-400 px-3 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Active
+            </span>
           </div>
 
           <div className="n8n-canvas-bg p-4 sm:p-14 min-h-[380px] flex flex-col justify-between relative">
@@ -709,18 +648,14 @@ function N8nCanvasUI() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6 relative z-10 my-auto">
               {activeFlow.nodes.map((node) => (
-                <div
-                  key={node.id}
-                  className="bg-[#172033] border border-slate-700/80 rounded-2xl overflow-hidden shadow-xl hover:border-blue-500 hover:-translate-y-1 transition-all group"
-                >
+                <div key={node.id} className="bg-[#172033] border border-slate-700/80 rounded-2xl overflow-hidden shadow-xl hover:border-blue-500 hover:-translate-y-1 transition-all">
                   <div className={`${node.color} px-4 py-1.5 text-[11px] font-bold text-white flex items-center justify-between`}>
                     <span>{node.type}</span>
                     <span className="text-[9px] opacity-80">n8n Node</span>
                   </div>
-                  
                   <div className="p-4 sm:p-6">
                     <h4 className="font-bold text-white text-sm mb-1.5">{node.name}</h4>
-                    <p className="text-xs text-slate-300 leading-relaxed font-sans">{node.desc}</p>
+                    <p className="text-xs text-slate-300 leading-relaxed">{node.desc}</p>
                   </div>
                 </div>
               ))}
@@ -731,26 +666,22 @@ function N8nCanvasUI() {
                 <Cpu size={15} className="text-blue-400" />
                 <span>Trigger: Automated Callback Webhook Event</span>
               </div>
-              
-              <div className="bg-rose-600 hover:bg-rose-700 text-white font-bold px-5 py-2 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg shadow-rose-600/30 hover:scale-105 transition-all text-xs">
+              <div className="bg-rose-600 hover:bg-rose-700 text-white font-bold px-5 py-2 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg shadow-rose-600/30 transition-all text-xs">
                 <Play size={13} fill="currentColor" /> Execute Workflow
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   )
 }
 
-// ─── Section 5: Case Study Component (Full Bleed Creative Apple Orbit) ─────
+// ─── Section 5: Case Study ────────────────────────────────────────────────────
 function CaseStudy() {
   return (
     <section id="casestudy" className="py-24 sm:py-36 scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        
         <SectionHeading
           title="Dự án Case Study nổi bật"
           sub="Minh chứng từ hệ thống Marketing Automation B2B đã được vận hành thực tế tại Đồng phục Thành Tín."
@@ -758,68 +689,52 @@ function CaseStudy() {
 
         <FadeUp>
           <div className="card-clean overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
-            
-            {/* Left Case Study Description */}
             <div className="lg:col-span-5 p-6 sm:p-12 flex flex-col justify-between">
               <div>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 border-b border-blue-500 pb-0.5">
-                    Chuyển đổi số B2B · Đồng phục Thành Tín
-                  </span>
-                </div>
-
-                <h3 className="text-2xl sm:text-4xl font-extrabold mb-4 leading-tight" style={{ color: 'var(--text-main)' }}>
+                <span className="text-xs font-semibold text-blue-600 border-b border-blue-500 pb-0.5 mb-6 block w-fit">
+                  Chuyển đổi số B2B · Đồng phục Thành Tín
+                </span>
+                <h3 className="text-2xl sm:text-4xl font-extrabold mb-4 leading-tight text-slate-900">
                   Hệ thống Marketing Automation & CRM Tự động 70% Lead B2B
                 </h3>
-
-                <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 font-normal text-slate-600 dark:text-slate-300">
+                <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 font-normal text-slate-500">
                   Tái kiến trúc lại toàn bộ trải nghiệm số cho thương hiệu may mặc B2B 15 năm tuổi: Tối ưu SEO Topic Cluster, tích hợp Zalo OA tự động phản hồi SLA &lt;5s, CRM AppSheet và 18 luồng n8n tự động viết bài, sinh ảnh AI.
                 </p>
-
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
-                  <div className="transition-transform hover:scale-105">
-                    <p className="text-2xl sm:text-4xl font-extrabold text-blue-600 dark:text-blue-400">+238%</p>
+                  <div>
+                    <p className="text-2xl sm:text-4xl font-extrabold text-blue-600">+238%</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">Organic Traffic</p>
                   </div>
-                  <div className="transition-transform hover:scale-105">
-                    <p className="text-2xl sm:text-4xl font-extrabold text-emerald-500 dark:text-emerald-400">70%</p>
+                  <div>
+                    <p className="text-2xl sm:text-4xl font-extrabold text-emerald-500">70%</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">Lead Tự động</p>
                   </div>
-                  <div className="transition-transform hover:scale-105">
-                    <p className="text-2xl sm:text-4xl font-extrabold text-amber-500 dark:text-amber-400">&lt; 5s</p>
+                  <div>
+                    <p className="text-2xl sm:text-4xl font-extrabold text-amber-500">&lt; 5s</p>
                     <p className="text-xs font-medium mt-1 text-slate-500">SLA Zalo OA</p>
                   </div>
                 </div>
               </div>
-
-              <div>
-                <a
-                  href="#experience"
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 font-bold text-sm border-b-2 border-blue-600 pb-1 transition-all hover:translate-x-1"
-                >
-                  Xem Chi Tiết Quy Trình Vận Hành <ArrowUpRight size={16} />
-                </a>
-              </div>
+              <a href="#experience" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-bold text-sm border-b-2 border-blue-600 pb-1 transition-all hover:translate-x-1 w-fit">
+                Xem Chi Tiết Quy Trình Vận Hành <ArrowUpRight size={16} />
+              </a>
             </div>
 
-            {/* Right Full Bleed Creative Apple Orbit Image */}
             <div className="lg:col-span-7 relative min-h-[320px] sm:min-h-[420px] lg:min-h-full overflow-hidden">
               <img
                 src="/apple-b2b-marketing-journey-system.jpg"
-                alt="Creative Apple Keynote Orbit B2B Marketing Intelligence Core Ecosystem"
-                className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-103"
+                alt="B2B Marketing Intelligence Core Ecosystem"
+                className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
               />
             </div>
-
           </div>
         </FadeUp>
-
       </div>
     </section>
   )
 }
 
-// ─── Section 5: Humanist Editorial Projects (Kinh nghiệm thực tế) ─────────────
+// ─── Section 6: Experience ────────────────────────────────────────────────────
 function Experience() {
   const thietTinProjects = [
     {
@@ -885,152 +800,116 @@ function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-24 sm:py-36 bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-800 relative scroll-mt-28">
+    <section id="experience" className="py-24 sm:py-36 bg-slate-50/70 border-y border-slate-200 relative scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        
         <SectionHeading
           title="Kinh nghiệm & Sơ đồ Luồng Vận hành Hệ thống"
           sub="Trực quan hoá tư duy kiến trúc & quy trình tự động hoá thực tế đã triển khai."
         />
 
         <div className="space-y-16 sm:space-y-24">
-          
-          {/* Company 1: Đồng phục Thành Tín Humanist Editorial */}
           <FadeUp>
             <div className="space-y-12 sm:space-y-16">
-              
-              <div className="pb-6 sm:pb-8 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="pb-6 sm:pb-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
-                    <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider uppercase">
+                    <span className="text-xs font-semibold text-blue-600 tracking-wider uppercase">
                       LATEST POSITION · 01/2026 – HIỆN TẠI
                     </span>
                   </div>
-                  <h3 className="text-2xl sm:text-5xl font-extrabold" style={{ color: 'var(--text-main)' }}>
-                    Đồng phục Thành Tín
-                  </h3>
-                  <p className="text-base sm:text-lg font-semibold mt-1 text-slate-500 dark:text-slate-400">
+                  <h3 className="text-2xl sm:text-5xl font-extrabold text-slate-900">Đồng phục Thành Tín</h3>
+                  <p className="text-base sm:text-lg font-semibold mt-1 text-slate-500">
                     Kiến trúc sư Hệ thống Trưởng & Chuyên viên Marketing Tăng trưởng
                   </p>
                 </div>
-
-                <span className="text-xs font-semibold text-slate-500">
-                  5 Systems Workflows
-                </span>
+                <span className="text-xs font-semibold text-slate-400">5 Systems Workflows</span>
               </div>
 
-              {/* Minimal Humanist Editorial List with Iconography Render */}
               <div className="space-y-12 sm:space-y-16">
                 {thietTinProjects.map((p) => (
-                  <div key={p.num} className="py-6 sm:py-8 border-b border-slate-200/80 dark:border-slate-800/80 space-y-3 sm:space-y-4 group">
-                    
+                  <div key={p.num} className="py-6 sm:py-8 border-b border-slate-200 space-y-3 sm:space-y-4 group">
                     <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                       <div className="flex items-baseline gap-3 sm:gap-4">
-                        <span className="text-xl sm:text-3xl font-extrabold text-slate-400 dark:text-slate-600 group-hover:text-blue-600 transition-colors">
+                        <span className="text-xl sm:text-3xl font-extrabold text-slate-300 group-hover:text-blue-600 transition-colors">
                           {p.num}
                         </span>
-                        <h4 className="text-lg sm:text-2xl font-bold leading-snug group-hover:translate-x-1 transition-transform" style={{ color: 'var(--text-main)' }}>
+                        <h4 className="text-lg sm:text-2xl font-bold leading-snug text-slate-900 group-hover:translate-x-1 transition-transform">
                           {p.title}
                         </h4>
                       </div>
-
-                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex-shrink-0">
-                        ★ {p.metric}
-                      </span>
+                      <span className="text-xs font-semibold text-emerald-600 flex-shrink-0">★ {p.metric}</span>
                     </div>
-
-                    {/* Flow chain rendered with real brand SVGs & clean dots */}
-                    <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-700 dark:text-slate-300 pl-0 sm:pl-9">
+                    <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-600 pl-0 sm:pl-9">
                       {p.flowItems.map((item, iIdx) => (
                         <span key={item.label} className="inline-flex items-center gap-1.5 hover:text-blue-500 transition-colors cursor-default">
                           <TechLogo name={item.logo} size={15} />
                           <span>{item.label}</span>
                           {iIdx < p.flowItems.length - 1 && (
-                            <span className="text-slate-400 dark:text-slate-600 font-bold ml-1.5">➔</span>
+                            <span className="text-slate-300 font-bold ml-1.5">➔</span>
                           )}
                         </span>
                       ))}
                     </div>
-
-                    {/* Impact description */}
-                    <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 font-normal pl-0 sm:pl-9">
+                    <p className="text-sm sm:text-base leading-relaxed text-slate-500 font-normal pl-0 sm:pl-9">
                       {p.desc}
                     </p>
-
                   </div>
                 ))}
               </div>
-
             </div>
           </FadeUp>
 
-          {/* Company 2: Trung tâm Anh ngữ Mai */}
           <FadeUp delay={100}>
             <div className="space-y-6 sm:space-y-8 pt-4 sm:pt-8">
-              <div className="pb-6 border-b border-slate-200 dark:border-slate-800">
+              <div className="pb-6 border-b border-slate-200">
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-400" />
-                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 tracking-wider uppercase">
+                  <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+                  <span className="text-xs font-semibold text-slate-400 tracking-wider uppercase">
                     INTERNSHIP · 09/2024 – 01/2025 · TP. ĐÀ NẴNG
                   </span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold" style={{ color: 'var(--text-main)' }}>
-                  Trung tâm Anh ngữ Mai
-                </h3>
-                <p className="text-base font-semibold mt-1 text-slate-500 dark:text-slate-400">
-                  Thực tập sinh Marketing
-                </p>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Trung tâm Anh ngữ Mai</h3>
+                <p className="text-base font-semibold mt-1 text-slate-500">Thực tập sinh Marketing</p>
               </div>
-
               <div className="space-y-4">
-                <div className="flex items-start gap-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                <div className="flex items-start gap-4 text-sm sm:text-base leading-relaxed text-slate-500">
                   <Check size={18} className="text-blue-500 flex-shrink-0 mt-1" />
                   <span>Hỗ trợ lập kế hoạch và triển khai chiến dịch truyền thông số, tối ưu chiến lược nội dung định kỳ trên nền tảng Facebook Fanpage.</span>
                 </div>
-
-                <div className="flex items-start gap-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                <div className="flex items-start gap-4 text-sm sm:text-base leading-relaxed text-slate-500">
                   <Check size={18} className="text-blue-500 flex-shrink-0 mt-1" />
                   <span>Lập kế hoạch, điều phối hậu cần và tổ chức workshop giáo dục cùng các sự kiện tương tác nhằm tăng mức độ tham gia và duy trì học viên.</span>
                 </div>
               </div>
             </div>
           </FadeUp>
-
         </div>
-
       </div>
     </section>
   )
 }
 
-// ─── Section 7: Contact CTA Footer ────────────────────────────────────────────
+// ─── Contact ──────────────────────────────────────────────────────────────────
 function Contact() {
   return (
     <section id="contact" className="py-24 sm:py-36 bg-slate-950 text-white relative overflow-hidden">
       <div className="ambient-glow-purple top-1/4 left-1/3" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
-        
         <FadeUp delay={0}>
-          <span className="text-xs font-bold tracking-wider uppercase text-blue-400 mb-4 block">
-            Bắt đầu hợp tác
-          </span>
+          <span className="text-xs font-bold tracking-wider uppercase text-blue-400 mb-4 block">Bắt đầu hợp tác</span>
         </FadeUp>
-
         <FadeUp delay={100}>
           <h2 className="text-3xl sm:text-6xl font-extrabold tracking-tight mb-6 sm:mb-8 leading-tight">
             Sẵn sàng xây dựng <br />
             <span className="text-blue-500">hệ thống tăng trưởng?</span>
           </h2>
         </FadeUp>
-
         <FadeUp delay={200}>
-          <p className="text-slate-300 text-sm sm:text-xl max-w-xl mx-auto mb-10 sm:mb-12 leading-relaxed font-normal">
+          <p className="text-slate-300 text-sm sm:text-xl max-w-xl mx-auto mb-10 sm:mb-12 leading-relaxed">
             Hãy kết nối nếu doanh nghiệp của bạn đang cần một giải pháp Marketing vận hành tự động, đo lường được và bền vững.
           </p>
         </FadeUp>
-
         <FadeUp delay={300}>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-16 sm:mb-20">
             <a
@@ -1039,7 +918,6 @@ function Contact() {
             >
               <Mail size={18} /> mckaym1109@gmail.com
             </a>
-            
             <a
               href="tel:0394410557"
               className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm sm:text-base px-7 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all shadow-lg shadow-emerald-600/30 hover:scale-105"
@@ -1048,54 +926,34 @@ function Contact() {
             </a>
           </div>
         </FadeUp>
-
         <FadeUp delay={400}>
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 pt-8 border-t border-slate-800 text-slate-400">
-            <a
-              href="https://www.facebook.com/thanh.tung.779296/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold hover:scale-105"
-            >
+            <a href="https://www.facebook.com/thanh.tung.779296/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold hover:scale-105">
               <FacebookIcon size={18} /> Facebook
             </a>
-            <a
-              href="https://github.com/kemdinh43-lab"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold hover:scale-105"
-            >
+            <a href="https://github.com/kemdinh43-lab" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold hover:scale-105">
               <GithubIcon size={18} /> GitHub
             </a>
-            <a
-              href="https://www.linkedin.com/search/results/all/?keywords=purchasing%20manager&origin=AUTO_COMPLETE&position=2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold hover:scale-105"
-            >
+            <a href="https://www.linkedin.com/search/results/all/?keywords=purchasing%20manager&origin=AUTO_COMPLETE&position=2" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold hover:scale-105">
               <LinkedinIcon size={18} /> LinkedIn
             </a>
           </div>
         </FadeUp>
-
         <div className="mt-16 sm:mt-20 text-xs text-slate-500 font-semibold">
           © 2026 Đinh Thanh Tùng · High-Tech Marketing Systems Architect Portfolio
         </div>
-
       </div>
     </section>
   )
 }
 
-// ─── Back To Top Button ───────────────────────────────────────────────────────
+// ─── Back To Top ──────────────────────────────────────────────────────────────
 function BackToTop() {
   const show = useScrollTop()
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className={`back-to-top w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xl hover:bg-blue-700 transition-all hover:scale-110 ${
-        show ? 'visible' : ''
-      }`}
+      className={`back-to-top w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xl hover:bg-blue-700 transition-all hover:scale-110 ${show ? 'visible' : ''}`}
       aria-label="Back to Top"
     >
       <ChevronUp size={20} />
@@ -1103,13 +961,11 @@ function BackToTop() {
   )
 }
 
-// ─── Main Root Component ──────────────────────────────────────────────────────
+// ─── Root ─────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [dark, toggleDark] = useDarkMode()
-
   return (
     <div className="min-h-screen">
-      <Navbar dark={dark} toggleDark={toggleDark} />
+      <Navbar />
       <Hero />
       <Offerings />
       <SeoArchitecture />
