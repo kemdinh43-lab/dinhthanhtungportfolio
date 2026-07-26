@@ -446,71 +446,67 @@ function Hero() {
 
 // ─── Section: Why Choose Me (Apple x Stripe x Linear Floating Philosophy) ────
 function WhyChooseMe() {
-  const philosophyBubbles = [
-    { text: 'SEO tạo Traffic', pos: 'top-[8%] left-[2%] sm:left-[6%]', delay: '0s', duration: '9s' },
-    { text: 'Content tạo niềm tin', pos: 'top-[12%] right-[2%] sm:right-[8%]', delay: '1s', duration: '11s' },
-    { text: 'CRM giữ khách hàng', pos: 'top-[28%] left-[1%] sm:left-[3%]', delay: '2s', duration: '10s' },
-    { text: 'Data dẫn dắt quyết định', pos: 'top-[26%] right-[1%] sm:right-[5%]', delay: '1.5s', duration: '12s' },
-    { text: 'Automation giảm công việc lặp lại', pos: 'top-[44%] left-[0%] sm:left-[2%]', delay: '3s', duration: '13s' },
-    { text: 'Mọi điểm chạm đều cần kết nối', pos: 'top-[46%] right-[0%] sm:right-[3%]', delay: '2.5s', duration: '9s' },
-    { text: 'Đo lường trước khi tối ưu', pos: 'bottom-[32%] left-[2%] sm:left-[5%]', delay: '0.5s', duration: '11s' },
-    { text: 'Traffic phải tạo Lead', pos: 'bottom-[35%] right-[2%] sm:right-[6%]', delay: '3.5s', duration: '10s' },
-    { text: 'Lead phải tạo Doanh thu', pos: 'bottom-[18%] left-[4%] sm:left-[8%]', delay: '4s', duration: '12s' },
-    { text: 'Đừng tối ưu từng kênh', pos: 'bottom-[16%] right-[4%] sm:right-[7%]', delay: '1.2s', duration: '8s' },
-    { text: 'Hãy tối ưu cả hệ thống', pos: 'bottom-[5%] left-[6%] sm:left-[12%]', delay: '2.8s', duration: '14s' },
-    { text: 'Tăng trưởng phải lặp lại được', pos: 'bottom-[4%] right-[6%] sm:right-[11%]', delay: '4.5s', duration: '11s' },
-    { text: 'Đơn giản hóa sự phức tạp', pos: 'top-[4%] left-[32%] sm:left-[38%]', delay: '0.8s', duration: '10s' },
-    { text: 'Business First', pos: 'bottom-[2%] left-[42%]', delay: '3.2s', duration: '9s' },
-    { text: 'Think in Systems', pos: 'top-[10%] left-[18%] sm:left-[22%]', delay: '2.2s', duration: '13s' },
-    { text: 'Continuous Improvement', pos: 'bottom-[8%] right-[22%]', delay: '1.8s', duration: '12s' },
+  const philosophyThoughts = [
+    { text: 'SEO tạo Traffic', pos: 'top-[8%] left-[2%] sm:left-[6%]', opacity: 'opacity-15', delay: '0s', duration: '9s' },
+    { text: 'Content tạo niềm tin', pos: 'top-[12%] right-[2%] sm:right-[8%]', opacity: 'opacity-20', delay: '1s', duration: '11s' },
+    { text: 'CRM giữ khách hàng', pos: 'top-[28%] left-[1%] sm:left-[3%]', opacity: 'opacity-15', delay: '2s', duration: '10s' },
+    { text: 'Data dẫn dắt quyết định', pos: 'top-[26%] right-[1%] sm:right-[5%]', opacity: 'opacity-20', delay: '1.5s', duration: '12s' },
+    { text: 'Automation giảm công việc lặp lại', pos: 'top-[48%] left-[0%] sm:left-[2%]', opacity: 'opacity-10', delay: '3s', duration: '13s' },
+    { text: 'Mọi điểm chạm đều cần kết nối', pos: 'top-[50%] right-[0%] sm:right-[3%]', opacity: 'opacity-15', delay: '2.5s', duration: '9s' },
+    { text: 'Đo lường trước khi tối ưu', pos: 'bottom-[28%] left-[2%] sm:left-[5%]', opacity: 'opacity-15', delay: '0.5s', duration: '11s' },
+    { text: 'Traffic phải tạo Lead', pos: 'bottom-[30%] right-[2%] sm:right-[6%]', opacity: 'opacity-20', delay: '3.5s', duration: '10s' },
+    { text: 'Lead phải tạo Doanh thu', pos: 'bottom-[16%] left-[4%] sm:left-[8%]', opacity: 'opacity-15', delay: '4s', duration: '12s' },
+    { text: 'Đừng tối ưu từng kênh', pos: 'bottom-[14%] right-[4%] sm:right-[7%]', opacity: 'opacity-20', delay: '1.2s', duration: '8s' },
+    { text: 'Hãy tối ưu cả hệ thống', pos: 'bottom-[4%] left-[6%] sm:left-[12%]', opacity: 'opacity-15', delay: '2.8s', duration: '14s' },
+    { text: 'Tăng trưởng phải lặp lại được', pos: 'bottom-[3%] right-[6%] sm:right-[11%]', opacity: 'opacity-15', delay: '4.5s', duration: '11s' },
+    { text: 'Đơn giản hóa sự phức tạp', pos: 'top-[4%] left-[32%] sm:left-[38%]', opacity: 'opacity-15', delay: '0.8s', duration: '10s' },
+    { text: 'Business First', pos: 'bottom-[2%] left-[42%]', opacity: 'opacity-20', delay: '3.2s', duration: '9s' },
+    { text: 'Think in Systems', pos: 'top-[10%] left-[18%] sm:left-[22%]', opacity: 'opacity-15', delay: '2.2s', duration: '13s' },
+    { text: 'Continuous Improvement', pos: 'bottom-[8%] right-[22%]', opacity: 'opacity-15', delay: '1.8s', duration: '12s' },
   ]
 
   return (
-    <section id="why-choose-me" className="py-28 sm:py-44 relative scroll-mt-28 border-t border-slate-200/70 overflow-hidden bg-slate-50/30">
+    <section id="why-choose-me" className="py-32 sm:py-48 relative scroll-mt-28 border-t border-slate-200/60 overflow-hidden bg-[#FBFBF9]">
       
-      {/* ── Floating Liquid Glass Philosophy Bubbles (Desktop & Tablet) ── */}
+      {/* ── Background Floating Translucent Philosophy Thoughts ── */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
-        {philosophyBubbles.map((bubble, i) => (
+        {philosophyThoughts.map((t, i) => (
           <div
             key={i}
-            className={`absolute ${bubble.pos} hidden sm:block`}
+            className={`absolute ${t.pos} hidden sm:block ${t.opacity}`}
             style={{
-              animation: `apple-float ${bubble.duration} ease-in-out infinite`,
-              animationDelay: bubble.delay,
+              animation: `apple-float ${t.duration} ease-in-out infinite`,
+              animationDelay: t.delay,
             }}
           >
-            <div className="bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full px-4 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.03)] text-xs font-semibold text-slate-500/80 hover:text-slate-900 hover:border-blue-300 hover:bg-white/80 transition-all pointer-events-auto cursor-default">
-              {bubble.text}
-            </div>
+            <span className="text-xs sm:text-sm font-semibold tracking-tight text-slate-900">
+              {t.text}
+            </span>
           </div>
         ))}
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
         
-        {/* Title in Vibrant Blue */}
+        {/* Title in Vibrant Apple Blue */}
         <FadeUp>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-blue-600 mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-blue-600 mb-12 sm:mb-20">
             Vì sao chọn tôi?
           </h2>
         </FadeUp>
 
-        {/* Center High-End Glassmorphism Quote Container */}
+        {/* Pure High-End Editorial Manifesto Quote (No Box, No Card) */}
         <FadeUp delay={100}>
-          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-8 sm:p-14 shadow-[0_20px_60px_rgba(37,99,235,0.05)]">
-            <blockquote className="text-2xl sm:text-5xl font-extrabold text-slate-900 leading-tight sm:leading-[1.25] tracking-tight">
-              “Marketing không thất bại vì thiếu công cụ. Marketing thất bại khi mọi thứ không kết nối với nhau.”
-            </blockquote>
-          </div>
+          <blockquote className="text-3xl sm:text-6xl font-extrabold text-slate-900 leading-tight sm:leading-[1.18] tracking-tight max-w-5xl mx-auto">
+            “Marketing không thất bại vì thiếu công cụ. Marketing thất bại khi mọi thứ không kết nối với nhau.”
+          </blockquote>
         </FadeUp>
 
-        {/* Mobile Philosophy Tags (for small mobile screens) ── */}
-        <FadeUp delay={200} className="sm:hidden mt-8">
-          <div className="flex flex-wrap justify-center gap-2">
-            {philosophyBubbles.slice(0, 10).map((b, i) => (
-              <span key={i} className="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-full px-3.5 py-1.5 text-[11px] font-semibold text-slate-600">
-                {b.text}
-              </span>
+        {/* Mobile Sub-thoughts */}
+        <FadeUp delay={200} className="sm:hidden mt-12">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-400">
+            {philosophyThoughts.slice(0, 8).map((b, i) => (
+              <span key={i}>• {b.text}</span>
             ))}
           </div>
         </FadeUp>
