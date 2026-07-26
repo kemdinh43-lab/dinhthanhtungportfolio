@@ -444,135 +444,22 @@ function Hero() {
   )
 }
 
-// ─── Growth Engine SVG Component ──────────────────────────────────────────────
-// ─── Growth System Flow (Apple & High-End SaaS Aesthetic) ───────────────────
-function GrowthEngineDiagram() {
-  const steps = [
-    { num: '01', title: 'Traffic / Visitor', desc: 'Inbound SEO & Ads' },
-    { num: '02', title: 'Data & Intent', desc: 'Behavior & Signals' },
-    { num: '03', title: 'Smart CRM', desc: 'Instant SLA <5s' },
-    { num: '04', title: 'Automation', desc: 'AI Nurture & SOP' },
-    { num: '05', title: 'Growth & ROI', desc: 'Revenue Conversion' },
-  ]
-
-  return (
-    <div className="relative w-full h-full rounded-3xl bg-white border border-slate-200/70 p-6 sm:p-10 shadow-sm flex flex-col justify-between select-none">
-      
-      {/* Top Bar Header */}
-      <div className="flex items-center justify-between pb-6 border-b border-slate-100">
-        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-          SYSTEM ARCHITECTURE FLOW
-        </span>
-        <span className="w-2 h-2 rounded-full bg-blue-600" />
-      </div>
-
-      {/* Center Apple-Style Core Node (180px) + Clean Value Flow */}
-      <div className="py-10 sm:py-14 flex flex-col items-center justify-center relative">
-        
-        {/* Core Hero Circle */}
-        <div className="w-44 h-44 sm:w-52 sm:h-52 rounded-full bg-gradient-to-b from-slate-50 to-slate-100/90 border border-slate-200/80 shadow-lg shadow-blue-500/5 flex flex-col items-center justify-center text-center p-4 relative z-10 transition-transform duration-500 hover:scale-[1.02]">
-          <div className="w-3 h-3 rounded-full bg-blue-600 mb-3" />
-          <span className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Growth<br />System
-          </span>
-          <span className="text-[11px] font-medium text-slate-400 mt-1">Ecosystem Core</span>
-        </div>
-
-        {/* 5 Clean Value Nodes Positioned Around Center */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-5 gap-3 mt-8 sm:mt-10 relative z-10">
-          {steps.map((step) => (
-            <div
-              key={step.num}
-              className="p-3 sm:p-3.5 rounded-2xl bg-[#FBFBF9] border border-slate-200/60 hover:border-blue-500 transition-colors text-center"
-            >
-              <span className="text-[10px] font-bold text-blue-600 block mb-0.5">{step.num}</span>
-              <h4 className="text-xs font-bold text-slate-800 truncate">{step.title}</h4>
-              <p className="text-[10px] text-slate-400 mt-0.5 truncate">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Footer Restrained Caption */}
-      <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
-        <span>End-to-End Automated Pipeline</span>
-        <span className="text-slate-600 font-semibold">Data-Driven Execution</span>
-      </div>
-
-    </div>
-  )
-}
-
 // ─── Section: Why Choose Me (Growth Engine Philosophy) ───────────────────────
 function WhyChooseMe() {
   return (
-    <section id="why-choose-me" className="py-24 sm:py-36 relative scroll-mt-28 border-t border-slate-200/70">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        
-        {/* Section Label */}
+    <section id="why-choose-me" className="py-20 sm:py-28 relative scroll-mt-28 border-t border-slate-200/70">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         <FadeUp>
-          <div className="mb-12 sm:mb-16">
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3 block">
-              • TRIẾT LÝ VẬN HÀNH
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">
-              Vì sao chọn tôi?
-            </h2>
-          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 mb-8 sm:mb-12">
+            Vì sao chọn tôi?
+          </h2>
         </FadeUp>
 
-        {/* Apple Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
-          
-          {/* Left Column: Manifesto Quote & Description */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
-            <FadeUp delay={100}>
-              <div className="space-y-6">
-                <blockquote className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight">
-                  “Marketing không hiệu quả khi chỉ thêm công cụ. Nó chỉ bứt phá khi mọi thành tố vận hành như một Hệ thống.”
-                </blockquote>
-                <p className="text-base leading-relaxed text-slate-500 font-normal">
-                  Tôi giúp doanh nghiệp hợp nhất dữ liệu và chuyển hóa từng điểm chạm thành quy trình tăng trưởng tự động — nơi dữ liệu dẫn dắt mọi quyết định và tạo ra giá trị thực.
-                </p>
-              </div>
-            </FadeUp>
-
-            <FadeUp delay={150}>
-              <div className="space-y-3 pt-6 border-t border-slate-200/80">
-                <div className="flex items-start gap-3">
-                  <span className="text-xs font-bold text-blue-600 mt-0.5">01</span>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">Hợp nhất Dữ liệu</h4>
-                    <p className="text-xs text-slate-500 mt-0.5">Loại bỏ nghẽn thông tin giữa Marketing &amp; Sales.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 pt-2">
-                  <span className="text-xs font-bold text-blue-600 mt-0.5">02</span>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">Tự động hóa 70%</h4>
-                    <p className="text-xs text-slate-500 mt-0.5">Phản hồi khách hàng &lt; 5 giây, tối ưu SLA tức thì.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 pt-2">
-                  <span className="text-xs font-bold text-blue-600 mt-0.5">03</span>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">Đo lường Doanh thu</h4>
-                    <p className="text-xs text-slate-500 mt-0.5">Theo dõi ROI chính xác trên từng kênh chuyển đổi.</p>
-                  </div>
-                </div>
-              </div>
-            </FadeUp>
-          </div>
-
-          {/* Right Column: Apple-Style Growth System Visual */}
-          <div className="lg:col-span-7">
-            <FadeUp delay={200} className="h-full">
-              <GrowthEngineDiagram />
-            </FadeUp>
-          </div>
-
-        </div>
-
+        <FadeUp delay={100}>
+          <blockquote className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight sm:leading-snug tracking-tight">
+            “Marketing không hiệu quả khi chỉ thêm công cụ. Nó chỉ bứt phá khi mọi thành tố vận hành như một Hệ thống.”
+          </blockquote>
+        </FadeUp>
       </div>
     </section>
   )
