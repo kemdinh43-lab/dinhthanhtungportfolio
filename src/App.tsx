@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import {
   Menu, X, ArrowRight, ChevronUp,
-  Mail, ArrowUpRight, Play, Check, Cpu, Sparkle, Phone,
+  Mail, ArrowUpRight, Play, Check, Cpu, Award, Sparkle, Phone,
   Search, TrendingUp, PieChart, Bot
 } from 'lucide-react'
 
@@ -538,6 +538,12 @@ function Offerings() {
       desc: 'Xây dựng AI Content Factory tự động hóa quy trình sản xuất bài viết, kịch bản video và tạo ảnh AI.',
       icon: <TechLogo name="gemini" size={24} />,
       tags: ['OpenAI', 'Gemini', 'Stable Diffusion', 'Telegram Bot'],
+    },
+    {
+      title: 'Chứng chỉ & Ngoại ngữ Global',
+      desc: 'Sở hữu năng lực ngoại ngữ và chứng chỉ quốc tế phục vụ giao tiếp, làm việc toàn cầu và nghiên cứu tài liệu.',
+      icon: <Award className="text-amber-500 inline-block flex-shrink-0" size={24} />,
+      tags: ['IELTS 7.0 (English)', 'HSK3 (Chinese / 中文)', 'Global Communication'],
     },
   ]
 
