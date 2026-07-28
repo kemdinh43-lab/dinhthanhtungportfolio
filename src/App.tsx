@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import {
   Menu, X, ArrowRight, ChevronUp,
-  Mail, Globe, ArrowUpRight, Play, Check, Cpu, Award, Sparkle, Phone,
+  Mail, ArrowUpRight, Play, Check, Cpu, Sparkle, Phone,
   Search, TrendingUp, PieChart, Bot
 } from 'lucide-react'
 
@@ -405,16 +405,7 @@ function Hero() {
             </FadeUp>
 
             <FadeUp delay={300}>
-              <div className="pt-6 sm:pt-8 border-t border-slate-200 space-y-6">
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-                  <span className="bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-2">
-                    <Award size={15} className="text-blue-500" /> IELTS 7.0 (English)
-                  </span>
-                  <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-2">
-                    <Globe size={15} className="text-emerald-500" /> HSK3 (Chinese / 中文)
-                  </span>
-                </div>
-
+              <div className="pt-6 sm:pt-8 border-t border-slate-200">
                 <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-md mx-auto lg:mx-0">
                   <div>
                     <p className="text-2xl sm:text-4xl font-extrabold text-blue-600">+238%</p>
@@ -547,12 +538,6 @@ function Offerings() {
       desc: 'Xây dựng AI Content Factory tự động hóa quy trình sản xuất bài viết, kịch bản video và tạo ảnh AI.',
       icon: <TechLogo name="gemini" size={24} />,
       tags: ['OpenAI', 'Gemini', 'Stable Diffusion', 'Telegram Bot'],
-    },
-    {
-      title: 'Chứng chỉ & Ngoại ngữ Global',
-      desc: 'Sở hữu năng lực ngoại ngữ và chứng chỉ quốc tế phục vụ giao tiếp, làm việc toàn cầu và nghiên cứu tài liệu.',
-      icon: <Award className="text-amber-500 inline-block flex-shrink-0" size={24} />,
-      tags: ['IELTS 7.0 (English)', 'HSK3 (Chinese / 中文)', 'Global Communication'],
     },
   ]
 
