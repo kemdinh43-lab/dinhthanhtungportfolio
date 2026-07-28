@@ -1,7 +1,11 @@
 {
-  "description": "Streamline your project management with an intuitive platform designed for teams to collaborate, track progress, and achieve goals efficiently.",
+  "title": "Đinh Thanh Tùng — Marketing & Automation System Specialist",
+  "description": "Chuyên gia tư vấn & xây dựng hệ thống Tự động hoá Marketing (Automation), CRM, Technical SEO và Data Analytics giúp doanh nghiệp tăng trưởng bền vững.",
   "robots": {
-    "index": false
+    "index": true
+  },
+  "openGraph": {
+    "image": "https://dinhthanhtungportfoliocv.vercel.app/marketing-system-architecture.jpg"
   },
   "accessibility": {
     "addBypassLinks": false,
