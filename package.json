@@ -1,5 +1,6 @@
 {
-  "name": "figma-make-app",
+  "name": "dinhthanhtung-portfolio",
+  "description": "Đinh Thanh Tùng - Portfolio Full-Stack Marketing & Automation System Specialist",
   "private": true,
   "version": "1.0.0",
   "type": "module",
