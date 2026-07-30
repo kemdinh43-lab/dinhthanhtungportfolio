@@ -1,9 +1,78 @@
-import { useState, useEffect, useRef, type ReactNode } from 'react'
+import { useState, useEffect, useRef, createContext, useContext, type ReactNode } from 'react'
 import {
   Menu, X, ArrowRight, ChevronUp,
   Mail, ArrowUpRight, Play, Check, Cpu, Award, Sparkle, Phone,
   Search, TrendingUp, PieChart, Bot
 } from 'lucide-react'
+
+// ─── Language Context & i18n System ──────────────────────────────────────────
+type Language = 'vi' | 'en'
+
+interface LanguageContextType {
+  lang: Language
+  setLang: (lang: Language) => void
+  t: (viText: string, enText: string) => string
+}
+
+const LanguageContext = createContext<LanguageContextType>({
+  lang: 'vi',
+  setLang: () => {},
+  t: (vi) => vi,
+})
+
+function LanguageProvider({ children }: { children: ReactNode }) {
+  const [lang, setLangState] = useState<Language>(() => {
+    return (localStorage.getItem('preferred_lang') as Language) || 'vi'
+  })
+
+  const setLang = (newLang: Language) => {
+    setLangState(newLang)
+    localStorage.setItem('preferred_lang', newLang)
+  }
+
+  const t = (viText: string, enText: string) => (lang === 'vi' ? viText : enText)
+
+  return (
+    <LanguageContext.Provider value={{ lang, setLang, t }}>
+      {children}
+    </LanguageContext.Provider>
+  )
+}
+
+function useLanguage() {
+  return useContext(LanguageContext)
+}
+
+function LanguageSwitcher() {
+  const { lang, setLang } = useLanguage()
+
+  return (
+    <div className="inline-flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200/80 shadow-inner text-xs font-bold select-none">
+      <button
+        onClick={() => setLang('vi')}
+        className={`px-2.5 py-1 rounded-full transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+          lang === 'vi'
+            ? 'bg-blue-600 text-white shadow-md font-extrabold scale-105'
+            : 'text-slate-500 hover:text-slate-900'
+        }`}
+        title="Tiếng Việt"
+      >
+        <span>🇻🇳</span> VI
+      </button>
+      <button
+        onClick={() => setLang('en')}
+        className={`px-2.5 py-1 rounded-full transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+          lang === 'en'
+            ? 'bg-blue-600 text-white shadow-md font-extrabold scale-105'
+            : 'text-slate-500 hover:text-slate-900'
+        }`}
+        title="English"
+      >
+        <span>🇬🇧</span> EN
+      </button>
+    </div>
+  )
+}
 
 // ─── Precision Brand & Tech SVG Icons ─────────────────────────────────────────
 function TechLogo({ name, size = 16 }: { name: string; size?: number }) {
@@ -196,6 +265,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenu, setMobileMenu] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -204,13 +274,13 @@ function Navbar() {
   }, [])
 
   const navItems = [
-    ['Trang chủ', '#hero'],
-    ['Vì sao chọn tôi', '#why-choose-me'],
-    ['Năng lực', '#offerings'],
-    ['Kiến trúc SEO', '#seo-architecture'],
-    ['n8n Workflows', '#n8n-canvas'],
-    ['Case Study', '#casestudy'],
-    ['Kinh nghiệm', '#experience'],
+    [t('Trang chủ', 'Home'), '#hero'],
+    [t('Vì sao chọn tôi', 'Why Me'), '#why-choose-me'],
+    [t('Năng lực', 'Capabilities'), '#offerings'],
+    [t('Kiến trúc SEO', 'SEO System'), '#seo-architecture'],
+    [t('n8n Workflows', 'n8n Workflows'), '#n8n-canvas'],
+    [t('Case Study', 'Case Studies'), '#casestudy'],
+    [t('Kinh nghiệm', 'Experience'), '#experience'],
   ]
 
   return (
@@ -224,12 +294,12 @@ function Navbar() {
           Đinh Thanh Tùng <span className="font-semibold text-slate-400">Portfolio</span><span className="text-blue-500">.</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8 bg-white/90 backdrop-blur-md px-7 py-2.5 rounded-full border border-slate-200 shadow-sm">
+        <nav className="hidden lg:flex items-center gap-7 bg-white/90 backdrop-blur-md px-6 py-2.5 rounded-full border border-slate-200 shadow-sm">
           {navItems.map(([label, href]) => (
             <a
               key={href}
               href={href}
-              className="text-sm font-semibold text-slate-600 hover:text-blue-500 transition-colors"
+              className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-500 transition-colors"
             >
               {label}
             </a>
@@ -237,16 +307,18 @@ function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
+
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all shadow-md shadow-blue-600/20"
+            className="hidden sm:inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-md shadow-blue-600/20"
           >
-            Kết nối ngay <ArrowRight size={15} />
+            {t('Kết nối ngay', "Let's Connect")} <ArrowRight size={14} />
           </a>
 
           <button
             onClick={() => setMobileMenu(!mobileMenu)}
-            className="md:hidden p-2 text-slate-700"
+            className="lg:hidden p-2 text-slate-700"
           >
             {mobileMenu ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -364,6 +436,8 @@ function HeroVisual() {
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 function Hero() {
+  const { t } = useLanguage()
+
   return (
     <section id="hero" className="pt-28 sm:pt-44 pb-20 sm:pb-32 relative overflow-hidden scroll-mt-28">
       <div className="ambient-glow-blue -top-24 -left-24" />
@@ -375,15 +449,18 @@ function Hero() {
           <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
             <FadeUp delay={0}>
               <h1 className="text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.12] text-slate-900">
-                Tôi xây dựng <br className="hidden sm:block" />
-                <span className="text-blue-600">hệ thống Marketing</span> <br className="hidden sm:block" />
-                vận hành bằng dữ liệu.
+                {t('Tôi xây dựng', 'I build')} <br className="hidden sm:block" />
+                <span className="text-blue-600">{t('hệ thống Marketing', 'data-driven Marketing')}</span> <br className="hidden sm:block" />
+                {t('vận hành bằng dữ liệu.', 'systems that scale.')}
               </h1>
             </FadeUp>
 
             <FadeUp delay={100}>
               <p className="text-base sm:text-xl font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 text-slate-500">
-                Tôi kết hợp SEO, AI Workflow, CRO và Automation để xây dựng các kiến trúc Marketing giúp doanh nghiệp tăng trưởng bền vững — đo lường được và tự động hoá 70%.
+                {t(
+                  'Tôi kết hợp SEO, AI Workflow, CRO và Automation để xây dựng các kiến trúc Marketing giúp doanh nghiệp tăng trưởng bền vững — đo lường được và tự động hoá 70%.',
+                  'Combining Technical SEO, AI Workflows, CRO, and Marketing Automation to build scalable marketing architectures for predictable growth — measurable and 70% automated.'
+                )}
               </p>
             </FadeUp>
 
@@ -393,13 +470,13 @@ function Hero() {
                   href="#casestudy"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base px-8 py-3.5 sm:py-4 rounded-full shadow-lg shadow-blue-600/25 transition-all"
                 >
-                  Xem Case Study Thực Tế <ArrowRight size={18} />
+                  {t('Xem Case Study Thực Tế', 'Explore Real Case Studies')} <ArrowRight size={18} />
                 </a>
                 <a
                   href="#n8n-canvas"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 font-bold text-sm sm:text-base px-8 py-3.5 sm:py-4 rounded-full hover:bg-slate-50 transition-all shadow-sm"
                 >
-                  Xem Sơ đồ n8n Canvas
+                  {t('Xem Sơ đồ n8n Canvas', 'View n8n Canvas Map')}
                 </a>
               </div>
             </FadeUp>
@@ -409,15 +486,15 @@ function Hero() {
                 <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-md mx-auto lg:mx-0">
                   <div>
                     <p className="text-2xl sm:text-4xl font-extrabold text-blue-600">+238%</p>
-                    <p className="text-xs font-medium mt-1 text-slate-500">Organic Traffic</p>
+                    <p className="text-xs font-medium mt-1 text-slate-500">{t('Organic Traffic', 'Organic Traffic')}</p>
                   </div>
                   <div>
                     <p className="text-2xl sm:text-4xl font-extrabold text-emerald-500">70%</p>
-                    <p className="text-xs font-medium mt-1 text-slate-500">Lead Auto</p>
+                    <p className="text-xs font-medium mt-1 text-slate-500">{t('Lead Auto', 'Automated Leads')}</p>
                   </div>
                   <div>
                     <p className="text-2xl sm:text-4xl font-extrabold text-amber-500">&lt; 5s</p>
-                    <p className="text-xs font-semibold mt-1 text-slate-500">SLA Phản hồi</p>
+                    <p className="text-xs font-semibold mt-1 text-slate-500">{t('SLA Phản hồi', 'SLA Response Time')}</p>
                   </div>
                 </div>
               </div>
@@ -525,30 +602,32 @@ function FeaturedVideos() {
 
 // ─── Section: Why Choose Me (Apple 3D Spatial Depth Typography) ──────────────
 function WhyChooseMe() {
+  const { t } = useLanguage()
+
   const spatialThoughts = [
-    // ── GẦN QUOTE (Foreground Layer: Everyday Marketer Actions, Bold & Crisp)
-    { text: 'Khách hỏi là phản hồi ngay lập tức', pos: 'top-[36%] left-[3%] sm:left-[7%]', style: 'text-sm sm:text-base font-extrabold text-blue-600/75', anim: 'apple-float 14s ease-in-out infinite' },
-    { text: 'Biến người xem thành người mua', pos: 'top-[32%] right-[3%] sm:right-[8%]', style: 'text-sm sm:text-base font-extrabold text-slate-900/75', anim: 'apple-float 12s ease-in-out infinite 1s' },
-    { text: 'Chăm sóc lại khách hàng cũ', pos: 'bottom-[22%] left-[4%] sm:left-[9%]', style: 'text-sm sm:text-base font-extrabold text-blue-600/80', anim: 'apple-float 16s ease-in-out infinite 0.5s' },
-    { text: 'Mọi ngân sách đều phải ra doanh số', pos: 'bottom-[24%] right-[3%] sm:right-[8%]', style: 'text-xs sm:text-base font-bold text-slate-900/70', anim: 'apple-float 13s ease-in-out infinite 2s' },
+    // ── GẦN QUOTE (Foreground Layer)
+    { text: t('Khách hỏi là phản hồi ngay lập tức', 'Instant customer response < 5s'), pos: 'top-[36%] left-[3%] sm:left-[7%]', style: 'text-sm sm:text-base font-extrabold text-blue-600/75', anim: 'apple-float 14s ease-in-out infinite' },
+    { text: t('Biến người xem thành người mua', 'Turn visitors into buyers'), pos: 'top-[32%] right-[3%] sm:right-[8%]', style: 'text-sm sm:text-base font-extrabold text-slate-900/75', anim: 'apple-float 12s ease-in-out infinite 1s' },
+    { text: t('Chăm sóc lại khách hàng cũ', 'Retain & nurture existing clients'), pos: 'bottom-[22%] left-[4%] sm:left-[9%]', style: 'text-sm sm:text-base font-extrabold text-blue-600/80', anim: 'apple-float 16s ease-in-out infinite 0.5s' },
+    { text: t('Mọi ngân sách đều phải ra doanh số', 'Every budget dollar drives revenue'), pos: 'bottom-[24%] right-[3%] sm:right-[8%]', style: 'text-xs sm:text-base font-bold text-slate-900/70', anim: 'apple-float 13s ease-in-out infinite 2s' },
 
-    // ── TRUNG TẦNG (Midground Layer: Everyday Attraction & Engagement)
-    { text: 'Làm SEO để khách tự tìm đến', pos: 'top-[10%] left-[5%] sm:left-[10%]', style: 'text-xs sm:text-sm font-bold text-slate-800/50', anim: 'apple-float 15s ease-in-out infinite 1.5s' },
-    { text: 'Nội dung chạm đúng nhu cầu', pos: 'top-[12%] right-[4%] sm:right-[11%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/55', anim: 'apple-float 17s ease-in-out infinite 2.5s' },
-    { text: 'Marketing và Sales phải hiểu nhau', pos: 'top-[6%] left-[28%] sm:left-[34%]', style: 'text-xs sm:text-sm font-bold text-blue-600/55', anim: 'apple-float 11s ease-in-out infinite 0.8s' },
-    { text: 'Nhìn số liệu để sửa chiến dịch', pos: 'bottom-[6%] left-[26%] sm:left-[32%]', style: 'text-xs sm:text-sm font-bold text-slate-800/50', anim: 'apple-float 13s ease-in-out infinite 3s' },
+    // ── TRUNG TẦNG (Midground Layer)
+    { text: t('Làm SEO để khách tự tìm đến', 'SEO that brings inbound traffic'), pos: 'top-[10%] left-[5%] sm:left-[10%]', style: 'text-xs sm:text-sm font-bold text-slate-800/50', anim: 'apple-float 15s ease-in-out infinite 1.5s' },
+    { text: t('Nội dung chạm đúng nhu cầu', 'Content aligned with intent'), pos: 'top-[12%] right-[4%] sm:right-[11%]', style: 'text-xs sm:text-sm font-semibold text-slate-800/55', anim: 'apple-float 17s ease-in-out infinite 2.5s' },
+    { text: t('Marketing và Sales phải hiểu nhau', 'Unified Marketing & Sales SOP'), pos: 'top-[6%] left-[28%] sm:left-[34%]', style: 'text-xs sm:text-sm font-bold text-blue-600/55', anim: 'apple-float 11s ease-in-out infinite 0.8s' },
+    { text: t('Nhìn số liệu để sửa chiến dịch', 'Data-driven campaign optimization'), pos: 'bottom-[6%] left-[26%] sm:left-[32%]', style: 'text-xs sm:text-sm font-bold text-slate-800/50', anim: 'apple-float 13s ease-in-out infinite 3s' },
 
-    // ── XA QUOTE (Background Layer: Operational Friction Reduction)
-    { text: 'Tự động hóa bớt việc chân tay', pos: 'bottom-[12%] left-[2%] sm:left-[5%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/35 blur-[0.5px]', anim: 'apple-float 20s ease-in-out infinite 3.5s' },
-    { text: 'Đừng để rơi mất tin nhắn của khách', pos: 'bottom-[12%] right-[2%] sm:right-[5%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/35 blur-[0.5px]', anim: 'apple-float 18s ease-in-out infinite 4s' },
-    { text: 'Hình ảnh đẹp giữ chân người xem', pos: 'top-[5%] left-[8%] sm:left-[14%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/40 blur-[0.4px]', anim: 'apple-float 16s ease-in-out infinite 2s' },
-    { text: 'Kéo đúng người vào xem bài', pos: 'bottom-[4%] right-[18%] sm:right-[26%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/35 blur-[0.5px]', anim: 'apple-float 15s ease-in-out infinite 1.2s' },
+    // ── XA QUOTE (Background Layer)
+    { text: t('Tự động hóa bớt việc chân tay', 'Automate repetitive manual tasks'), pos: 'bottom-[12%] left-[2%] sm:left-[5%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/35 blur-[0.5px]', anim: 'apple-float 20s ease-in-out infinite 3.5s' },
+    { text: t('Đừng để rơi mất tin nhắn của khách', 'Zero dropped leads or messages'), pos: 'bottom-[12%] right-[2%] sm:right-[5%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/35 blur-[0.5px]', anim: 'apple-float 18s ease-in-out infinite 4s' },
+    { text: t('Hình ảnh đẹp giữ chân người xem', 'High-converting visual design'), pos: 'top-[5%] left-[8%] sm:left-[14%]', style: 'text-[11px] sm:text-xs font-semibold text-slate-600/40 blur-[0.4px]', anim: 'apple-float 16s ease-in-out infinite 2s' },
+    { text: t('Kéo đúng người vào xem bài', 'Targeted high-intent traffic'), pos: 'bottom-[4%] right-[18%] sm:right-[26%]', style: 'text-[11px] sm:text-xs font-medium text-slate-600/35 blur-[0.5px]', anim: 'apple-float 15s ease-in-out infinite 1.2s' },
   ]
 
   return (
     <section id="why-choose-me" className="py-24 sm:py-32 min-h-[580px] sm:min-h-[660px] relative scroll-mt-28 border-t border-slate-200/50 overflow-hidden bg-[#FAFAF8] flex flex-col justify-center select-none">
       
-      {/* ── Background 3D Spatial Depth Typography (Straight Focus, Depth Layers) ── */}
+      {/* ── Background 3D Spatial Depth Typography ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {spatialThoughts.map((thought, i) => (
           <div
@@ -568,15 +647,22 @@ function WhyChooseMe() {
         {/* Apple Accent Title in Vibrant Blue */}
         <FadeUp>
           <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-blue-600 mb-8 sm:mb-12">
-            Vì sao chọn tôi?
+            {t('Vì sao chọn tôi?', 'Why Work With Me?')}
           </h2>
         </FadeUp>
 
         {/* Centered Refined Quote Typography */}
         <FadeUp delay={100}>
           <blockquote className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] leading-tight sm:leading-[1.25] tracking-tight max-w-3xl mx-auto drop-shadow-sm">
-            “Marketing không thất bại vì thiếu công cụ.<br className="hidden sm:inline" />
-            Marketing thất bại khi mọi thứ không kết nối với nhau.”
+            {t(
+              '“Marketing không thất bại vì thiếu công cụ.\nMarketing thất bại khi mọi thứ không kết nối với nhau.”',
+              '“Marketing doesn’t fail due to lack of tools.\nMarketing fails when nothing is connected.”'
+            ).split('\n').map((line, i) => (
+              <span key={i}>
+                {line}
+                {i === 0 && <br className="hidden sm:inline" />}
+              </span>
+            ))}
           </blockquote>
         </FadeUp>
 
@@ -596,40 +682,60 @@ function WhyChooseMe() {
 
 // ─── Section 2: Offerings ─────────────────────────────────────────────────────
 function Offerings() {
+  const { t } = useLanguage()
+
   const offerings = [
     {
-      title: 'Marketing Automation',
-      desc: 'Thiết kế & triển khai hệ thống tự động hoá nuôi dưỡng lead, CRM và đồng bộ dữ liệu qua API/Webhook.',
+      title: t('Marketing Automation', 'Marketing Automation'),
+      desc: t(
+        'Thiết kế & triển khai hệ thống tự động hoá nuôi dưỡng lead, CRM và đồng bộ dữ liệu qua API/Webhook.',
+        'Designing & deploying automated lead nurturing systems, CRM workflows, and real-time data sync via API/Webhooks.'
+      ),
       icon: <TechLogo name="n8n" size={24} />,
       tags: ['n8n', 'AppSheet', 'REST API', 'CRM SOP'],
     },
     {
-      title: 'Technical SEO & Architecture',
-      desc: 'Tối ưu kiến trúc website, Core Web Vitals (95+), Topic Cluster và Local SEO giúp tăng thứ hạng bền vững.',
+      title: t('Technical SEO & Architecture', 'Technical SEO & Architecture'),
+      desc: t(
+        'Tối ưu kiến trúc website, Core Web Vitals (95+), Topic Cluster và Local SEO giúp tăng thứ hạng bền vững.',
+        'Optimizing website architecture, Core Web Vitals (95+), Topic Clusters, and Technical SEO for sustainable rankings.'
+      ),
       icon: <TechLogo name="wordpress" size={24} />,
       tags: ['WordPress', 'RankMath', 'Cloudflare', 'Ahrefs'],
     },
     {
-      title: 'UI/UX & CRO Strategy',
-      desc: 'Nghiên cứu Customer Journey và thiết kế giao diện hướng đến tỷ lệ chuyển đổi cao (Conversion Rate).',
+      title: t('UI/UX & CRO Strategy', 'UI/UX & CRO Strategy'),
+      desc: t(
+        'Nghiên cứu Customer Journey và thiết kế giao diện hướng đến tỷ lệ chuyển đổi cao (Conversion Rate).',
+        'Customer journey research and high-converting interface design optimized for maximum conversion rates.'
+      ),
       icon: <TechLogo name="figma" size={24} />,
       tags: ['Figma', 'Mobile First', 'A/B Test', 'Heatmap'],
     },
     {
-      title: 'Data Analytics & Reporting',
-      desc: 'Xây dựng dashboard tập trung real-time trên Looker Studio & GA4 để theo dõi chỉ số hiệu năng thực.',
+      title: t('Data Analytics & Reporting', 'Data Analytics & Reporting'),
+      desc: t(
+        'Xây dựng dashboard tập trung real-time trên Looker Studio & GA4 để theo dõi chỉ số hiệu năng thực.',
+        'Building centralized real-time dashboards on Looker Studio & GA4 to track actual performance metrics.'
+      ),
       icon: <TechLogo name="ga4" size={24} />,
       tags: ['GA4', 'Looker Studio', 'BigQuery', 'GTM'],
     },
     {
-      title: 'AI Content Pipeline',
-      desc: 'Xây dựng AI Content Factory tự động hóa quy trình sản xuất bài viết, kịch bản video và tạo ảnh AI.',
+      title: t('AI Content Pipeline', 'AI Content Pipeline'),
+      desc: t(
+        'Xây dựng AI Content Factory tự động hóa quy trình sản xuất bài viết, kịch bản video và tạo ảnh AI.',
+        'Building automated AI Content Factories to streamline article production, video scripts, and AI visuals.'
+      ),
       icon: <TechLogo name="gemini" size={24} />,
       tags: ['OpenAI', 'Gemini', 'Stable Diffusion', 'Telegram Bot'],
     },
     {
-      title: 'Chứng chỉ & Ngoại ngữ Global',
-      desc: 'Sở hữu năng lực ngoại ngữ và chứng chỉ quốc tế phục vụ giao tiếp, làm việc toàn cầu và nghiên cứu tài liệu.',
+      title: t('Chứng chỉ & Ngoại ngữ Global', 'Global Certifications & Languages'),
+      desc: t(
+        'Sở hữu năng lực ngoại ngữ và chứng chỉ quốc tế phục vụ giao tiếp, làm việc toàn cầu và nghiên cứu tài liệu.',
+        'Global language capabilities and professional certifications for international communication, remote collaboration, and research.'
+      ),
       icon: <Award className="text-amber-500 inline-block flex-shrink-0" size={24} />,
       tags: ['IELTS 7.0 (English)', 'HSK3 (Chinese / 中文)', 'Global Communication'],
     },
@@ -640,8 +746,8 @@ function Offerings() {
       <div className="ambient-glow-emerald top-1/4 -left-32" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeading
-          title="Năng lực cốt lõi hệ thống"
-          sub="Bộ giải pháp tổng thể kết hợp giữa công nghệ, dữ liệu và tư duy Marketing hệ thống."
+          title={t('Năng lực cốt lõi hệ thống', 'Core System Capabilities')}
+          sub={t('Bộ giải pháp tổng thể kết hợp giữa công nghệ, dữ liệu và tư duy Marketing hệ thống.', 'Comprehensive solution architecture combining engineering, data, and system-first marketing thinking.')}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
           {offerings.map((item, idx) => (
@@ -672,10 +778,12 @@ function Offerings() {
 
 // ─── Section 3: SEO Architecture ─────────────────────────────────────────────
 function SeoArchitecture() {
+  const { t } = useLanguage()
+
   const seoEditorialRows = [
     {
       num: '01',
-      title: 'Hạ tầng & Chuẩn hóa Kỹ thuật',
+      title: t('Hạ tầng & Chuẩn hóa Kỹ thuật', 'Technical Infrastructure & Standards'),
       techStack: [
         { name: 'Cloudflare', logo: 'Cloudflare' },
         { name: 'WordPress', logo: 'WordPress' },
@@ -683,11 +791,11 @@ function SeoArchitecture() {
         { name: 'Crawl Budget', logo: '' },
       ],
       metric: 'PageSpeed 99/100',
-      desc: 'Tối ưu Crawl Budget, cấu trúc Server, Caching Cloudflare và mã hóa Schema Entity JSON-LD chuẩn Google Knowledge Graph.',
+      desc: t('Tối ưu Crawl Budget, cấu trúc Server, Caching Cloudflare và mã hóa Schema Entity JSON-LD chuẩn Google Knowledge Graph.', 'Optimizing Crawl Budget, server structure, Cloudflare caching, and Schema Entity JSON-LD structured data for Google Knowledge Graph.'),
     },
     {
       num: '02',
-      title: 'Kiến trúc Cụm chủ đề Ngữ nghĩa (Topic Cluster)',
+      title: t('Kiến trúc Cụm chủ đề Ngữ nghĩa (Topic Cluster)', 'Semantic Topic Cluster Architecture'),
       techStack: [
         { name: 'Topic Cluster Matrix', logo: '' },
         { name: 'RankMath', logo: 'WordPress' },
@@ -695,22 +803,22 @@ function SeoArchitecture() {
         { name: 'Search Intent', logo: '' },
       ],
       metric: 'Topical Authority',
-      desc: 'Nghiên cứu Search Intent, quy hoạch ma trận bài Trụ cột (Pillar) & Vệ tinh (Cluster) tối ưu dòng chảy liên kết (Link Juice).',
+      desc: t('Nghiên cứu Search Intent, quy hoạch ma trận bài Trụ cột (Pillar) & Vệ tinh (Cluster) tối ưu dòng chảy liên kết (Link Juice).', 'Search intent research, Pillar & Cluster content matrix planning, and link juice flow optimization.'),
     },
     {
       num: '03',
-      title: 'Local SEO B2B Entity',
+      title: t('Local SEO B2B Entity', 'Local SEO B2B Entity'),
       techStack: [
         { name: 'Google Business Profile', logo: '' },
         { name: 'Schema Local Business', logo: '' },
         { name: 'Local Intent B2B', logo: '' },
       ],
       metric: 'Rank #1 Local B2B',
-      desc: 'Phủ sóng từ khóa thương hiệu & địa phương (Đà Nẵng / Miền Trung), đồng bộ Google Business Profile & Schema Local Business.',
+      desc: t('Phủ sóng từ khóa thương hiệu & địa phương (Đà Nẵng / Miền Trung), đồng bộ Google Business Profile & Schema Local Business.', 'Dominated regional & brand keywords, synced Google Business Profile and Local Business Schema.'),
     },
     {
       num: '04',
-      title: 'Đo lường & Tracking Real-time',
+      title: t('Đo lường & Tracking Real-time', 'Real-time Analytics & Tracking'),
       techStack: [
         { name: 'GA4', logo: 'GA4' },
         { name: 'Looker Studio', logo: 'Looker' },
@@ -718,7 +826,7 @@ function SeoArchitecture() {
         { name: 'BigQuery', logo: '' },
       ],
       metric: 'Core Web Vitals PASS',
-      desc: 'Kết nối Google Search Console API + GA4 + Looker Studio theo dõi thứ hạng từ khóa và luồng chuyển đổi tự động hằng ngày.',
+      desc: t('Kết nối Google Search Console API + GA4 + Looker Studio theo dõi thứ hạng từ khóa và luồng chuyển đổi tự động hằng ngày.', 'Connected Google Search Console API, GA4, and Looker Studio for automated daily keyword ranking & conversion tracking.'),
     },
   ]
 
@@ -731,18 +839,18 @@ function SeoArchitecture() {
               • TECHNICAL SEO BLUEPRINT
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">
-              Kiến trúc SEO Website & Tăng trưởng Organic Bền vững
+              {t('Kiến trúc SEO Website & Tăng trưởng Organic Bền vững', 'Technical SEO Architecture & Sustainable Organic Growth')}
             </h2>
           </div>
           <div className="lg:col-span-4 flex items-center justify-start lg:justify-end gap-6 sm:gap-8 pb-2">
             <div>
               <p className="text-3xl sm:text-5xl font-extrabold text-emerald-500">99/100</p>
-              <p className="text-xs font-semibold mt-1 text-slate-500">PageSpeed Mobile</p>
+              <p className="text-xs font-semibold mt-1 text-slate-500">{t('PageSpeed Mobile', 'Mobile PageSpeed')}</p>
             </div>
             <div className="w-px h-10 sm:h-12 bg-slate-200" />
             <div>
               <p className="text-3xl sm:text-5xl font-extrabold text-blue-600">PASS</p>
-              <p className="text-xs font-semibold mt-1 text-slate-500">Core Web Vitals</p>
+              <p className="text-xs font-semibold mt-1 text-slate-500">{t('Core Web Vitals', 'Core Web Vitals')}</p>
             </div>
           </div>
         </div>
@@ -785,40 +893,41 @@ function SeoArchitecture() {
 
 // ─── Section 4: n8n Canvas UI ─────────────────────────────────────────────────
 function N8nCanvasUI() {
+  const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState(0)
 
   const workflows = [
     {
       id: 'fb-ai-crm',
-      title: 'Facebook AI Sales CRM V3 (Thành Tín)',
-      shortTitle: 'Sales CRM AI',
+      title: t('Facebook AI Sales CRM V3 (Thành Tín)', 'Facebook AI Sales CRM V3 (Thanh Tin)'),
+      shortTitle: t('Sales CRM AI', 'Sales CRM AI'),
       nodes: [
-        { id: 1, name: 'Facebook Webhook', type: 'Trigger', color: 'bg-amber-500', desc: 'Lắng nghe tin nhắn mới' },
-        { id: 2, name: 'Gemini AI Agent', type: 'AI Intent', color: 'bg-purple-600', desc: 'Phân loại nhu cầu báo giá đồng phục' },
-        { id: 3, name: 'AppSheet CRM', type: 'Database', color: 'bg-emerald-600', desc: 'Tạo Lead & phân công Saler' },
-        { id: 4, name: 'Telegram Priority', type: 'Alert SLA', color: 'bg-blue-600', desc: 'Báo động Sale < 5 giây' },
+        { id: 1, name: t('Facebook Webhook', 'Facebook Webhook'), type: 'Trigger', color: 'bg-amber-500', desc: t('Lắng nghe tin nhắn mới', 'Listening for new messages') },
+        { id: 2, name: t('Gemini AI Agent', 'Gemini AI Agent'), type: 'AI Intent', color: 'bg-purple-600', desc: t('Phân loại nhu cầu báo giá đồng phục', 'Classifying uniform quote requests') },
+        { id: 3, name: t('AppSheet CRM', 'AppSheet CRM'), type: 'Database', color: 'bg-emerald-600', desc: t('Tạo Lead & phân công Saler', 'Creating lead & assigning sales rep') },
+        { id: 4, name: t('Telegram Priority', 'Telegram Priority'), type: 'Alert SLA', color: 'bg-blue-600', desc: t('Báo động Sale < 5 giây', 'Sales alert SLA < 5 seconds') },
       ]
     },
     {
       id: 'ai-image-factory',
-      title: 'AI Content & Image Factory (Stable Diffusion)',
-      shortTitle: 'AI Content Factory',
+      title: t('AI Content & Image Factory (Stable Diffusion)', 'AI Content & Image Factory (Stable Diffusion)'),
+      shortTitle: t('AI Content Factory', 'AI Content Factory'),
       nodes: [
-        { id: 1, name: 'Cron Schedule', type: 'Trigger', color: 'bg-amber-500', desc: 'Chạy theo lịch 4h sáng' },
-        { id: 2, name: 'Gemini Writer', type: 'AI Text', color: 'bg-purple-600', desc: 'Viết bài & sinh Prompt mẫu áo' },
-        { id: 3, name: 'Stable Diffusion', type: 'AI Image', color: 'bg-indigo-600', desc: 'Sinh ảnh mẫu đồng phục đẹp' },
-        { id: 4, name: 'Telegram Approval', type: 'Callback Bot', color: 'bg-blue-600', desc: 'Nút Duyệt / Sửa trực tiếp' },
+        { id: 1, name: t('Cron Schedule', 'Cron Schedule'), type: 'Trigger', color: 'bg-amber-500', desc: t('Chạy theo lịch 4h sáng', 'Runs daily at 4:00 AM') },
+        { id: 2, name: t('Gemini Writer', 'Gemini Writer'), type: 'AI Text', color: 'bg-purple-600', desc: t('Viết bài & sinh Prompt mẫu áo', 'Writing copy & generating prompts') },
+        { id: 3, name: t('Stable Diffusion', 'Stable Diffusion'), type: 'AI Image', color: 'bg-indigo-600', desc: t('Sinh ảnh mẫu đồng phục đẹp', 'Generating apparel renders') },
+        { id: 4, name: t('Telegram Approval', 'Telegram Approval'), type: 'Callback Bot', color: 'bg-blue-600', desc: t('Nút Duyệt / Sửa trực tiếp', 'Live Approve / Edit button') },
       ]
     },
     {
       id: 'competitor-scraper',
-      title: 'Research Content Facebook (Organic + Ads)',
-      shortTitle: 'Research Đối Thủ',
+      title: t('Research Content Facebook (Organic + Ads)', 'Facebook Competitor Content Research'),
+      shortTitle: t('Research Đối Thủ', 'Competitor Scraper'),
       nodes: [
-        { id: 1, name: 'Apify Scraper', type: 'Scraper', color: 'bg-amber-500', desc: 'Cào bài viết đối thủ B2B' },
-        { id: 2, name: 'Gemini Analysis', type: 'AI Insight', color: 'bg-purple-600', desc: 'Bóc tách góc nhìn & Hook' },
-        { id: 3, name: 'Google Sheets', type: 'Archive', color: 'bg-emerald-600', desc: 'Lưu trữ thư viện ý tưởng' },
-        { id: 4, name: 'Telegram Brief', type: 'Daily Report', color: 'bg-blue-600', desc: 'Báo cáo xu hướng 8h sáng' },
+        { id: 1, name: t('Apify Scraper', 'Apify Scraper'), type: 'Scraper', color: 'bg-amber-500', desc: t('Cào bài viết đối thủ B2B', 'Scraping competitor B2B ads & posts') },
+        { id: 2, name: t('Gemini Analysis', 'Gemini Analysis'), type: 'AI Insight', color: 'bg-purple-600', desc: t('Bóc tách góc nhìn & Hook', 'Extracting hooks & creative insights') },
+        { id: 3, name: t('Google Sheets', 'Google Sheets'), type: 'Archive', color: 'bg-emerald-600', desc: t('Lưu trữ thư viện ý tưởng', 'Archiving idea library') },
+        { id: 4, name: t('Telegram Brief', 'Telegram Brief'), type: 'Daily Report', color: 'bg-blue-600', desc: t('Báo cáo xu hướng 8h sáng', 'Daily 8:00 AM trend report') },
       ]
     }
   ]
@@ -830,8 +939,8 @@ function N8nCanvasUI() {
       <div className="ambient-glow-blue top-1/3 -left-32" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeading
-          title="Trực quan hoá n8n Workflows Thực tế"
-          sub="Giao diện mô phỏng 100% Canvas n8n thực tế đang tự động hoá cho Đồng phục Thành Tín."
+          title={t('Trực quan hoá n8n Workflows Thực tế', 'Visualizing Real-world n8n Workflows')}
+          sub={t('Giao diện mô phỏng 100% Canvas n8n thực tế đang tự động hoá cho Đồng phục Thành Tín.', '100% visual simulation of actual production n8n Canvas workflows deployed for Thanh Tin Uniforms.')}
         />
 
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 sm:mb-10 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
@@ -839,7 +948,7 @@ function N8nCanvasUI() {
             <button
               key={wf.id}
               onClick={() => setActiveTab(i)}
-              className={`flex-shrink-0 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold transition-all ${
+              className={`flex-shrink-0 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs font-bold transition-all cursor-pointer ${
                 activeTab === i
                   ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                   : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
@@ -907,12 +1016,14 @@ function N8nCanvasUI() {
 
 // ─── Section 5: Case Study ────────────────────────────────────────────────────
 function CaseStudy() {
+  const { t } = useLanguage()
+
   return (
     <section id="casestudy" className="py-24 sm:py-32 scroll-mt-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeading
-          title="Dự án Case Study nổi bật"
-          sub="Minh chứng từ hệ thống Marketing Automation B2B đã được vận hành thực tế tại Đồng phục Thành Tín."
+          title={t('Dự án Case Study nổi bật', 'Featured Real-world Case Study')}
+          sub={t('Minh chứng từ hệ thống Marketing Automation B2B đã được vận hành thực tế tại Đồng phục Thành Tín.', 'Proven results from a B2B Marketing Automation System deployed at Thanh Tin Uniforms.')}
         />
 
         <FadeUp>
@@ -931,31 +1042,34 @@ function CaseStudy() {
             <div className="order-last lg:order-first lg:w-[55%] p-6 sm:p-10 flex flex-col justify-between">
               <div>
                 <span className="text-xs font-semibold text-blue-600 border-b border-blue-500 pb-0.5 mb-5 block w-fit">
-                  Chuyển đổi số B2B · Đồng phục Thành Tín
+                  {t('Chuyển đổi số B2B · Đồng phục Thành Tín', 'B2B Digital Transformation · Thanh Tin Uniforms')}
                 </span>
                 <h3 className="text-xl sm:text-3xl font-extrabold mb-3 leading-tight text-slate-900">
-                  Hệ thống Marketing Automation &amp; CRM Tự động 70% Lead B2B
+                  {t('Hệ thống Marketing Automation & CRM Tự động 70% Lead B2B', 'Marketing Automation & CRM System Automating 70% of B2B Leads')}
                 </h3>
                 <p className="text-sm leading-relaxed mb-6 font-normal text-slate-500">
-                  Tái kiến trúc lại toàn bộ trải nghiệm số cho thương hiệu may mặc B2B 15 năm tuổi: Tối ưu SEO Topic Cluster, tích hợp Zalo OA tự động phản hồi SLA &lt;5s, CRM AppSheet và 18 luồng n8n tự động viết bài, sinh ảnh AI.
+                  {t(
+                    'Tái kiến trúc lại toàn bộ trải nghiệm số cho thương hiệu may mặc B2B 15 năm tuổi: Tối ưu SEO Topic Cluster, tích hợp Zalo OA tự động phản hồi SLA <5s, CRM AppSheet và 18 luồng n8n tự động viết bài, sinh ảnh AI.',
+                    'Re-architected the digital experience for a 15-year B2B apparel brand: Topic Cluster SEO, Zalo OA SLA <5s auto-responder, AppSheet CRM, and 18 n8n workflows for AI content & visual generation.'
+                  )}
                 </p>
                 <div className="grid grid-cols-3 gap-3 sm:gap-5 mb-6">
                   <div>
                     <p className="text-xl sm:text-3xl font-extrabold text-blue-600">+238%</p>
-                    <p className="text-xs font-medium mt-1 text-slate-500">Organic Traffic</p>
+                    <p className="text-xs font-medium mt-1 text-slate-500">{t('Organic Traffic', 'Organic Traffic')}</p>
                   </div>
                   <div>
                     <p className="text-xl sm:text-3xl font-extrabold text-emerald-500">70%</p>
-                    <p className="text-xs font-medium mt-1 text-slate-500">Lead Tự động</p>
+                    <p className="text-xs font-medium mt-1 text-slate-500">{t('Lead Tự động', 'Automated Leads')}</p>
                   </div>
                   <div>
                     <p className="text-xl sm:text-3xl font-extrabold text-amber-500">&lt; 5s</p>
-                    <p className="text-xs font-medium mt-1 text-slate-500">SLA Zalo OA</p>
+                    <p className="text-xs font-medium mt-1 text-slate-500">{t('SLA Zalo OA', 'SLA Response')}</p>
                   </div>
                 </div>
               </div>
               <a href="#experience" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-bold text-sm border-b-2 border-blue-600 pb-1 transition-all hover:translate-x-1 w-fit">
-                Xem Chi Tiết Quy Trình Vận Hành <ArrowUpRight size={16} />
+                {t('Xem Chi Tiết Quy Trình Vận Hành', 'View Operating Workflows')} <ArrowUpRight size={16} />
               </a>
             </div>
 
@@ -968,22 +1082,27 @@ function CaseStudy() {
 
 // ─── Section 6: Experience ────────────────────────────────────────────────────
 function Experience() {
+  const { t } = useLanguage()
+
   const thietTinProjects = [
     {
       num: '01',
-      title: 'Tự động hóa Tiếp nhận & Chăm sóc Lead 24/7 (Zalo OA / Messenger)',
+      title: t('Tự động hóa Tiếp nhận & Chăm sóc Lead 24/7 (Zalo OA / Messenger)', '24/7 Automated Lead Intake & Nurturing (Zalo OA / Messenger)'),
       flowItems: [
         { label: 'Zalo OA', logo: 'Zalo' },
         { label: 'n8n Middleware API', logo: 'n8n' },
         { label: 'Gemini AI', logo: 'Gemini' },
         { label: 'AppSheet CRM', logo: 'AppSheet' },
       ],
-      metric: '< 5s SLA Phản hồi 24/7',
-      desc: 'Dùng n8n kết nối API Zalo OA, Messenger và AppSheet CRM. Tích hợp AI Gemini đọc tin nhắn khách hỏi giá/mẫu áo, tự động trích xuất Tên + SĐT + Nhu cầu và phản hồi tức thì.',
+      metric: t('< 5s SLA Phản hồi 24/7', '< 5s SLA 24/7 Response'),
+      desc: t(
+        'Dùng n8n kết nối API Zalo OA, Messenger và AppSheet CRM. Tích hợp AI Gemini đọc tin nhắn khách hỏi giá/mẫu áo, tự động trích xuất Tên + SĐT + Nhu cầu và phản hồi tức thì.',
+        'Engineered n8n workflows connecting Zalo OA API, Messenger, and AppSheet CRM. Integrated Gemini AI to parse incoming lead inquiries, extract Name + Phone + Specs, and respond in < 5s.'
+      ),
     },
     {
       num: '02',
-      title: 'Hệ thống Quét & Phân tích Quảng cáo Đối thủ Tự động',
+      title: t('Hệ thống Quét & Phân tích Quảng cáo Đối thủ Tự động', 'Automated Competitor Ad Scraper & Intelligence System'),
       flowItems: [
         { label: 'FB Ad Library', logo: 'Apify' },
         { label: 'Apify Scraper', logo: 'n8n' },
@@ -991,23 +1110,29 @@ function Experience() {
         { label: 'Telegram Brief', logo: 'Telegram' },
       ],
       metric: '100% Auto Report',
-      desc: 'Dựng kịch bản n8n tự động cào dữ liệu từ Facebook Ad Library của các xưởng may đối thủ B2B, gửi báo cáo phân tích mẫu áo hot và góc nhìn nội dung về Telegram hằng tuần.',
+      desc: t(
+        'Dựng kịch bản n8n tự động cào dữ liệu từ Facebook Ad Library của các xưởng may đối thủ B2B, gửi báo cáo phân tích mẫu áo hot và góc nhìn nội dung về Telegram hằng tuần.',
+        'Built automated n8n scrapers pulling Facebook Ad Library data from competitor apparel manufacturers, sending weekly AI ad analysis reports to Telegram.'
+      ),
     },
     {
       num: '03',
-      title: 'Nhà máy Sản xuất Nội dung & Ảnh mẫu áo bằng AI',
+      title: t('Nhà máy Sản xuất Nội dung & Ảnh mẫu áo bằng AI', 'AI Content & Apparel Visual Production Factory'),
       flowItems: [
         { label: 'OpenAI Prompt', logo: 'OpenAI' },
         { label: 'Gemini Writer', logo: 'Gemini' },
         { label: 'Stable Diffusion Render', logo: 'Figma' },
         { label: 'WordPress Auto', logo: 'WordPress' },
       ],
-      metric: 'Tiết kiệm 70% Thời gian',
-      desc: 'Ứng dụng Generative AI tự động gợi ý kịch bản bài viết bán hàng và phối cảnh mẫu áo đồng phục, tự động lập lịch đăng lên Website & Fanpage.',
+      metric: t('Tiết kiệm 70% Thời gian', '70% Time Savings'),
+      desc: t(
+        'Ứng dụng Generative AI tự động gợi ý kịch bản bài viết bán hàng và phối cảnh mẫu áo đồng phục, tự động lập lịch đăng lên Website & Fanpage.',
+        'Connected OpenAI API & Stable Diffusion for an automated pipeline generating 50+ SEO articles and apparel product mockups, cutting photoshoot costs by 80%.'
+      ),
     },
     {
       num: '04',
-      title: 'Tối ưu Từ khóa Tìm kiếm & Hiển thị trên Engine AI (GEO/AEO)',
+      title: t('Tối ưu Từ khóa Tìm kiếm & Hiển thị trên Engine AI (GEO/AEO)', 'Search Engine & AI Answer Engine Optimization (GEO/AEO)'),
       flowItems: [
         { label: 'Ahrefs Intent', logo: 'Ahrefs' },
         { label: 'Cloudflare Infra', logo: 'Cloudflare' },
@@ -1015,11 +1140,14 @@ function Experience() {
         { label: 'ChatGPT Citation', logo: 'OpenAI' },
       ],
       metric: 'Inbound Lead Flow',
-      desc: 'Tái cấu trúc bài viết chuẩn ngữ nghĩa SEO để thương hiệu Thành Tín được xuất hiện khi khách hàng tìm kiếm trên Google và các công cụ hỏi đáp AI (ChatGPT / Perplexity).',
+      desc: t(
+        'Tái cấu trúc bài viết chuẩn ngữ nghĩa SEO để thương hiệu Thành Tín được xuất hiện khi khách hàng tìm kiếm trên Google và các công cụ hỏi đáp AI (ChatGPT / Perplexity).',
+        'Restructured content matrix to rank brand entity on both Google SERP and AI Answer Engines (ChatGPT / Perplexity / Gemini).'
+      ),
     },
     {
       num: '05',
-      title: 'Thiết kế Website Mobile-First & Tối ưu Tỷ lệ Chuyển đổi (CRO)',
+      title: t('Thiết kế Website Mobile-First & Tối ưu Tỷ lệ Chuyển đổi (CRO)', 'Mobile-First Website Redesign & Conversion Optimization (CRO)'),
       flowItems: [
         { label: 'Figma UX Audit', logo: 'Figma' },
         { label: 'WordPress CRO Landing', logo: 'WordPress' },
@@ -1027,7 +1155,10 @@ function Experience() {
         { label: 'GA4 Real-time', logo: 'GA4' },
       ],
       metric: 'Maximized Conversion',
-      desc: 'Nghiên cứu từ khóa nhu cầu may đồng phục B2B; thiết kế lại giao diện tối ưu cho điện thoại; thêm các nút Nhận báo giá / Zalo nhanh tại đúng điểm chạm người dùng.',
+      desc: t(
+        'Nghiên cứu từ khóa nhu cầu may đồng phục B2B; thiết kế lại giao diện tối ưu cho điện thoại; thêm các nút Nhận báo giá / Zalo nhanh tại đúng điểm chạm người dùng.',
+        'Conducted B2B buyer intent research, redesigned mobile-first UI with strategically placed Instant Quote & Zalo touchpoints for maximum conversion rate.'
+      ),
     },
   ]
 
@@ -1035,8 +1166,8 @@ function Experience() {
     <section id="experience" className="py-24 sm:py-36 bg-slate-50/70 border-y border-slate-200 relative scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeading
-          title="Kinh nghiệm & Sơ đồ Luồng Vận hành Hệ thống"
-          sub="Trực quan hoá tư duy kiến trúc & quy trình tự động hoá thực tế đã triển khai."
+          title={t('Kinh nghiệm & Sơ đồ Luồng Vận hành Hệ thống', 'Milestones & Proven Operating Workflows')}
+          sub={t('Trực quan hoá tư duy kiến trúc & quy trình tự động hoá thực tế đã triển khai.', 'Track record of driving marketing operations, technical architecture, and system automation.')}
         />
 
         <div className="space-y-16 sm:space-y-24">
@@ -1047,12 +1178,12 @@ function Experience() {
                   <div className="flex items-center gap-3 mb-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
                     <span className="text-xs font-semibold text-blue-600 tracking-wider uppercase">
-                      LATEST POSITION · 01/2026 – HIỆN TẠI
+                      {t('LATEST POSITION · 01/2026 – HIỆN TẠI', 'LATEST POSITION · 01/2026 – PRESENT')}
                     </span>
                   </div>
-                  <h3 className="text-2xl sm:text-5xl font-extrabold text-slate-900">Đồng phục Thành Tín</h3>
+                  <h3 className="text-2xl sm:text-5xl font-extrabold text-slate-900">{t('Đồng phục Thành Tín', 'Thanh Tin Uniforms')}</h3>
                   <p className="text-base sm:text-lg font-semibold mt-1 text-slate-500">
-                    Kiến trúc sư Hệ thống Trưởng & Chuyên viên Marketing Tăng trưởng
+                    {t('Kiến trúc sư Hệ thống Trưởng & Chuyên viên Marketing Tăng trưởng', 'Lead Systems Architect & Growth Marketing Specialist')}
                   </p>
                 </div>
                 <span className="text-xs font-semibold text-slate-400">5 Systems Workflows</span>
@@ -1101,17 +1232,17 @@ function Experience() {
                     INTERNSHIP · 09/2024 – 01/2025 · TP. ĐÀ NẴNG
                   </span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Trung tâm Anh ngữ Mai</h3>
-                <p className="text-base font-semibold mt-1 text-slate-500">Thực tập sinh Marketing</p>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">{t('Trung tâm Anh ngữ Mai', 'Mai English Center')}</h3>
+                <p className="text-base font-semibold mt-1 text-slate-500">{t('Thực tập sinh Marketing', 'Marketing Intern')}</p>
               </div>
               <div className="space-y-4">
                 <div className="flex items-start gap-4 text-sm sm:text-base leading-relaxed text-slate-500">
                   <Check size={18} className="text-blue-500 flex-shrink-0 mt-1" />
-                  <span>Hỗ trợ lập kế hoạch và triển khai chiến dịch truyền thông số, tối ưu chiến lược nội dung định kỳ trên nền tảng Facebook Fanpage.</span>
+                  <span>{t('Hỗ trợ lập kế hoạch và triển khai chiến dịch truyền thông số, tối ưu chiến lược nội dung định kỳ trên nền tảng Facebook Fanpage.', 'Assisted in planning and executing digital media campaigns, optimizing content strategies on Facebook Fanpage.')}</span>
                 </div>
                 <div className="flex items-start gap-4 text-sm sm:text-base leading-relaxed text-slate-500">
                   <Check size={18} className="text-blue-500 flex-shrink-0 mt-1" />
-                  <span>Lập kế hoạch, điều phối hậu cần và tổ chức workshop giáo dục cùng các sự kiện tương tác nhằm tăng mức độ tham gia và duy trì học viên.</span>
+                  <span>{t('Lập kế hoạch, điều phối hậu cần và tổ chức workshop giáo dục cùng các sự kiện tương tác nhằm tăng mức độ tham gia và duy trì học viên.', 'Coordinated logistics and hosted educational workshops and interactive events to boost student engagement and retention.')}</span>
                 </div>
               </div>
             </div>
@@ -1124,22 +1255,29 @@ function Experience() {
 
 // ─── Contact ──────────────────────────────────────────────────────────────────
 function Contact() {
+  const { t } = useLanguage()
+
   return (
     <section id="contact" className="py-24 sm:py-36 bg-slate-950 text-white relative overflow-hidden">
       <div className="ambient-glow-purple top-1/4 left-1/3" />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
         <FadeUp delay={0}>
-          <span className="text-xs font-bold tracking-wider uppercase text-blue-400 mb-4 block">Bắt đầu hợp tác</span>
+          <span className="text-xs font-bold tracking-wider uppercase text-blue-400 mb-4 block">
+            {t('Bắt đầu hợp tác', 'Start a Collaboration')}
+          </span>
         </FadeUp>
         <FadeUp delay={100}>
           <h2 className="text-3xl sm:text-6xl font-extrabold tracking-tight mb-6 sm:mb-8 leading-tight">
-            Sẵn sàng xây dựng <br />
-            <span className="text-blue-500">hệ thống tăng trưởng?</span>
+            {t('Sẵn sàng xây dựng', 'Ready to build')} <br />
+            <span className="text-blue-500">{t('hệ thống tăng trưởng?', 'your growth engine?')}</span>
           </h2>
         </FadeUp>
         <FadeUp delay={200}>
           <p className="text-slate-300 text-sm sm:text-xl max-w-xl mx-auto mb-10 sm:mb-12 leading-relaxed">
-            Hãy kết nối nếu doanh nghiệp của bạn đang cần một giải pháp Marketing vận hành tự động, đo lường được và bền vững.
+            {t(
+              'Hãy kết nối nếu doanh nghiệp của bạn đang cần một giải pháp Marketing vận hành tự động, đo lường được và bền vững.',
+              'Connect today if your business needs a scalable, measurable, and 70% automated marketing system.'
+            )}
           </p>
         </FadeUp>
         <FadeUp delay={300}>
@@ -1172,7 +1310,7 @@ function Contact() {
           </div>
         </FadeUp>
         <div className="mt-16 sm:mt-20 text-xs text-slate-500 font-semibold">
-          © 2026 Đinh Thanh Tùng · High-Tech Marketing Systems Architect Portfolio
+          {t('© 2026 Đinh Thanh Tùng · High-Tech Marketing Systems Architect Portfolio', '© 2026 Dinh Thanh Tung · High-Tech Marketing Systems Architect Portfolio')}
         </div>
       </div>
     </section>
@@ -1196,18 +1334,20 @@ function BackToTop() {
 // ─── Root ─────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <FeaturedVideos />
-      <WhyChooseMe />
-      <Offerings />
-      <SeoArchitecture />
-      <N8nCanvasUI />
-      <CaseStudy />
-      <Experience />
-      <Contact />
-      <BackToTop />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen">
+        <Navbar />
+        <Hero />
+        <FeaturedVideos />
+        <WhyChooseMe />
+        <Offerings />
+        <SeoArchitecture />
+        <N8nCanvasUI />
+        <CaseStudy />
+        <Experience />
+        <Contact />
+        <BackToTop />
+      </div>
+    </LanguageProvider>
   )
 }
