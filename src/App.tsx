@@ -436,10 +436,9 @@ function Hero() {
   )
 }
 
-// ─── Section: TVC Video Showcase (Ultra-Minimalist Video Frames, Pure Visual) ──
+// ─── Section: TVC Video Showcase (Direct Embed Video Frames, Pure Minimalist) ──
 function FeaturedVideos() {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null)
 
   const videoIds = ['S5blMCZM-Dk', 'PISPMIaLuhU', 'eBYW_nPo8co']
 
@@ -459,14 +458,14 @@ function FeaturedVideos() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll('left')}
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all flex items-center justify-center shadow-sm active:scale-95"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all flex items-center justify-center shadow-sm active:scale-95 cursor-pointer"
               aria-label="Scroll Left"
             >
               <ArrowRight size={16} className="rotate-180" />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all flex items-center justify-center shadow-sm active:scale-95"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all flex items-center justify-center shadow-sm active:scale-95 cursor-pointer"
               aria-label="Scroll Right"
             >
               <ArrowRight size={16} />
@@ -474,7 +473,7 @@ function FeaturedVideos() {
           </div>
         </div>
 
-        {/* Minimalist Horizontal Scroll Container - 0% Extra Text */}
+        {/* Minimalist Direct-Embed Video Scroll Container */}
         <div
           ref={scrollRef}
           className="flex gap-6 sm:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6"
@@ -486,35 +485,14 @@ function FeaturedVideos() {
               className="w-[88vw] sm:w-[560px] lg:w-[620px] flex-shrink-0 snap-start"
             >
               <FadeUp delay={idx * 100}>
-                <div className="relative aspect-video w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 shadow-md border border-slate-200 group hover:shadow-xl transition-all duration-500">
-                  {playingVideoId === id ? (
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
-                      title={`TVC Video ${idx + 1}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full border-0"
-                    />
-                  ) : (
-                    <div
-                      onClick={() => setPlayingVideoId(id)}
-                      className="relative w-full h-full cursor-pointer group/thumb"
-                    >
-                      <img
-                        src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
-                        alt={`TVC ${idx + 1}`}
-                        className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-700 opacity-95 group-hover/thumb:opacity-100"
-                      />
-                      <div className="absolute inset-0 bg-slate-950/20 group-hover/thumb:bg-slate-950/10 transition-colors" />
-
-                      {/* Pure Minimal Glass Play Button */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/90 backdrop-blur-md text-slate-900 flex items-center justify-center shadow-lg group-hover/thumb:scale-110 group-hover/thumb:bg-blue-600 group-hover/thumb:text-white transition-all duration-300">
-                          <Play size={24} className="fill-current translate-x-0.5" />
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                <div className="relative aspect-video w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 shadow-md border border-slate-200/80 hover:shadow-xl transition-shadow duration-500">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${id}?rel=0`}
+                    title={`TVC Video ${idx + 1}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
                 </div>
               </FadeUp>
             </div>
