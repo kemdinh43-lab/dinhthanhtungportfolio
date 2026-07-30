@@ -286,39 +286,40 @@ function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'py-3 sm:py-4 border-b border-slate-200/60 backdrop-blur-xl bg-white/90' : 'py-4 sm:py-6'
+        scrolled ? 'py-2.5 sm:py-3.5 border-b border-slate-200/60 backdrop-blur-xl bg-white/90 shadow-sm' : 'py-3 sm:py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <a href="#hero" className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+        <a href="#hero" className="font-extrabold text-base sm:text-lg xl:text-xl tracking-tight text-slate-900 whitespace-nowrap flex-shrink-0">
           Đinh Thanh Tùng <span className="font-semibold text-slate-400">Portfolio</span><span className="text-blue-500">.</span>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-7 bg-white/90 backdrop-blur-md px-6 py-2.5 rounded-full border border-slate-200 shadow-sm">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 bg-white/90 backdrop-blur-md px-5 xl:px-7 py-2 rounded-full border border-slate-200 shadow-sm flex-shrink-0">
           {navItems.map(([label, href]) => (
             <a
               key={href}
               href={href}
-              className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-500 transition-colors"
+              className="text-xs xl:text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors whitespace-nowrap flex-shrink-0"
             >
               {label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           <LanguageSwitcher />
 
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-md shadow-blue-600/20"
+            className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-semibold px-4 xl:px-5 py-2 xl:py-2.5 rounded-full transition-all shadow-md shadow-blue-600/20 whitespace-nowrap flex-shrink-0"
           >
             {t('Kết nối ngay', "Let's Connect")} <ArrowRight size={14} />
           </a>
 
           <button
             onClick={() => setMobileMenu(!mobileMenu)}
-            className="lg:hidden p-2 text-slate-700"
+            className="lg:hidden p-2 text-slate-700 cursor-pointer"
+            aria-label="Toggle Menu"
           >
             {mobileMenu ? <X size={22} /> : <Menu size={22} />}
           </button>
