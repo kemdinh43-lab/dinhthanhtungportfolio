@@ -505,8 +505,9 @@ function FeaturedVideos() {
                   <video
                     src={item.src}
                     controls
+                    muted
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     onPlay={handlePlay}
                     className="w-full h-full object-cover"
                   />
