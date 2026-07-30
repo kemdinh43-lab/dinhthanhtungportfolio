@@ -205,7 +205,6 @@ function Navbar() {
 
   const navItems = [
     ['Trang chủ', '#hero'],
-    ['TVC Showcase', '#featured-videos'],
     ['Vì sao chọn tôi', '#why-choose-me'],
     ['Năng lực', '#offerings'],
     ['Kiến trúc SEO', '#seo-architecture'],
