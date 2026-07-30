@@ -445,6 +445,19 @@ function FeaturedVideos() {
     { id: 'tvc3', src: '/videos/tvc3.mp4' },
   ]
 
+  const handlePlay = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const currentVideo = e.currentTarget
+    const container = scrollRef.current
+    if (container) {
+      const allVideos = container.querySelectorAll('video')
+      allVideos.forEach((v) => {
+        if (v !== currentVideo && !v.paused) {
+          v.pause()
+        }
+      })
+    }
+  }
+
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = direction === 'left' ? -460 : 460
@@ -494,6 +507,7 @@ function FeaturedVideos() {
                     controls
                     playsInline
                     preload="metadata"
+                    onPlay={handlePlay}
                     className="w-full h-full object-cover"
                   />
                 </div>
