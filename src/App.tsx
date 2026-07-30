@@ -440,9 +440,9 @@ function FeaturedVideos() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const videoList = [
-    { id: 'tvc1', src: '/videos/tvc1.mp4' },
-    { id: 'tvc2', src: '/videos/tvc2.mp4' },
-    { id: 'tvc3', src: '/videos/tvc3.mp4' },
+    { id: 'tvc1', src: '/videos/tvc1.mp4', poster: '/videos/poster1.webp' },
+    { id: 'tvc2', src: '/videos/tvc2.mp4', poster: '/videos/poster2.webp' },
+    { id: 'tvc3', src: '/videos/tvc3.mp4', poster: '/videos/poster3.webp' },
   ]
 
   const handlePlay = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
@@ -460,17 +460,17 @@ function FeaturedVideos() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = direction === 'left' ? -460 : 460
+      const scrollAmount = direction === 'left' ? -480 : 480
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
     }
   }
 
   return (
-    <section id="featured-videos" className="py-16 sm:py-24 bg-[#FAFAF8] relative scroll-mt-28 border-b border-slate-200/60 overflow-hidden select-none">
+    <section id="featured-videos" className="py-10 sm:py-20 bg-[#FAFAF8] relative scroll-mt-28 border-b border-slate-200/60 overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Navigation Arrows for Minimal Horizontal Scroll */}
-        <div className="flex justify-end mb-6 sm:mb-8">
+        <div className="flex justify-end mb-4 sm:mb-8">
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll('left')}
@@ -489,21 +489,22 @@ function FeaturedVideos() {
           </div>
         </div>
 
-        {/* Minimalist Native HTML5 Video Scroll Container - 0% Text */}
+        {/* Minimalist Native HTML5 Video Scroll Container - Ultra Mobile Optimized */}
         <div
           ref={scrollRef}
-          className="flex gap-6 sm:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6"
+          className="flex gap-4 sm:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {videoList.map((item, idx) => (
             <div
               key={item.id}
-              className="w-[88vw] sm:w-[560px] lg:w-[620px] flex-shrink-0 snap-start"
+              className="w-[92vw] sm:w-[580px] lg:w-[640px] flex-shrink-0 snap-center sm:snap-start"
             >
               <FadeUp delay={idx * 100}>
                 <div className="relative aspect-video w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-md border border-slate-200/80 hover:shadow-2xl transition-all duration-500">
                   <video
                     src={item.src}
+                    poster={item.poster}
                     controls
                     muted
                     playsInline
