@@ -205,6 +205,7 @@ function Navbar() {
 
   const navItems = [
     ['Trang chủ', '#hero'],
+    ['Demo System', '#featured-videos'],
     ['Vì sao chọn tôi', '#why-choose-me'],
     ['Năng lực', '#offerings'],
     ['Kiến trúc SEO', '#seo-architecture'],
@@ -431,6 +432,206 @@ function Hero() {
           </div>
         </div>
       </div>
+    </section>
+  )
+}
+
+// ─── Section: Featured Video Demos (Apple Horizontal Scroll Showcase) ────────
+function FeaturedVideos() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [activeModalVideo, setActiveModalVideo] = useState<string | null>(null)
+
+  const videos = [
+    {
+      id: 'S5blMCZM-Dk',
+      title: 'Hệ thống Tự động hóa Marketing & Workflow n8n',
+      subtitle: 'n8n Automation Flow · Real-Time Trigger · Webhook SOP',
+      desc: 'Demo chi tiết quy trình tự động hóa nuôi dưỡng lead, đồng bộ dữ liệu đa kênh và phản hồi khách hàng tức thì dưới 5s.',
+      duration: '4:25',
+      badge: 'n8n Workflow',
+    },
+    {
+      id: 'PISPMIaLuhU',
+      title: 'Kiến trúc Dữ liệu & Dashboard Looker Studio / GA4',
+      subtitle: 'Data Architecture · Looker Studio · GA4 BigQuery',
+      desc: 'Trình diễn hệ thống đo lường hiệu năng chuyển đổi thực tế, tập trung dữ liệu real-time giúp ra quyết định tối ưu ngân sách.',
+      duration: '3:50',
+      badge: 'Data Dashboard',
+    },
+    {
+      id: 'eBYW_nPo8co',
+      title: 'Xây dựng AI Content Factory & Quy trình Chuyển đổi Lead',
+      subtitle: 'AI Content Pipeline · Lead Nurturing · CRO Strategy',
+      desc: 'Trải nghiệm quy trình sản xuất nội dung AI tự động hóa kết hợp tối ưu tỷ lệ chuyển đổi từ Traffic ra Lead thực chiến.',
+      duration: '5:10',
+      badge: 'AI & Growth',
+    },
+  ]
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === 'left' ? -420 : 420
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    }
+  }
+
+  return (
+    <section id="featured-videos" className="py-20 sm:py-28 bg-slate-900 text-white relative scroll-mt-28 overflow-hidden">
+      {/* Background Ambient Glows */}
+      <div className="ambient-glow-blue top-1/3 -left-40 opacity-30 pointer-events-none" />
+      <div className="ambient-glow-purple bottom-10 -right-40 opacity-30 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        
+        {/* Header with Navigation Controls */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <FadeUp>
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
+                <Play size={13} className="fill-blue-400" /> Real-World Demos & Workflows
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+                Demo Hệ thống Thực tế
+              </h2>
+              <p className="text-slate-400 text-base sm:text-lg mt-3 max-w-2xl font-normal">
+                Xem trực tiếp các quy trình tự động hóa, kiến trúc dữ liệu và workflow vận hành thực chiến đã triển khai.
+              </p>
+            </div>
+          </FadeUp>
+
+          {/* Navigation Arrows */}
+          <FadeUp delay={100} className="hidden sm:flex items-center gap-3">
+            <button
+              onClick={() => scroll('left')}
+              className="w-12 h-12 rounded-full bg-slate-800/80 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all flex items-center justify-center shadow-lg active:scale-95"
+              aria-label="Scroll Left"
+            >
+              <ArrowRight size={18} className="rotate-180" />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="w-12 h-12 rounded-full bg-slate-800/80 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all flex items-center justify-center shadow-lg active:scale-95"
+              aria-label="Scroll Right"
+            >
+              <ArrowRight size={18} />
+            </button>
+          </FadeUp>
+        </div>
+
+        {/* Apple Horizontal Scroll Container */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 sm:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-8 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 select-none"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {videos.map((item, idx) => (
+            <div
+              key={item.id}
+              className="w-[85vw] sm:w-[500px] lg:w-[540px] flex-shrink-0 snap-start group"
+            >
+              <FadeUp delay={idx * 100}>
+                <div className="bg-slate-800/60 backdrop-blur-xl border border-slate-700/60 rounded-3xl overflow-hidden hover:border-blue-500/60 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] flex flex-col h-full">
+                  
+                  {/* Video Thumbnail & Play Button Overlay */}
+                  <div
+                    onClick={() => setActiveModalVideo(item.id)}
+                    className="relative aspect-video w-full bg-slate-950 overflow-hidden cursor-pointer group/thumb"
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${item.id}/hqdefault.jpg`}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-700 opacity-90 group-hover/thumb:opacity-100"
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
+
+                    {/* Top Badge */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-blue-400 text-xs font-bold px-3 py-1.5 rounded-full">
+                        {item.badge}
+                      </span>
+                    </div>
+
+                    {/* Duration Badge */}
+                    <div className="absolute bottom-4 right-4 z-10">
+                      <span className="bg-slate-950/80 backdrop-blur-md text-slate-300 text-[11px] font-semibold px-2.5 py-1 rounded-md">
+                        {item.duration}
+                      </span>
+                    </div>
+
+                    {/* Center Glass Play Button */}
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-blue-600/90 backdrop-blur-md border border-blue-400/30 text-white flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.6)] group-hover/thumb:scale-110 group-hover/thumb:bg-blue-500 transition-all duration-300">
+                        <Play size={28} className="fill-white translate-x-0.5" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Video Meta Info */}
+                  <div className="p-6 sm:p-8 flex flex-col justify-between flex-grow">
+                    <div>
+                      <div className="text-xs font-semibold text-blue-400 mb-2">
+                        {item.subtitle}
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-400 text-sm leading-relaxed font-normal line-clamp-2">
+                        {item.desc}
+                      </p>
+                    </div>
+
+                    <div className="pt-6 mt-6 border-t border-slate-700/50 flex items-center justify-between text-xs text-slate-400 font-semibold">
+                      <button
+                        onClick={() => setActiveModalVideo(item.id)}
+                        className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1.5 font-bold transition-colors"
+                      >
+                        Xem Video HD <ArrowUpRight size={15} />
+                      </button>
+                      <span className="text-slate-500">YouTube 1080p</span>
+                    </div>
+                  </div>
+
+                </div>
+              </FadeUp>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      {/* ── Modal Video Player Pop-up ── */}
+      {activeModalVideo && (
+        <div
+          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          onClick={() => setActiveModalVideo(null)}
+        >
+          <div
+            className="relative w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setActiveModalVideo(null)}
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 flex items-center justify-center transition-colors"
+              aria-label="Close Modal"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="relative aspect-video w-full bg-black">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${activeModalVideo}?autoplay=1&rel=0`}
+                title="YouTube Video Player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-0"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
     </section>
   )
 }
@@ -1111,6 +1312,7 @@ export default function App() {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
+      <FeaturedVideos />
       <WhyChooseMe />
       <Offerings />
       <SeoArchitecture />
